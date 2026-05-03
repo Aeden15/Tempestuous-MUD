@@ -362,11 +362,11 @@ Tempest.send_pray(&quot;blackout&quot;, tgt, matches[2])</script>
           <regex>^black(?: (\w+))?$</regex>
         </Alias>
         <Alias isActive="yes" isFolder="no">
-          <name>Obscursion</name>
-          <script>Tempest.send_pray(&quot;obscursion&quot;, &quot;self&quot;, matches[2])</script>
+          <name>Obcursion</name>
+          <script>Tempest.send_pray(&quot;obcursion&quot;, &quot;self&quot;, matches[2])</script>
           <command></command>
           <packageName></packageName>
-          <regex>^obsc(?: (\w+))?$</regex>
+          <regex>^obc(?: (\w+))?$</regex>
         </Alias>
       </AliasGroup>
     </AliasGroup>
