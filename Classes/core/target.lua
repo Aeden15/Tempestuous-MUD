@@ -6,6 +6,10 @@ Tempest.risk_band = Tempest.risk_band or "neutral"
 Tempest.weapon_line = Tempest.weapon_line or "blunt"
 -- weapon_can_slash / weapon_can_blunt: nil until triggers fire or you wreset (see TempestCombat.xml).
 Tempest.character_name = Tempest.character_name or ""
+-- From "You can move Nft(Uunits)!"; optional cap for move_by_units (e.g. 1 when server allows one unit per command).
+Tempest.move_feet_per_step = Tempest.move_feet_per_step or nil
+Tempest.move_units_available = Tempest.move_units_available or nil
+Tempest.move_max_units_per_move = Tempest.move_max_units_per_move or nil
 
 function Tempest.set_character_name(name)
   Tempest.character_name = tostring(name or ""):match("^%s*(.-)%s*$") or ""
@@ -44,21 +48,19 @@ function Tempest.set_weapon_line(line)
     return false
   end
   Tempest.weapon_line = key
-  cecho("<cyan>[Tempest] Melee style preference (when weapon allows both): <white>" .. key .. "\n")
   return true
 end
 
 function Tempest.reset_weapon_capabilities()
   Tempest.weapon_can_slash = nil
   Tempest.weapon_can_blunt = nil
-  cecho("<cyan>[Tempest] Weapon style flags cleared (probe weapon again).\n")
 end
 
-function Tempest.note_slashing_weapon()
+function Tempest.note_slashing_weapon(line)
   Tempest.weapon_can_slash = true
 end
 
-function Tempest.note_blunt_weapon()
+function Tempest.note_blunt_weapon(line)
   Tempest.weapon_can_blunt = true
 end
 
@@ -89,6 +91,21 @@ function Tempest.melee_verb_for_tier(tier)
   end
   if t == "heavy" then
     return wl == "sharp" and "cleave" or "smash"
+  end
+  return nil
+end
+
+--- Ranged attack style for fire: safe -> rapid, mid -> deftly, heavy -> precisely (see attackinfo / help fire).
+function Tempest.ranged_verb_for_tier(tier)
+  local t = tostring(tier or ""):lower()
+  if t == "safe" then
+    return "rapid"
+  end
+  if t == "mid" then
+    return "deftly"
+  end
+  if t == "heavy" then
+    return "precisely"
   end
   return nil
 end
@@ -191,6 +208,25 @@ function Tempest.send_basic_attack(attack, explicit_target)
   return true
 end
 
+--- Syntax: fire <rapid|deftly|precisely> <target> (game allows abbreviations; we send full words).
+function Tempest.send_basic_ranged(verb, explicit_target)
+  local v = tostring(verb or ""):match("^%s*(.-)%s*$")
+  if v == "" then
+    return false
+  end
+  local target_name = resolve_attack_target(explicit_target)
+  if not target_name or target_name == "" then
+    cecho("<red>[Tempest] Ranged fire needs a target (tt or second argument).\n")
+    return false
+  end
+  if is_target_self(target_name) then
+    cecho("<red>[Tempest] Refusing to fire on yourself; fix target (tt) or character name (Tempest.set_character_name).\n")
+    return false
+  end
+  send("fire " .. v .. " " .. target_name)
+  return true
+end
+
 function Tempest.set_risk_band(value)
   local band = tostring(value or ""):lower():match("^%s*(.-)%s*$")
   local valid = {
@@ -240,4 +276,82 @@ function Tempest.send_melee(kind, explicit_target)
 
   Tempest.send_basic_attack(attack, explicit_target)
   return true
+end
+
+--- Same modes as send_melee: safe/mid/heavy/auto from Risk (parallel to melee tier mapping).
+function Tempest.send_ranged(kind, explicit_target)
+  local key = tostring(kind or ""):lower()
+  local tier = nil
+
+  if key == "safe" then
+    tier = "safe"
+  elseif key == "mid" then
+    tier = "mid"
+  elseif key == "heavy" then
+    tier = "heavy"
+  elseif key == "auto" then
+    if Tempest.risk_band == "good" then
+      tier = "heavy"
+    elseif Tempest.risk_band == "bad" or Tempest.risk_band == "critical" then
+      tier = "safe"
+    else
+      tier = "mid"
+    end
+  else
+    cecho("<red>[Tempest] Unknown ranged mode. Use: safe, mid, heavy, auto.\n")
+    return false
+  end
+
+  local verb = Tempest.ranged_verb_for_tier(tier)
+  if not verb then
+    return false
+  end
+
+  return Tempest.send_basic_ranged(verb, explicit_target)
+end
+
+--- Room positioning: move +/-<units> (1 unit = 5ft per help move). Honors Tempest.move_max_units_per_move when set.
+function Tempest.move_by_units(delta)
+  local n = tonumber(delta)
+  if not n or n == 0 then
+    cecho("<red>[Tempest] move_by_units needs a non-zero number (e.g. +1 or -2).\n")
+    return false
+  end
+  local cap = tonumber(Tempest.move_max_units_per_move)
+  if cap and cap > 0 and math.abs(n) > cap then
+    n = n > 0 and cap or -cap
+  end
+  if n > 0 then
+    send("move +" .. tostring(n))
+  else
+    send("move " .. tostring(n))
+  end
+  return true
+end
+
+--- move <target> — advance toward a denizen or player name.
+function Tempest.move_towards(name)
+  name = tostring(name or ""):match("^%s*(.-)%s*$") or ""
+  if name == "" then
+    cecho("<red>[Tempest] move_towards needs a target name.\n")
+    return false
+  end
+  send("move " .. name)
+  return true
+end
+
+--- Trigger helper: game line "You can move 5ft(1units)!". Pass feet and units from capture groups, or one full line string.
+function Tempest.note_move_capability(a, b)
+  local feet, units = a, b
+  if b == nil and type(a) == "string" then
+    feet, units = tostring(a):match("You can move (%d+)ft%((%d+)units%)")
+  end
+  feet = tonumber(feet)
+  units = tonumber(units)
+  if feet then
+    Tempest.move_feet_per_step = feet
+  end
+  if units then
+    Tempest.move_units_available = units
+  end
 end

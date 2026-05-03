@@ -8,7 +8,7 @@ This repo holds Mudlet packages for **Tempest Season** ([tempestseason.com](http
 
 - **Source:** [`Combat/combat_auto.lua`](Combat/combat_auto.lua), [`Classes/core/target.lua`](Classes/core/target.lua)
 - **Generated Mudlet XML:** [`Combat/TempestCombat.xml`](Combat/TempestCombat.xml)
-- **Contains:** Target helper (`tt`, self-target guard, melee mapping), optional GMCP character name, denizen combat automation, triggers for `This is a slashing weapon.` / `This is a blunt weapon.`, aliases `acoff` / `acon`, `wsharp` / `wblunt`, `wreset`, `setname <name>`.
+- **Contains:** Target helper (`tt`, self-target guard, melee and ranged `fire` mapping, move helpers), optional GMCP character name, denizen combat automation, triggers for weapon probes, knockdown/posture/move lines, aliases `acoff` / `acon`, `wsharp` / `wblunt`, `wreset`, `setname <name>`, `frap` / `fdeft` / `fprec` / `fauto`, `mv`, `mvt`.
 
 Regenerate XML after editing Lua:
 
@@ -16,7 +16,7 @@ Regenerate XML after editing Lua:
 node Combat/build-combat-xml.cjs
 ```
 
-That script also syncs [`Classes/core/target.lua`](Classes/core/target.lua) into the Cleric package’s embedded `target helper` script.
+That script embeds `target.lua` and `combat_auto.lua` inside **CDATA** in `TempestCombat.xml` (so Lua comments with `<…>` cannot break XML).
 
 Import **`Combat/TempestCombat.xml`** via Mudlet Package Manager (or zip as `.mpackage` if you use that workflow).
 
@@ -26,14 +26,14 @@ Import **`Combat/TempestCombat.xml`** via Mudlet Package Manager (or zip as `.mp
 - **Generated package XML:** [`Classes/Cleric/Cleric.xml`](Classes/Cleric/Cleric.xml)
 - **Uploadable archive:** `Classes/Cleric/Cleric.mpackage` (when built)
 
-All Cleric aliases are embedded in `Cleric.xml` under `AliasPackage` → `Cleric`. **Combat triggers do not live here** — use Tempest Combat.
+All Cleric aliases are embedded in `Cleric.xml` under `AliasPackage` → `Cleric`. **Combat triggers and the shared `Tempest` API live only in Tempest Combat** — not in Cleric.
 
 ### Install order
 
-1. Import **Tempest Combat** (or ensure [`Classes/core/target.lua`](Classes/core/target.lua) is loaded once).
-2. Import **Cleric** (or your future class package).
+1. Import **Tempest Combat** first (defines `Tempest.*`, triggers, `tt`, melee/ranged/move helpers, auto-melee).
+2. Import **Cleric** (or any other class package that calls `Tempest.*`).
 
-If both embed `target helper`, Mudlet runs both scripts; definitions should match if you keep running `node Combat/build-combat-xml.cjs` after editing `target.lua`.
+Class packages assume **Tempest Combat** is already installed; they do not embed `target helper`.
 
 ## Target helper and `tt`
 
@@ -65,6 +65,23 @@ Tempest item text often includes lines such as **This is a slashing weapon.** an
 | `wreset` | Clear slashing/blunt flags (e.g. after swap) |
 
 Adjust delay (seconds): `Tempest.auto_attack_delay = 2.1` in a script after load.
+
+## Ranged `fire` (same risk tiers as melee)
+
+- **Lua:** `Tempest.send_ranged("safe"|"mid"|"heavy"|"auto", target)` → sends `fire rapid|deftly|precisely <target>` (auto uses `Tempest.risk_band` like `send_melee`).
+- **Lower level:** `Tempest.send_basic_ranged("rapid"|"deftly"|"precisely", target)` or abbreviations the game accepts (e.g. `r`).
+- **Aliases:** `frap <target>`, `fdeft <target>`, `fprec <target>`, `fauto <target>`.
+
+## Move (help move)
+
+- **Lua:** `Tempest.move_by_units(n)` → `move +n` / `move -n` (optional `Tempest.move_max_units_per_move` to clamp before send, e.g. `1` when the game only allows one unit per command).
+- **Lua:** `Tempest.move_towards("denizen")` → `move <name>`.
+- **Aliases:** `mv +1`, `mv -2`, `mvt <name>`.
+- **Trigger:** Lines like `You can move 5ft(1units)!` call `Tempest.note_move_capability` (sets `Tempest.move_feet_per_step` and `Tempest.move_units_available`).
+
+## Knockdown / prone lines (combat package triggers)
+
+The combat package also reacts to retreat stumble knockdown, `You can't use this command while laying.`, and `You stand up.` (clears prone state for auto-melee). If you still see `[ … Second Delay ]` or “Placing the command in the queue…”, those strings are **not** emitted by this repo’s Lua; search other Mudlet aliases, keys, or packages in your profile.
 
 ## Canonical paths
 
