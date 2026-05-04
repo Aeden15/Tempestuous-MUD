@@ -591,7 +591,9 @@ Tempest.lunar_ui = Tempest.lunar_ui or {
 
 local MOON = 58
 local MOON_GAP = 10
-local MOON_MARGIN = 14
+-- Inset from bottom-right (px): larger Y lifts moons above the status/input strip.
+local MOON_INSET_X = 40
+local MOON_INSET_Y = 52
 
 local AMOR_MOON_CSS = [[
 QLabel {
@@ -651,8 +653,8 @@ function Tempest.lunar_ui_reposition()
   if not w or not h then
     return
   end
-  local hx = w - MOON_MARGIN - MOON
-  local hy = h - MOON_MARGIN - MOON
+  local hx = w - MOON_INSET_X - MOON
+  local hy = h - MOON_INSET_Y - MOON
   local ax = hx - MOON_GAP - MOON
   moveWindow(Tempest.lunar_ui.amor_label, ax, hy)
   moveWindow(Tempest.lunar_ui.honestus_label, hx, hy)
