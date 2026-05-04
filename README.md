@@ -28,12 +28,31 @@ Import **`Combat/TempestCombat.xml`** via Mudlet Package Manager (or zip as `.mp
 
 All Cleric aliases are embedded in `Cleric.xml` under `AliasPackage` → `Cleric`. **Combat triggers and the shared `Tempest` API live only in Tempest Combat** — not in Cleric.
 
+### 3. Lunar Sage (class package: cycle/incantations + ranged safeguards)
+
+- **Alias source of truth:** `Classes/Lunar Sage/**/*.lua` (one alias file per command).
+- **Generated package XML:** [`Classes/Lunar Sage/LunarSage.xml`](Classes/Lunar%20Sage/LunarSage.xml)
+- **XML build script:** [`Classes/Lunar Sage/build-lunarsage-xml.cjs`](Classes/Lunar%20Sage/build-lunarsage-xml.cjs)
+- **Support scripts embedded in XML:** [`Classes/Lunar Sage/Scripts/lunar_helpers.lua`](Classes/Lunar%20Sage/Scripts/lunar_helpers.lua), [`Classes/Lunar Sage/Scripts/moon_ui.lua`](Classes/Lunar%20Sage/Scripts/moon_ui.lua)
+
+Lunar Sage uses `syzygies` (lookup/list) and `cycle` (cast), plus `use lunarincantations ...` for harmonics/lord/energy/view. The class package also ships auto-melee safety triggers for ranged-only lunar cores.
+
 ### Install order
 
 1. Import **Tempest Combat** first (defines `Tempest.*`, triggers, `tt`, melee/ranged/move helpers, auto-melee).
-2. Import **Cleric** (or any other class package that calls `Tempest.*`).
+2. Import **Cleric** and/or **Lunar Sage** class packages (they call `Tempest.*` from Tempest Combat).
 
 Class packages assume **Tempest Combat** is already installed; they do not embed `target helper`.
+
+## Lunar Sage quick notes
+
+- **Manual URL:** [tempestseason.com/manual/classes/lunar-sages/](https://tempestseason.com/manual/classes/lunar-sages/) (Cloudflare-protected; use a normal browser or Cursor browser MCP).
+- **`syzygies [name]`:** lists cycle-cast spells.
+- **`cycle <token> [optional target/args]`:** casts a syzygy token (`cycle novara` is verified for Nova Ray).
+- **Incantations:** use `use lunarincantations ...` (`harmonics`, `lord`, `empower`, `flow`, `siphon`, `view`).
+- **Lunar cores combat path:** use Tempest Combat ranged aliases (`frap`, `fdeft`, `fprec`, `fauto`) and movement (`mv`, `mvt`).
+- **Auto-melee stop trigger:** Lunar Sage package turns auto-melee off when the game rejects melee for lunar cores (`You cannot use this type of weapon to perform a melee attack!`).
+- **Optional moon UI:** `lmoonon` / `lmoonoff` / `lmoon` for a decorative two-moon HUD (Amor white, Honestus violet), with prompt-driven updates from `Amor:` / `Honestus:` lines.
 
 ## Target helper and `tt`
 
@@ -90,12 +109,14 @@ The combat package also reacts to retreat stumble knockdown, `You can't use this
 | Target + melee API | `Classes/core/target.lua`    |
 | Combat automation | `Combat/combat_auto.lua`      |
 | Cleric aliases    | `Classes/Cleric/**/*.lua`     |
+| Lunar Sage aliases | `Classes/Lunar Sage/**/*.lua` |
 
 ## Quick validation
 
-1. Parse `Combat/TempestCombat.xml` and `Classes/Cleric/Cleric.xml` as XML.
+1. Parse `Combat/TempestCombat.xml`, `Classes/Cleric/Cleric.xml`, and `Classes/Lunar Sage/LunarSage.xml` as XML.
 2. Import packages in Mudlet.
 3. Verify `tt`, `wsharp` / `wblunt` / `wreset`, `setname`, `acoff` / `acon`, and that examining a weapon fires the slashing/blunt triggers.
+4. On Lunar Sage: verify `szy`, `nr`, `liha`, `liv`, `lmoon`, and that the melee-invalid line disables auto melee for lunar cores.
 
 ## References
 
