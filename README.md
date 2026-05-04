@@ -2,6 +2,12 @@
 
 This repo holds Mudlet packages for **Tempest Season** ([tempestseason.com](https://www.tempestseason.com)).
 
+### Scope (do not mix codebases)
+
+- **This repository targets only Tempest Season.** Lua, XML, triggers, and aliases assume Tempest’s commands, manual, and combat model.
+- **Other Mudlet projects** (for example separate curing or offense frameworks built for a different MUD) live in **other repositories** and are **not** dependencies of Tempest. Do not copy Tempest packages into those repos as “the same system,” and do not assume shared globals or load order between them.
+- **Mudlet profiles:** For different games, use **separate profiles** (or clearly separate package sets) so triggers and `Tempest.*` APIs are not loaded alongside unrelated packages unless you intend to debug conflicts.
+
 ## Packages
 
 ### 1. Tempest Combat (shared — all classes)
@@ -51,7 +57,7 @@ Class packages assume **Tempest Combat** is already installed; they do not embed
 - **`cycle <token> [optional target/args]`:** casts a syzygy token (`cycle novara` is verified for Nova Ray).
 - **Incantations:** use `use lunarincantations ...` (`harmonics`, `lord`, `empower`, `flow`, `siphon`, `view`).
 - **Lunar cores combat path:** use Tempest Combat ranged aliases (`frap`, `fdeft`, `fprec`, `fauto`) and movement (`mv`, `mvt`).
-- **Auto-melee stop trigger:** Lunar Sage package turns auto-melee off when the game rejects melee for lunar cores (`You cannot use this type of weapon to perform a melee attack!`).
+- **Lunar cores + auto-combat:** triggers set ranged-only mode when your weapon is lunar cores (inspect lines) or when melee is rejected (`You cannot use this type of weapon to perform a melee attack!`). With **Tempest Combat** `acon` on, auto-combat continues using **`fire`** (same tier logic as melee), not melee verbs.
 - **Optional moon UI:** `lmoonon` / `lmoonoff` / `lmoon` for a decorative two-moon HUD (Amor white, Honestus violet), with prompt-driven updates from `Amor:` / `Honestus:` lines.
 
 ## Target helper and `tt`
@@ -77,8 +83,8 @@ Tempest item text often includes lines such as **This is a slashing weapon.** an
 
 | Alias    | Action                                      |
 |----------|---------------------------------------------|
-| `acoff`  | Stop auto melee loop                        |
-| `acon`   | Start auto melee                            |
+| `acoff`  | Stop auto combat loop (melee or ranged)     |
+| `acon`   | Start auto combat (melee or ranged)        |
 | `wsharp` | Prefer sharp verbs when weapon allows both  |
 | `wblunt` | Prefer blunt verbs when weapon allows both  |
 | `wreset` | Clear slashing/blunt flags (e.g. after swap) |
@@ -100,7 +106,7 @@ Adjust delay (seconds): `Tempest.auto_attack_delay = 2.1` in a script after load
 
 ## Knockdown / prone lines (combat package triggers)
 
-The combat package also reacts to retreat stumble knockdown, `You can't use this command while laying.`, and `You stand up.` (clears prone state for auto-melee). If you still see `[ … Second Delay ]` or “Placing the command in the queue…”, those strings are **not** emitted by this repo’s Lua; search other Mudlet aliases, keys, or packages in your profile.
+The combat package also reacts to retreat stumble knockdown, `You can't use this command while laying.`, and `You stand up.` (clears prone state for auto-melee). If you still see `[ … Second Delay ]` or “Placing the command in the queue…”, those strings are **not** emitted by this repo’s Lua; search other Mudlet aliases, keys, or **packages from other games/toolchains** in your profile.
 
 ## Canonical paths
 
@@ -116,7 +122,7 @@ The combat package also reacts to retreat stumble knockdown, `You can't use this
 1. Parse `Combat/TempestCombat.xml`, `Classes/Cleric/Cleric.xml`, and `Classes/Lunar Sage/LunarSage.xml` as XML.
 2. Import packages in Mudlet.
 3. Verify `tt`, `wsharp` / `wblunt` / `wreset`, `setname`, `acoff` / `acon`, and that examining a weapon fires the slashing/blunt triggers.
-4. On Lunar Sage: verify `szy`, `nr`, `liha`, `liv`, `lmoon`, and that the melee-invalid line disables auto melee for lunar cores.
+4. On Lunar Sage: verify `szy`, `nr`, `liha`, `liv`, `lmoon`, and that lunar cores / melee-invalid lines switch auto-combat to **ranged** when `acon` is on.
 
 ## References
 
