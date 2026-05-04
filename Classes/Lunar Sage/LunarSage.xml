@@ -80,8 +80,8 @@
         </regexCodePropertyList>
       </Trigger>
       <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-        <name>Lunar moon prompt values</name>
-        <script>Tempest.lunar_ui_update_from_line(matches[2])</script>
+        <name>Lunar prompt Amor value</name>
+        <script>Tempest.lunar_ui_set_amor(tonumber(matches[2]))</script>
         <triggerType>0</triggerType>
         <conditonLineDelta>0</conditonLineDelta>
         <mStayOpen>0</mStayOpen>
@@ -93,7 +93,27 @@
         <colorTriggerFgColor>#ff0000</colorTriggerFgColor>
         <colorTriggerBgColor>#ffff00</colorTriggerBgColor>
         <regexCodeList>
-          <string>^\s*(Amor:\s*-?\d+.*Honestus:\s*-?\d+.*)$</string>
+          <string>Amor:\s*(-?\d+)</string>
+        </regexCodeList>
+        <regexCodePropertyList>
+          <integer>1</integer>
+        </regexCodePropertyList>
+      </Trigger>
+      <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+        <name>Lunar prompt Honestus value</name>
+        <script>Tempest.lunar_ui_set_honestus(tonumber(matches[2]))</script>
+        <triggerType>0</triggerType>
+        <conditonLineDelta>0</conditonLineDelta>
+        <mStayOpen>0</mStayOpen>
+        <mCommand></mCommand>
+        <packageName></packageName>
+        <mFgColor>transparent</mFgColor>
+        <mBgColor>transparent</mBgColor>
+        <mSoundFile></mSoundFile>
+        <colorTriggerFgColor>#ff0000</colorTriggerFgColor>
+        <colorTriggerBgColor>#ffff00</colorTriggerBgColor>
+        <regexCodeList>
+          <string>Honestus:\s*(-?\d+)</string>
         </regexCodeList>
         <regexCodePropertyList>
           <integer>1</integer>
@@ -542,15 +562,15 @@ end
 
 function Tempest.on_lunar_cores_detected()
   Tempest.lunar_cores_ranged_only = true
-  if Tempest.auto_melee_stop and Tempest.auto_melee_active then
-    Tempest.auto_melee_stop()
+  if Tempest.auto_melee_active and Tempest.schedule_auto_attack then
+    Tempest.schedule_auto_attack()
   end
 end
 
 function Tempest.on_lunar_melee_invalid()
   Tempest.lunar_cores_ranged_only = true
-  if Tempest.auto_melee_stop then
-    Tempest.auto_melee_stop()
+  if Tempest.auto_melee_active and Tempest.schedule_auto_attack then
+    Tempest.schedule_auto_attack()
   end
 end
 
@@ -569,6 +589,44 @@ Tempest.lunar_ui = Tempest.lunar_ui or {
   honestus_label = nil,
 }
 
+local MOON = 58
+local MOON_GAP = 10
+local MOON_MARGIN = 14
+
+local AMOR_MOON_CSS = [[
+QLabel {
+  background: qradialgradient(cx:0.32, cy:0.28, radius:0.95, fx:0.28, fy:0.24,
+    stop:0 #ffffff, stop:0.35 #e6e6e6, stop:0.7 #a8a8a8, stop:1 #5c5c5c);
+  border: 2px solid #b8b8b8;
+  border-radius: 29px;
+  color: #1a1a1a;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px;
+  min-width: 58px;
+  max-width: 58px;
+  min-height: 58px;
+  max-height: 58px;
+}
+]]
+
+local HONESTUS_MOON_CSS = [[
+QLabel {
+  background: qradialgradient(cx:0.38, cy:0.30, radius:0.95, fx:0.32, fy:0.26,
+    stop:0 #c9a8ff, stop:0.4 #7b4ec9, stop:0.75 #3d1f6e, stop:1 #1a0d33);
+  border: 2px solid #9b6ee5;
+  border-radius: 29px;
+  color: #f0e8ff;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px;
+  min-width: 58px;
+  max-width: 58px;
+  min-height: 58px;
+  max-height: 58px;
+}
+]]
+
 local function have_labels()
   return Tempest.lunar_ui.amor_label and Tempest.lunar_ui.honestus_label
 end
@@ -585,36 +643,54 @@ local function parse_prompt_values(line)
   return amor, honestus
 end
 
+function Tempest.lunar_ui_reposition()
+  if not have_labels() or not getMainWindowSize then
+    return
+  end
+  local w, h = getMainWindowSize()
+  if not w or not h then
+    return
+  end
+  local hx = w - MOON_MARGIN - MOON
+  local hy = h - MOON_MARGIN - MOON
+  local ax = hx - MOON_GAP - MOON
+  moveWindow(Tempest.lunar_ui.amor_label, ax, hy)
+  moveWindow(Tempest.lunar_ui.honestus_label, hx, hy)
+end
+
 function Tempest.lunar_ui_init()
   if have_labels() then
+    Tempest.lunar_ui_reposition()
     return true
   end
 
   Tempest.lunar_ui.amor_label = Tempest.lunar_ui.amor_label or "tempest_lunar_ui_amor"
   Tempest.lunar_ui.honestus_label = Tempest.lunar_ui.honestus_label or "tempest_lunar_ui_honestus"
 
-  createLabel(Tempest.lunar_ui.amor_label, 10, 10, 92, 32, 1)
-  createLabel(Tempest.lunar_ui.honestus_label, 108, 10, 110, 32, 1)
+  createLabel(Tempest.lunar_ui.amor_label, 0, 0, MOON, MOON, 1)
+  createLabel(Tempest.lunar_ui.honestus_label, 0, 0, MOON, MOON, 1)
 
-  setLabelStyleSheet(
-    Tempest.lunar_ui.amor_label,
-    "background-color: rgba(245,245,245,0.25); border: 1px solid #d9d9d9; border-radius: 16px; color: #f4f4f4; padding-left: 8px;"
-  )
-  setLabelStyleSheet(
-    Tempest.lunar_ui.honestus_label,
-    "background-color: rgba(121,72,208,0.35); border: 1px solid #8f63dd; border-radius: 16px; color: #d6c2ff; padding-left: 8px;"
-  )
+  setLabelStyleSheet(Tempest.lunar_ui.amor_label, AMOR_MOON_CSS)
+  setLabelStyleSheet(Tempest.lunar_ui.honestus_label, HONESTUS_MOON_CSS)
 
-  echo(Tempest.lunar_ui.amor_label, "Amor ●")
-  echo(Tempest.lunar_ui.honestus_label, "Honestus ●")
+  echo(Tempest.lunar_ui.amor_label, "Amor\n—")
+  echo(Tempest.lunar_ui.honestus_label, "Honestus\n—")
+  Tempest.lunar_ui_reposition()
   safe_hide(Tempest.lunar_ui.amor_label)
   safe_hide(Tempest.lunar_ui.honestus_label)
+
+  if not Tempest._lunar_ui_resize_hooked and registerAnonymousEventHandler then
+    Tempest._lunar_ui_resize_hooked = true
+    registerAnonymousEventHandler("sysWindowResize", "Tempest.lunar_ui_reposition")
+  end
+
   return true
 end
 
 function Tempest.lunar_ui_show()
   Tempest.lunar_ui_init()
   Tempest.lunar_ui.enabled = true
+  Tempest.lunar_ui_reposition()
   showWindow(Tempest.lunar_ui.amor_label)
   showWindow(Tempest.lunar_ui.honestus_label)
 end
@@ -633,6 +709,30 @@ function Tempest.lunar_ui_toggle()
   end
 end
 
+function Tempest.lunar_ui_set_amor(n)
+  if not Tempest.lunar_ui.enabled or not have_labels() then
+    return
+  end
+  local v = tonumber(n)
+  if not v then
+    return
+  end
+  clearWindow(Tempest.lunar_ui.amor_label)
+  echo(Tempest.lunar_ui.amor_label, string.format("Amor\n%d", v))
+end
+
+function Tempest.lunar_ui_set_honestus(n)
+  if not Tempest.lunar_ui.enabled or not have_labels() then
+    return
+  end
+  local v = tonumber(n)
+  if not v then
+    return
+  end
+  clearWindow(Tempest.lunar_ui.honestus_label)
+  echo(Tempest.lunar_ui.honestus_label, string.format("Honestus\n%d", v))
+end
+
 function Tempest.lunar_ui_update_from_line(line)
   if not Tempest.lunar_ui.enabled or not have_labels() then
     return
@@ -640,12 +740,10 @@ function Tempest.lunar_ui_update_from_line(line)
 
   local amor, honestus = parse_prompt_values(line or "")
   if amor then
-    clearWindow(Tempest.lunar_ui.amor_label)
-    echo(Tempest.lunar_ui.amor_label, string.format("Amor ● %d", amor))
+    Tempest.lunar_ui_set_amor(amor)
   end
   if honestus then
-    clearWindow(Tempest.lunar_ui.honestus_label)
-    echo(Tempest.lunar_ui.honestus_label, string.format("Honestus ● %d", honestus))
+    Tempest.lunar_ui_set_honestus(honestus)
   end
 end
 

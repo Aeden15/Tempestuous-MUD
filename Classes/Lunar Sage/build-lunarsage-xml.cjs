@@ -176,9 +176,14 @@ const triggers = [
     script: "Tempest.on_lunar_cores_detected()",
   },
   {
-    name: "Lunar moon prompt values",
-    regex: "^\\s*(Amor:\\s*-?\\d+.*Honestus:\\s*-?\\d+.*)$",
-    script: "Tempest.lunar_ui_update_from_line(matches[2])",
+    name: "Lunar prompt Amor value",
+    regex: "Amor:\\s*(-?\\d+)",
+    script: "Tempest.lunar_ui_set_amor(tonumber(matches[2]))",
+  },
+  {
+    name: "Lunar prompt Honestus value",
+    regex: "Honestus:\\s*(-?\\d+)",
+    script: "Tempest.lunar_ui_set_honestus(tonumber(matches[2]))",
   },
 ];
 
