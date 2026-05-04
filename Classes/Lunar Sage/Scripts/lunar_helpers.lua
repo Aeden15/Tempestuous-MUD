@@ -53,14 +53,14 @@ end
 
 function Tempest.on_lunar_cores_detected()
   Tempest.lunar_cores_ranged_only = true
-  if Tempest.auto_melee_stop and Tempest.auto_melee_active then
-    Tempest.auto_melee_stop()
+  if Tempest.auto_melee_active and Tempest.schedule_auto_attack then
+    Tempest.schedule_auto_attack()
   end
 end
 
 function Tempest.on_lunar_melee_invalid()
   Tempest.lunar_cores_ranged_only = true
-  if Tempest.auto_melee_stop then
-    Tempest.auto_melee_stop()
+  if Tempest.auto_melee_active and Tempest.schedule_auto_attack then
+    Tempest.schedule_auto_attack()
   end
 end

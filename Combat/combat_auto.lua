@@ -165,7 +165,7 @@ function Tempest.auto_melee_stop(message)
 
   if message ~= false then
 
-    cecho("<yellow>[Tempest Combat] Auto melee off.\n")
+    cecho("<yellow>[Tempest Combat] Auto combat off.\n")
 
   end
 
@@ -179,7 +179,7 @@ function Tempest.auto_melee_start(message)
 
   if message ~= false then
 
-    cecho("<green>[Tempest Combat] Auto melee on.\n")
+    cecho("<green>[Tempest Combat] Auto combat on (melee or ranged per weapon).\n")
 
   end
 
@@ -232,6 +232,22 @@ function Tempest.auto_attack_once()
   end
 
   local tier = select(1, Tempest.auto_melee_merged_tier())
+
+  if Tempest.lunar_cores_ranged_only then
+
+    if not Tempest.send_ranged(tier, nil) then
+
+      Tempest.schedule_auto_attack()
+
+      return
+
+    end
+
+    Tempest.schedule_auto_attack()
+
+    return
+
+  end
 
   local attack = Tempest.melee_verb_for_tier(tier)
 
@@ -389,7 +405,7 @@ function Tempest.on_invalid_target()
 
   Tempest.auto_melee_stop(false)
 
-  cecho("<yellow>[Tempest Combat] Auto melee off: invalid target. Set target with tt.\n")
+  cecho("<yellow>[Tempest Combat] Auto combat off: invalid target. Set target with tt.\n")
 
 end
 
