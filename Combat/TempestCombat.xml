@@ -20,26 +20,6 @@
         <regexCodePropertyList>
         </regexCodePropertyList>
       <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-        <name>Combat engaged</name>
-        <script>Tempest.on_combat_line()</script>
-        <triggerType>0</triggerType>
-        <conditonLineDelta>0</conditonLineDelta>
-        <mStayOpen>0</mStayOpen>
-        <mCommand></mCommand>
-        <packageName></packageName>
-        <mFgColor>transparent</mFgColor>
-        <mBgColor>transparent</mBgColor>
-        <mSoundFile></mSoundFile>
-        <colorTriggerFgColor>#ff0000</colorTriggerFgColor>
-        <colorTriggerBgColor>#ffff00</colorTriggerBgColor>
-        <regexCodeList>
-          <string>attacks you!</string>
-        </regexCodeList>
-        <regexCodePropertyList>
-          <integer>1</integer>
-        </regexCodePropertyList>
-      </Trigger>
-      <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
         <name>Posture line</name>
         <script>Tempest.update_posture_from_line(matches[1] or &quot;&quot;)</script>
         <triggerType>0</triggerType>
@@ -216,6 +196,26 @@
         <colorTriggerBgColor>#ffff00</colorTriggerBgColor>
         <regexCodeList>
           <string>^That target does not exist\.$</string>
+        </regexCodeList>
+        <regexCodePropertyList>
+          <integer>1</integer>
+        </regexCodePropertyList>
+      </Trigger>
+      <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+        <name>Melee unusable stop auto</name>
+        <script>Tempest.on_melee_unusable(&quot;weapon type&quot;)</script>
+        <triggerType>0</triggerType>
+        <conditonLineDelta>0</conditonLineDelta>
+        <mStayOpen>0</mStayOpen>
+        <mCommand></mCommand>
+        <packageName></packageName>
+        <mFgColor>transparent</mFgColor>
+        <mBgColor>transparent</mBgColor>
+        <mSoundFile></mSoundFile>
+        <colorTriggerFgColor>#ff0000</colorTriggerFgColor>
+        <colorTriggerBgColor>#ffff00</colorTriggerBgColor>
+        <regexCodeList>
+          <string>^You cannot use this type of weapon to perform a melee attack!$</string>
         </regexCodeList>
         <regexCodePropertyList>
           <integer>1</integer>
@@ -1169,23 +1169,35 @@ end
 
 
 
-function Tempest.on_combat_line()
+function Tempest.on_knockdown()
 
-  if Tempest.auto_melee_active then
-
-    return
-
-  end
-
-  Tempest.auto_melee_start(false)
+  knockdown_apply_recovery()
 
 end
 
 
 
-function Tempest.on_knockdown()
+--- Stops auto melee when the game rejects melee for "no usable weapon" reasons.
+--- Lunar Sage owns the same line and converts to ranged-only; defer to it when set.
+function Tempest.on_melee_unusable(reason)
 
-  knockdown_apply_recovery()
+  if not Tempest.auto_melee_active then
+
+    return
+
+  end
+
+  if Tempest.lunar_cores_ranged_only then
+
+    return
+
+  end
+
+  send("queue clear")
+
+  Tempest.auto_melee_stop(false)
+
+  cecho("<yellow>[Tempest Combat] Auto combat off: melee rejected (" .. tostring(reason or "no weapon") .. "). Wield a weapon (or use ranged) and `acon` again.\n")
 
 end
 

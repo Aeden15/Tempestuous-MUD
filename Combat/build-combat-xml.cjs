@@ -93,7 +93,6 @@ const aliases = [
 
 /** Each entry: script + either `regex` (single pattern) or `patterns` (array, OR-match). */
 const triggers = [
-  { name: "Combat engaged", regex: "attacks you!", script: "Tempest.on_combat_line()" },
   {
     name: "Posture line",
     regex: "^\\s*(.*Position.*)\\s*$",
@@ -141,6 +140,11 @@ const triggers = [
     name: "Invalid target stop auto",
     regex: "^That target does not exist\\.$",
     script: "Tempest.on_invalid_target()",
+  },
+  {
+    name: "Melee unusable stop auto",
+    regex: "^You cannot use this type of weapon to perform a melee attack!$",
+    script: 'Tempest.on_melee_unusable("weapon type")',
   },
   {
     name: "Weapon allows slashing",

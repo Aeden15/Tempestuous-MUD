@@ -369,23 +369,35 @@ end
 
 
 
-function Tempest.on_combat_line()
+function Tempest.on_knockdown()
 
-  if Tempest.auto_melee_active then
-
-    return
-
-  end
-
-  Tempest.auto_melee_start(false)
+  knockdown_apply_recovery()
 
 end
 
 
 
-function Tempest.on_knockdown()
+--- Stops auto melee when the game rejects melee for "no usable weapon" reasons.
+--- Lunar Sage owns the same line and converts to ranged-only; defer to it when set.
+function Tempest.on_melee_unusable(reason)
 
-  knockdown_apply_recovery()
+  if not Tempest.auto_melee_active then
+
+    return
+
+  end
+
+  if Tempest.lunar_cores_ranged_only then
+
+    return
+
+  end
+
+  send("queue clear")
+
+  Tempest.auto_melee_stop(false)
+
+  cecho("<yellow>[Tempest Combat] Auto combat off: melee rejected (" .. tostring(reason or "no weapon") .. "). Wield a weapon (or use ranged) and `acon` again.\n")
 
 end
 
