@@ -1,0 +1,12 @@
+{"sessionId":"5d9b73","hypothesisId":"H1","location":"target.lua:send_pray_require_or_manual","message":"entry","data":{"gift":"divineword","first":"","hasSecond":false},"timestamp":1778174714000}
+{"sessionId":"5d9b73","hypothesisId":"H2","location":"target.lua:send_pray_require_or_manual","message":"resolved","data":{"target":"dartfeather"},"timestamp":1778174714000}
+{"sessionId":"5d9b73","hypothesisId":"H1","location":"target.lua:send_pray_require_or_manual","message":"entry","data":{"gift":"divineword","first":"scavenger","hasSecond":false},"timestamp":1778174719000}
+{"sessionId":"5d9b73","hypothesisId":"H2","location":"target.lua:send_pray_require_or_manual","message":"resolved","data":{"target":"scavenger"},"timestamp":1778174719000}
+{"sessionId":"5d9b73","hypothesisId":"H1","location":"target.lua:send_pray_require_or_manual","message":"entry","data":{"gift":"divineword","first":"scavenger","hasSecond":true},"timestamp":1778174737000}
+{"sessionId":"5d9b73","hypothesisId":"H2","location":"target.lua:send_pray_require_or_manual","message":"resolved","data":{"target":"scavenger"},"timestamp":1778174737000}
+{"sessionId":"5d9b73","hypothesisId":"H1","location":"target.lua:send_pray_require_or_manual","message":"entry","data":{"gift":"hymnoftheinferno","first":"scavenger","hasSecond":true},"timestamp":1778174744000}
+{"sessionId":"5d9b73","hypothesisId":"H2","location":"target.lua:send_pray_require_or_manual","message":"resolved","data":{"target":"scavenger"},"timestamp":1778174744000}
+{"sessionId":"5d9b73","hypothesisId":"H1","location":"target.lua:send_pray_require_or_manual","message":"entry","data":{"gift":"hymnoftheinferno","first":"scavenger","hasSecond":true},"timestamp":1778174747000}
+{"sessionId":"5d9b73","hypothesisId":"H2","location":"target.lua:send_pray_require_or_manual","message":"resolved","data":{"target":"scavenger"},"timestamp":1778174747000}
+{"sessionId":"5d9b73","hypothesisId":"H1","location":"target.lua:send_pray_require_or_manual","message":"entry","data":{"gift":"blackout","first":"max","hasSecond":false},"timestamp":1778174753000}
+{"sessionId":"5d9b73","hypothesisId":"H2","location":"target.lua:send_pray_require_or_manual","message":"resolved","data":{"target":"dartfeather"},"timestamp":1778174753000}
