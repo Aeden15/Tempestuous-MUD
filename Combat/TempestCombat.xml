@@ -561,6 +561,34 @@ function Tempest.send_pray(gift, target_name, favors)
   send(cmd)
 end
 
+--- Buff-style alias: target is tt (or self if unset). If the first optional word is a
+--- favors token (min/max/digits), it applies to that target. Otherwise the first word is
+--- a manual denizen name for this cast only (tt unchanged). Optional second word = favors.
+--- Not used for celestial grasp (self-only).
+function Tempest.send_pray_self_optional_target(gift, opt_first, opt_second)
+  local target_name
+  local favors
+
+  local first = tostring(opt_first or ""):match("^%s*(.-)%s*$")
+  if first == "" then
+    local gt = Tempest.get_target()
+    target_name = (gt and gt ~= "") and gt or "self"
+    favors = nil
+  else
+    local maybe_favors = Tempest.normalize_favors(first, true)
+    if maybe_favors then
+      local gt = Tempest.get_target()
+      target_name = (gt and gt ~= "") and gt or "self"
+      favors = maybe_favors
+    else
+      target_name = first
+      favors = opt_second
+    end
+  end
+
+  Tempest.send_pray(gift, target_name, favors)
+end
+
 local function resolve_attack_target(explicit_target)
   local text = tostring(explicit_target or ""):match("^%s*(.-)%s*$")
   if text ~= "" then
