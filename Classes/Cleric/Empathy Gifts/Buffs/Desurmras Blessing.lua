@@ -1,5 +1,3 @@
 -- name: Desurmras Blessing
--- regex: ^desur(?: (\w+))?$
-local tgt = Tempest.require_target()
-if not tgt then return end
-Tempest.send_pray("desurmrasblessing", tgt, matches[2])
+-- regex: ^desur(?: (\w+))?(?: (\w+))?$
+Tempest.send_pray_require_or_manual_target("desurmrasblessing", matches[2], matches[3])

@@ -1,5 +1,3 @@
 -- name: Hymn
--- regex: ^hymn(?: (\w+))?$
-local tgt = Tempest.require_target()
-if not tgt then return end
-Tempest.send_pray("hymnoftheinferno", tgt, matches[2])
+-- regex: ^hymn(?: (\w+))?(?: (\w+))?$
+Tempest.send_pray_require_or_manual_target("hymnoftheinferno", matches[2], matches[3])

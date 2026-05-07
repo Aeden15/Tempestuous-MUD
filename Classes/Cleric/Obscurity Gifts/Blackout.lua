@@ -1,5 +1,3 @@
 -- name: Blackout
--- regex: ^black(?: (\w+))?$
-local tgt = Tempest.require_target()
-if not tgt then return end
-Tempest.send_pray("blackout", tgt, matches[2])
+-- regex: ^black(?: (\w+))?(?: (\w+))?$
+Tempest.send_pray_require_or_manual_target("blackout", matches[2], matches[3])

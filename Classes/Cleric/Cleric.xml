@@ -203,30 +203,24 @@ Tempest.send_pray(&quot;restoration&quot;, tgt, matches[2])</script>
           <regex></regex>
           <Alias isActive="yes" isFolder="no">
             <name>Divine word</name>
-            <script>local tgt = Tempest.require_target()
-if not tgt then return end
-Tempest.send_pray(&quot;divineword&quot;, tgt, matches[2])</script>
+            <script>Tempest.send_pray_require_or_manual_target(&quot;divineword&quot;, matches[2], matches[3])</script>
             <command></command>
             <packageName></packageName>
-            <regex>^dword(?: (\w+))?$</regex>
+            <regex>^dword(?: (\w+))?(?: (\w+))?$</regex>
           </Alias>
           <Alias isActive="yes" isFolder="no">
             <name>Hymn</name>
-            <script>local tgt = Tempest.require_target()
-if not tgt then return end
-Tempest.send_pray(&quot;hymnoftheinferno&quot;, tgt, matches[2])</script>
+            <script>Tempest.send_pray_require_or_manual_target(&quot;hymnoftheinferno&quot;, matches[2], matches[3])</script>
             <command></command>
             <packageName></packageName>
-            <regex>^hymn(?: (\w+))?$</regex>
+            <regex>^hymn(?: (\w+))?(?: (\w+))?$</regex>
           </Alias>
           <Alias isActive="yes" isFolder="no">
             <name>Rebuke</name>
-            <script>local tgt = Tempest.require_target()
-if not tgt then return end
-Tempest.send_pray(&quot;rebuke&quot;, tgt, matches[2])</script>
+            <script>Tempest.send_pray_require_or_manual_target(&quot;rebuke&quot;, matches[2], matches[3])</script>
             <command></command>
             <packageName></packageName>
-            <regex>^reb(?: (\w+))?$</regex>
+            <regex>^reb(?: (\w+))?(?: (\w+))?$</regex>
           </Alias>
         </AliasGroup>
       </AliasGroup>
@@ -244,12 +238,10 @@ Tempest.send_pray(&quot;rebuke&quot;, tgt, matches[2])</script>
           <regex></regex>
           <Alias isActive="yes" isFolder="no">
             <name>Curative Efflux</name>
-            <script>local tgt = Tempest.require_target()
-if not tgt then return end
-Tempest.send_pray(&quot;curativeefflux&quot;, tgt, matches[2])</script>
+            <script>Tempest.send_pray_require_or_manual_target(&quot;curativeefflux&quot;, matches[2], matches[3])</script>
             <command></command>
             <packageName></packageName>
-            <regex>^eff(?: (\w+))?$</regex>
+            <regex>^eff(?: (\w+))?(?: (\w+))?$</regex>
           </Alias>
           <Alias isActive="yes" isFolder="no">
             <name>Intercession</name>
@@ -267,12 +259,10 @@ Tempest.send_pray(&quot;curativeefflux&quot;, tgt, matches[2])</script>
           </Alias>
           <Alias isActive="yes" isFolder="no">
             <name>Desurmras Blessing</name>
-            <script>local tgt = Tempest.require_target()
-if not tgt then return end
-Tempest.send_pray(&quot;desurmrasblessing&quot;, tgt, matches[2])</script>
+            <script>Tempest.send_pray_require_or_manual_target(&quot;desurmrasblessing&quot;, matches[2], matches[3])</script>
             <command></command>
             <packageName></packageName>
-            <regex>^desur(?: (\w+))?$</regex>
+            <regex>^desur(?: (\w+))?(?: (\w+))?$</regex>
           </Alias>
         </AliasGroup>
         <AliasGroup isActive="yes" isFolder="yes">
@@ -283,12 +273,10 @@ Tempest.send_pray(&quot;desurmrasblessing&quot;, tgt, matches[2])</script>
           <regex></regex>
           <Alias isActive="yes" isFolder="no">
             <name>Objurgation Malice</name>
-            <script>local tgt = Tempest.require_target()
-if not tgt then return end
-Tempest.send_pray(&quot;objurgation:malice&quot;, tgt, matches[2])</script>
+            <script>Tempest.send_pray_require_or_manual_target(&quot;objurgation:malice&quot;, matches[2], matches[3])</script>
             <command></command>
             <packageName></packageName>
-            <regex>^objm(?: (\w+))?$</regex>
+            <regex>^objm(?: (\w+))?(?: (\w+))?$</regex>
           </Alias>
         </AliasGroup>
       </AliasGroup>
@@ -339,12 +327,10 @@ send(cmd)</script>
         <regex></regex>
         <Alias isActive="yes" isFolder="no">
           <name>Blackout</name>
-          <script>local tgt = Tempest.require_target()
-if not tgt then return end
-Tempest.send_pray(&quot;blackout&quot;, tgt, matches[2])</script>
+          <script>Tempest.send_pray_require_or_manual_target(&quot;blackout&quot;, matches[2], matches[3])</script>
           <command></command>
           <packageName></packageName>
-          <regex>^black(?: (\w+))?$</regex>
+          <regex>^black(?: (\w+))?(?: (\w+))?$</regex>
         </Alias>
         <Alias isActive="yes" isFolder="no">
           <name>Obcursion</name>

@@ -1,5 +1,3 @@
 -- name: Objurgation Malice
--- regex: ^objm(?: (\w+))?$
-local tgt = Tempest.require_target()
-if not tgt then return end
-Tempest.send_pray("objurgation:malice", tgt, matches[2])
+-- regex: ^objm(?: (\w+))?(?: (\w+))?$
+Tempest.send_pray_require_or_manual_target("objurgation:malice", matches[2], matches[3])

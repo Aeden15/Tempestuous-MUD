@@ -214,6 +214,74 @@ function Tempest.send_pray_self_optional_target(gift, opt_first, opt_second)
   Tempest.send_pray(gift, target_name, favors)
 end
 
+--- Offense / require-target prayers: use Tempest.require_target() when no manual name.
+--- If the first optional word is a favors token, target comes from require_target().
+--- Otherwise the first word is a manual denizen name (tt unchanged); optional second = favors.
+function Tempest.send_pray_require_or_manual_target(gift, opt_first, opt_second)
+  local target_name
+  local favors
+
+  local first = tostring(opt_first or ""):match("^%s*(.-)%s*$")
+
+  -- #region agent log
+  do
+    local lf = io.open("c:/Users/shuji/OneDrive/Desktop/Tempest/debug-5d9b73.log", "a")
+    if lf then
+      lf:write(
+        '{"sessionId":"5d9b73","hypothesisId":"H1","location":"target.lua:send_pray_require_or_manual","message":"entry","data":{"gift":"'
+          .. tostring(gift):gsub('"', '\\"')
+          .. '","first":"'
+          .. first:gsub('"', '\\"')
+          .. '","hasSecond":'
+          .. (opt_second and tostring(opt_second) ~= "" and "true" or "false")
+          .. '},"timestamp":'
+          .. tostring(os.time() * 1000)
+          .. "}\n"
+      )
+      lf:close()
+    end
+  end
+  -- #endregion
+
+  if first == "" then
+    target_name = Tempest.require_target()
+    if not target_name then
+      return
+    end
+    favors = nil
+  else
+    local maybe_favors = Tempest.normalize_favors(first, true)
+    if maybe_favors then
+      target_name = Tempest.require_target()
+      if not target_name then
+        return
+      end
+      favors = maybe_favors
+    else
+      target_name = first
+      favors = opt_second
+    end
+  end
+
+  -- #region agent log
+  do
+    local lf = io.open("c:/Users/shuji/OneDrive/Desktop/Tempest/debug-5d9b73.log", "a")
+    if lf then
+      lf:write(
+        '{"sessionId":"5d9b73","hypothesisId":"H2","location":"target.lua:send_pray_require_or_manual","message":"resolved","data":{"target":"'
+          .. tostring(target_name):gsub('"', '\\"')
+          .. '"},"timestamp":'
+          .. tostring(os.time() * 1000)
+          .. "}\n"
+      )
+      lf:close()
+    end
+  end
+  -- #endregion
+
+  Tempest.send_pray(gift, target_name, favors)
+end
+
 local function resolve_attack_target(explicit_target)
   local text = tostring(explicit_target or ""):match("^%s*(.-)%s*$")
   if text ~= "" then
