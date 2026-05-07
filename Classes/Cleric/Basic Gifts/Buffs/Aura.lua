@@ -1,3 +1,3 @@
 -- name: Aura
--- regex: ^aura(?: (\w+))?$
-Tempest.send_pray("righteousaura", "self", matches[2])
+-- regex: ^aura(?: (\w+))?(?: (\w+))?$
+Tempest.send_pray_self_optional_target("righteousaura", matches[2], matches[3])

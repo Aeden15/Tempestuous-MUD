@@ -1,3 +1,3 @@
 -- name: Intercession
--- regex: ^inter(?: (\w+))?$
-Tempest.send_pray("intercession", "self", matches[2])
+-- regex: ^inter(?: (\w+))?(?: (\w+))?$
+Tempest.send_pray_self_optional_target("intercession", matches[2], matches[3])
