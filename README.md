@@ -24,6 +24,8 @@ node Combat/build-combat-xml.cjs
 
 That script embeds `target.lua` and `combat_auto.lua` inside **CDATA** in `TempestCombat.xml` (so Lua comments with `<…>` cannot break XML).
 
+**Maintainers:** Class packages (for example Cleric) call `Tempest.*` defined in `target.lua`. If you add or change functions there, run the command above and **commit the updated `TempestCombat.xml`** before publishing; otherwise imports that load Combat first will miss the new API and aliases can error at runtime.
+
 Import **`Combat/TempestCombat.xml`** via Mudlet Package Manager (or zip as `.mpackage` if you use that workflow).
 
 ### 2. Cleric (class-specific aliases only)
@@ -33,6 +35,10 @@ Import **`Combat/TempestCombat.xml`** via Mudlet Package Manager (or zip as `.mp
 - **Uploadable archive:** `Classes/Cleric/Cleric.mpackage` (when built)
 
 All Cleric aliases are embedded in `Cleric.xml` under `AliasPackage` → `Cleric`. **Combat triggers and the shared `Tempest` API live only in Tempest Combat** — not in Cleric.
+
+**Buff-style prayers** (Alacrity, Aura, Protection, Rejuvenation, Vitality, Self rez, Intercession, Alleviation, Obcursion) resolve the pray target in two ways: with no manual name they use **`tt`** / `Tempest.get_target()` if set, otherwise **`self`**; add a first word that is not `min`, `max`, or digits to cast on that **denizen name** for one line only (`tt` unchanged). Optional second word is favors (`min` / `max` / number). If `tt` points at a mob but you want **yourself**, use an explicit name: e.g. **`alac self`** or **`alac self max`**. Words `min`, `max`, or all-digit names cannot be used as the first-token manual target (they are read as favors when alone).
+
+**Celestial grasp** (`recall`) is **self-only** in these aliases: optional word is favors only.
 
 ### 3. Lunar Sage (class package: cycle/incantations + ranged safeguards)
 
