@@ -1,0 +1,2198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MudletPackage>
+<MudletPackage version="1.001">
+	<TriggerPackage>
+		<TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<name>Tempest</name>
+			<script></script>
+			<triggerType>0</triggerType>
+			<conditonLineDelta>0</conditonLineDelta>
+			<mStayOpen>0</mStayOpen>
+			<mCommand></mCommand>
+			<packageName></packageName>
+			<mFgColor>#ff0000</mFgColor>
+			<mBgColor>#ffff00</mBgColor>
+			<mSoundFile></mSoundFile>
+			<colorTriggerFgColor>#000000</colorTriggerFgColor>
+			<colorTriggerBgColor>#000000</colorTriggerBgColor>
+			<regexCodeList />
+			<regexCodePropertyList />
+			<TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<name>Tempest Combat</name>
+				<script></script>
+				<triggerType>0</triggerType>
+				<conditonLineDelta>0</conditonLineDelta>
+				<mStayOpen>0</mStayOpen>
+				<mCommand></mCommand>
+				<packageName></packageName>
+				<mFgColor>transparent</mFgColor>
+				<mBgColor>transparent</mBgColor>
+				<mSoundFile></mSoundFile>
+				<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
+				<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
+				<regexCodeList />
+				<regexCodePropertyList />
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>Posture line</name>
+					<script>Tem.updposture(matches[1] or "")</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>transparent</mFgColor>
+					<mBgColor>transparent</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
+					<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
+					<regexCodeList>
+						<string>^\s*(.*Position.*)\s*$</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>1</integer>
+					</regexCodePropertyList>
+				</Trigger>
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>Knockdown stand</name>
+					<script>Tem.onkd()</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>transparent</mFgColor>
+					<mBgColor>transparent</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
+					<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
+					<regexCodeList>
+						<string>^You are knocked down from the force of the blow!$</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>1</integer>
+					</regexCodePropertyList>
+				</Trigger>
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>Knockdown stand alt</name>
+					<script>Tem.onkd()</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>transparent</mFgColor>
+					<mBgColor>transparent</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
+					<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
+					<regexCodeList>
+						<string>^You have been knocked down!$</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>1</integer>
+					</regexCodePropertyList>
+				</Trigger>
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>Knockdown message loose</name>
+					<script>Tem.onkd()</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>transparent</mFgColor>
+					<mBgColor>transparent</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
+					<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
+					<regexCodeList>
+						<string>(?i).*knocked down.*</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>1</integer>
+					</regexCodePropertyList>
+				</Trigger>
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>Knockdown retreat stumble</name>
+					<script>Tem.onkd()</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>transparent</mFgColor>
+					<mBgColor>transparent</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
+					<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
+					<regexCodeList>
+						<string>^As you retreat backwards, you loose your footing and stumble to the ground!$</string>
+						<string>^As you retreat backwards, you lose your footing and stumble to the ground!$</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>1</integer>
+						<integer>1</integer>
+					</regexCodePropertyList>
+				</Trigger>
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>Cannot command while laying</name>
+					<script>Tem.onkd()</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>transparent</mFgColor>
+					<mBgColor>transparent</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
+					<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
+					<regexCodeList>
+						<string>^You can't use this command while laying\.$</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>1</integer>
+					</regexCodePropertyList>
+				</Trigger>
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>Stood up</name>
+					<script>Tem.noteup()</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>transparent</mFgColor>
+					<mBgColor>transparent</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
+					<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
+					<regexCodeList>
+						<string>^You stand up\.$</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>1</integer>
+					</regexCodePropertyList>
+				</Trigger>
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>Move capability ft units</name>
+					<script>Tem.notemv(matches[2], matches[3])</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>transparent</mFgColor>
+					<mBgColor>transparent</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
+					<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
+					<regexCodeList>
+						<string>^\s*You can move (\d+)ft\((\d+)units\)!\s*$</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>1</integer>
+					</regexCodePropertyList>
+				</Trigger>
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>Invalid target stop auto</name>
+					<script>Tem.onbadtgt()</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>transparent</mFgColor>
+					<mBgColor>transparent</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
+					<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
+					<regexCodeList>
+						<string>^That target does not exist\.$</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>1</integer>
+					</regexCodePropertyList>
+				</Trigger>
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>Melee unusable stop auto</name>
+					<script>Tem.onmunu("weapon type")</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>transparent</mFgColor>
+					<mBgColor>transparent</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
+					<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
+					<regexCodeList>
+						<string>^You cannot use this type of weapon to perform a melee attack!$</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>1</integer>
+					</regexCodePropertyList>
+				</Trigger>
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>Weapon allows slashing</name>
+					<script>Tem.noteslash(matches[1])</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>transparent</mFgColor>
+					<mBgColor>transparent</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
+					<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
+					<regexCodeList>
+						<string>^\s*This\s+is\s+a\s+slashing\s+weapon\s*\.?\s*$</string>
+						<string>^\s*This-is-a-slashing-weapon\s*\.?\s*$</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>1</integer>
+						<integer>1</integer>
+					</regexCodePropertyList>
+				</Trigger>
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>Weapon allows blunt</name>
+					<script>Tem.noteblunt(matches[1])</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>transparent</mFgColor>
+					<mBgColor>transparent</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
+					<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
+					<regexCodeList>
+						<string>^\s*This\s+is\s+a\s+blunt\s+weapon\s*\.?\s*$</string>
+						<string>^\s*This-is-a-blunt-weapon\s*\.?\s*$</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>1</integer>
+						<integer>1</integer>
+					</regexCodePropertyList>
+				</Trigger>
+			</TriggerGroup>
+			<TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<name>Classes</name>
+				<script></script>
+				<triggerType>0</triggerType>
+				<conditonLineDelta>0</conditonLineDelta>
+				<mStayOpen>0</mStayOpen>
+				<mCommand></mCommand>
+				<packageName></packageName>
+				<mFgColor>#ff0000</mFgColor>
+				<mBgColor>#ffff00</mBgColor>
+				<mSoundFile></mSoundFile>
+				<colorTriggerFgColor>#000000</colorTriggerFgColor>
+				<colorTriggerBgColor>#000000</colorTriggerBgColor>
+				<regexCodeList />
+				<regexCodePropertyList />
+				<TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>Lunar Sage</name>
+					<script></script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>transparent</mFgColor>
+					<mBgColor>transparent</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
+					<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
+					<regexCodeList />
+					<regexCodePropertyList />
+					<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+						<name>Lunar cores melee invalid</name>
+						<script>Tem.onlmunu()</script>
+						<triggerType>0</triggerType>
+						<conditonLineDelta>0</conditonLineDelta>
+						<mStayOpen>0</mStayOpen>
+						<mCommand></mCommand>
+						<packageName></packageName>
+						<mFgColor>transparent</mFgColor>
+						<mBgColor>transparent</mBgColor>
+						<mSoundFile></mSoundFile>
+						<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
+						<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
+						<regexCodeList>
+							<string>^You cannot use this type of weapon to perform a melee attack!$</string>
+						</regexCodeList>
+						<regexCodePropertyList>
+							<integer>1</integer>
+						</regexCodePropertyList>
+					</Trigger>
+					<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+						<name>Lunar cores inspect line</name>
+						<script>Tem.onlc()</script>
+						<triggerType>0</triggerType>
+						<conditonLineDelta>0</conditonLineDelta>
+						<mStayOpen>0</mStayOpen>
+						<mCommand></mCommand>
+						<packageName></packageName>
+						<mFgColor>transparent</mFgColor>
+						<mBgColor>transparent</mBgColor>
+						<mSoundFile></mSoundFile>
+						<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
+						<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
+						<regexCodeList>
+							<string>(?i)^\s*This\s+is\s+a\s+lunar\s+cores?.*$</string>
+						</regexCodeList>
+						<regexCodePropertyList>
+							<integer>1</integer>
+						</regexCodePropertyList>
+					</Trigger>
+					<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+						<name>Lunar cores can fire line</name>
+						<script>Tem.onlc()</script>
+						<triggerType>0</triggerType>
+						<conditonLineDelta>0</conditonLineDelta>
+						<mStayOpen>0</mStayOpen>
+						<mCommand></mCommand>
+						<packageName></packageName>
+						<mFgColor>transparent</mFgColor>
+						<mBgColor>transparent</mBgColor>
+						<mSoundFile></mSoundFile>
+						<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
+						<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
+						<regexCodeList>
+							<string>(?i)^\s*This\s+can\s+fire\s+\d+\s+times\s+per\s+round\.?\s*$</string>
+						</regexCodeList>
+						<regexCodePropertyList>
+							<integer>1</integer>
+						</regexCodePropertyList>
+					</Trigger>
+					<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+						<name>Lunar prompt Amor value</name>
+						<script>Tem.uiamor(tonumber(matches[2]))</script>
+						<triggerType>0</triggerType>
+						<conditonLineDelta>0</conditonLineDelta>
+						<mStayOpen>0</mStayOpen>
+						<mCommand></mCommand>
+						<packageName></packageName>
+						<mFgColor>transparent</mFgColor>
+						<mBgColor>transparent</mBgColor>
+						<mSoundFile></mSoundFile>
+						<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
+						<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
+						<regexCodeList>
+							<string>Amor:\s*(-?\d+)</string>
+						</regexCodeList>
+						<regexCodePropertyList>
+							<integer>1</integer>
+						</regexCodePropertyList>
+					</Trigger>
+					<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+						<name>Lunar prompt Honestus value</name>
+						<script>Tem.uihon(tonumber(matches[2]))</script>
+						<triggerType>0</triggerType>
+						<conditonLineDelta>0</conditonLineDelta>
+						<mStayOpen>0</mStayOpen>
+						<mCommand></mCommand>
+						<packageName></packageName>
+						<mFgColor>transparent</mFgColor>
+						<mBgColor>transparent</mBgColor>
+						<mSoundFile></mSoundFile>
+						<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
+						<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
+						<regexCodeList>
+							<string>Honestus:\s*(-?\d+)</string>
+						</regexCodeList>
+						<regexCodePropertyList>
+							<integer>1</integer>
+						</regexCodePropertyList>
+					</Trigger>
+				</TriggerGroup>
+			</TriggerGroup>
+		</TriggerGroup>
+	</TriggerPackage>
+	<TimerPackage />
+	<AliasPackage>
+		<AliasGroup isActive="yes" isFolder="yes">
+			<name>Tempest</name>
+			<script></script>
+			<command></command>
+			<packageName></packageName>
+			<regex></regex>
+			<Alias isActive="yes" isFolder="no">
+				<name>Set target</name>
+				<script>Tem.settgt(matches[2])</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>^tt (\w+)$</regex>
+			</Alias>
+			<AliasGroup isActive="yes" isFolder="yes">
+				<name>Tempest Combat</name>
+				<script></script>
+				<command></command>
+				<packageName></packageName>
+				<regex></regex>
+				<Alias isActive="yes" isFolder="no">
+					<name>Auto melee off</name>
+					<script>Tem.acoff()</script>
+					<command></command>
+					<packageName></packageName>
+					<regex>^acoff$</regex>
+				</Alias>
+				<Alias isActive="yes" isFolder="no">
+					<name>Auto melee on</name>
+					<script>Tem.acon()</script>
+					<command></command>
+					<packageName></packageName>
+					<regex>^acon$</regex>
+				</Alias>
+				<Alias isActive="yes" isFolder="no">
+					<name>Weapon sharp</name>
+					<script>Tem.setwln("sharp")</script>
+					<command></command>
+					<packageName></packageName>
+					<regex>^wsharp$</regex>
+				</Alias>
+				<Alias isActive="yes" isFolder="no">
+					<name>Weapon blunt</name>
+					<script>Tem.setwln("blunt")</script>
+					<command></command>
+					<packageName></packageName>
+					<regex>^wblunt$</regex>
+				</Alias>
+				<Alias isActive="yes" isFolder="no">
+					<name>Weapon styles reset</name>
+					<script>Tem.resetw()</script>
+					<command></command>
+					<packageName></packageName>
+					<regex>^wreset$</regex>
+				</Alias>
+				<Alias isActive="yes" isFolder="no">
+					<name>Set character name</name>
+					<script>Tem.setname(matches[2])</script>
+					<command></command>
+					<packageName></packageName>
+					<regex>^setname (\w+)$</regex>
+				</Alias>
+				<Alias isActive="yes" isFolder="no">
+					<name>Fire rapid</name>
+					<script>Tem.ranged("safe", matches[2])</script>
+					<command></command>
+					<packageName></packageName>
+					<regex>^frap (.+)$</regex>
+				</Alias>
+				<Alias isActive="yes" isFolder="no">
+					<name>Fire deftly</name>
+					<script>Tem.ranged("mid", matches[2])</script>
+					<command></command>
+					<packageName></packageName>
+					<regex>^fdeft (.+)$</regex>
+				</Alias>
+				<Alias isActive="yes" isFolder="no">
+					<name>Fire precisely</name>
+					<script>Tem.ranged("heavy", matches[2])</script>
+					<command></command>
+					<packageName></packageName>
+					<regex>^fprec (.+)$</regex>
+				</Alias>
+				<Alias isActive="yes" isFolder="no">
+					<name>Fire auto risk</name>
+					<script>Tem.ranged("auto", matches[2])</script>
+					<command></command>
+					<packageName></packageName>
+					<regex>^fauto (.+)$</regex>
+				</Alias>
+				<Alias isActive="yes" isFolder="no">
+					<name>Move by units</name>
+					<script>Tem.mv(tonumber(matches[2]))</script>
+					<command></command>
+					<packageName></packageName>
+					<regex>^mv ([+-]?\d+)$</regex>
+				</Alias>
+				<Alias isActive="yes" isFolder="no">
+					<name>Move toward target</name>
+					<script>Tem.mvt(matches[2])</script>
+					<command></command>
+					<packageName></packageName>
+					<regex>^mvt (.+)$</regex>
+				</Alias>
+			</AliasGroup>
+			<AliasGroup isActive="yes" isFolder="yes">
+				<name>Classes</name>
+				<script></script>
+				<command></command>
+				<packageName></packageName>
+				<regex></regex>
+				<AliasGroup isActive="yes" isFolder="yes">
+					<name>Cleric</name>
+					<script></script>
+					<command></command>
+					<packageName></packageName>
+					<regex></regex>
+					<AliasGroup isActive="yes" isFolder="yes">
+						<name>Basic Gifts</name>
+						<script></script>
+						<command></command>
+						<packageName></packageName>
+						<regex></regex>
+						<AliasGroup isActive="yes" isFolder="yes">
+							<name>Buffs</name>
+							<script></script>
+							<command></command>
+							<packageName></packageName>
+							<regex></regex>
+							<Alias isActive="yes" isFolder="no">
+								<name>Alacrity</name>
+								<script>Tem.praybuff("alacrity", matches[2], matches[3])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^alac(?: (\w+))?(?: (\w+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Aura</name>
+								<script>Tem.praybuff("righteousaura", matches[2], matches[3])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^aura(?: (\w+))?(?: (\w+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Protection</name>
+								<script>Tem.praybuff("sacredprotection", matches[2], matches[3])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^prot(?: (\w+))?(?: (\w+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Rejuvenation</name>
+								<script>Tem.praybuff("rejuvenation", matches[2], matches[3])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^rejuv(?: (\w+))?(?: (\w+))?$</regex>
+							</Alias>
+						</AliasGroup>
+						<AliasGroup isActive="yes" isFolder="yes">
+							<name>Healing</name>
+							<script></script>
+							<command></command>
+							<packageName></packageName>
+							<regex></regex>
+							<Alias isActive="yes" isFolder="no">
+								<name>Long distance revive</name>
+								<script>local tgt = Tem.reqtgt()
+if not tgt then return end
+Tem.pray("liturgy:ghostwaverevive", tgt, matches[2])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^lrevive(?: (\w+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Resurrection</name>
+								<script>local tgt = Tem.reqtgt()
+if not tgt then return end
+Tem.pray("restoration", tgt, matches[2])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^rezz(?: (\w+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Self rez</name>
+								<script>Tem.praybuff("awakening", matches[2], matches[3])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^srezz(?: (\w+))?(?: (\w+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Vitality</name>
+								<script>Tem.praybuff("vitality", matches[2], matches[3])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^vit(?: (\w+))?(?: (\w+))?$</regex>
+							</Alias>
+						</AliasGroup>
+						<AliasGroup isActive="yes" isFolder="yes">
+							<name>Melee</name>
+							<script></script>
+							<command></command>
+							<packageName></packageName>
+							<regex></regex>
+							<Alias isActive="yes" isFolder="no">
+								<name>Pound</name>
+								<script>Tem.melee("safe", matches[2])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^bp(?: (\w+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Crush</name>
+								<script>Tem.melee("mid", matches[2])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^bc(?: (\w+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Smash</name>
+								<script>Tem.melee("heavy", matches[2])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^bs(?: (\w+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Slash</name>
+								<script>Tem.atk("slash", matches[2])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^sl(?: (\w+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Slice</name>
+								<script>Tem.atk("slice", matches[2])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^si(?: (\w+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Cleave</name>
+								<script>Tem.atk("cleave", matches[2])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^clv(?: (\w+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Risk good</name>
+								<script>Tem.setrisk("good")</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^rgb$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Risk neutral</name>
+								<script>Tem.setrisk("neutral")</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^rgn$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Risk bad</name>
+								<script>Tem.setrisk("bad")</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^rbd$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Risk critical</name>
+								<script>Tem.setrisk("critical")</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^rcr$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Smart melee</name>
+								<script>Tem.melee("auto", matches[2])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^mma(?: (\w+))?$</regex>
+							</Alias>
+						</AliasGroup>
+						<AliasGroup isActive="yes" isFolder="yes">
+							<name>Miscellaneous</name>
+							<script></script>
+							<command></command>
+							<packageName></packageName>
+							<regex></regex>
+							<Alias isActive="yes" isFolder="no">
+								<name>Holy Burning Recant</name>
+								<script>Tem.pray("holyburningrecant", "self", matches[2])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^hbr(?: (\w+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Teleport</name>
+								<script>Tem.pray("celestialgrasp", "self", matches[2])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^recall(?: (\w+))?$</regex>
+							</Alias>
+						</AliasGroup>
+						<AliasGroup isActive="yes" isFolder="yes">
+							<name>Offense</name>
+							<script></script>
+							<command></command>
+							<packageName></packageName>
+							<regex></regex>
+							<Alias isActive="yes" isFolder="no">
+								<name>Divine word</name>
+								<script>Tem.prayoff("divineword", matches[2], matches[3])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^dword(?: (\w+))?(?: (\w+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Hymn</name>
+								<script>Tem.prayoff("hymnoftheinferno", matches[2], matches[3])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^hymn(?: (\w+))?(?: (\w+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Rebuke</name>
+								<script>Tem.prayoff("rebuke", matches[2], matches[3])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^reb(?: (\w+))?(?: (\w+))?$</regex>
+							</Alias>
+						</AliasGroup>
+					</AliasGroup>
+					<AliasGroup isActive="yes" isFolder="yes">
+						<name>Empathy Gifts</name>
+						<script></script>
+						<command></command>
+						<packageName></packageName>
+						<regex></regex>
+						<AliasGroup isActive="yes" isFolder="yes">
+							<name>Buffs</name>
+							<script></script>
+							<command></command>
+							<packageName></packageName>
+							<regex></regex>
+							<Alias isActive="yes" isFolder="no">
+								<name>Blazing Soulfire</name>
+								<script>Tem.praybuff("blazingsoulfire", matches[2], matches[3])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^bsf(?: (\w+))?(?: (\w+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Bestow Refulgent Flame</name>
+								<script>Tem.pray("bestowrefulgentflame", "self", matches[2])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^brf(?: (\w+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Curative Efflux</name>
+								<script>Tem.prayoff("curativeefflux", matches[2], matches[3])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^eff(?: (\w+))?(?: (\w+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Intercession</name>
+								<script>Tem.praybuff("intercession", matches[2], matches[3])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^inter(?: (\w+))?(?: (\w+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Alleviation</name>
+								<script>Tem.praybuff("alleviation", matches[2], matches[3])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^allev(?: (\w+))?(?: (\w+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Desurmras Blessing</name>
+								<script>Tem.prayoff("desurmrasblessing", matches[2], matches[3])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^desur(?: (\w+))?(?: (\w+))?$</regex>
+							</Alias>
+						</AliasGroup>
+						<AliasGroup isActive="yes" isFolder="yes">
+							<name>Offense</name>
+							<script></script>
+							<command></command>
+							<packageName></packageName>
+							<regex></regex>
+							<Alias isActive="yes" isFolder="no">
+								<name>Objurgation Malice</name>
+								<script>Tem.prayoff("objurgation:malice", matches[2], matches[3])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^objm(?: (\w+))?(?: (\w+))?$</regex>
+							</Alias>
+						</AliasGroup>
+					</AliasGroup>
+					<AliasGroup isActive="yes" isFolder="yes">
+						<name>Cleric Skills</name>
+						<script></script>
+						<command></command>
+						<packageName></packageName>
+						<regex></regex>
+						<Alias isActive="yes" isFolder="no">
+							<name>Last Rites</name>
+							<script>local tgt = matches[2]
+if not tgt or tgt == "" then
+  tgt = Tem.reqtgt()
+  if not tgt then return end
+end
+send("use lastrites " .. tgt)</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^rites(?: (\w+))?$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Preach</name>
+							<script>local npc = matches[2]
+local message = matches[3]
+local cmd = "use preach " .. npc
+if message and message ~= "" then
+  cmd = cmd .. " " .. message
+end
+send(cmd)</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^preach (\w+)(?: (.+))?$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Worship list</name>
+							<script>send("use worship list")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wlist$</regex>
+						</Alias>
+					</AliasGroup>
+					<AliasGroup isActive="yes" isFolder="yes">
+						<name>Obscurity Gifts</name>
+						<script></script>
+						<command></command>
+						<packageName></packageName>
+						<regex></regex>
+						<Alias isActive="yes" isFolder="no">
+							<name>Blackout</name>
+							<script>Tem.prayoff("blackout", matches[2], matches[3])</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^black(?: (\w+))?(?: (\w+))?$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Obcursion</name>
+							<script>Tem.praybuff("obcursion", matches[2], matches[3])</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^obc(?: (\w+))?(?: (\w+))?$</regex>
+						</Alias>
+					</AliasGroup>
+				</AliasGroup>
+				<AliasGroup isActive="yes" isFolder="yes">
+					<name>Lunar Sage</name>
+					<script></script>
+					<command></command>
+					<packageName></packageName>
+					<regex></regex>
+					<AliasGroup isActive="yes" isFolder="yes">
+						<name>Lookup</name>
+						<script></script>
+						<command></command>
+						<packageName></packageName>
+						<regex></regex>
+						<Alias isActive="yes" isFolder="no">
+							<name>Cycle token cast</name>
+							<script>Tem.cycle(matches[2], matches[3])</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^cy (\S+)(?: (.+))?$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Lunar ranged reminder</name>
+							<script>cecho("&lt;cyan&gt;[Lunar Sage] Use fire aliases from Tempest Combat: frap/fdeft/fprec/fauto and mv/mvt for movement.\n")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^lrange$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Syzygies list</name>
+							<script>Tem.syz(matches[2])</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^szy(?: (.+))?$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Syzygies list alt</name>
+							<script>Tem.syz(matches[2])</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^syz(?: (.+))?$</regex>
+						</Alias>
+					</AliasGroup>
+					<AliasGroup isActive="yes" isFolder="yes">
+						<name>Lunar Incantations</name>
+						<script></script>
+						<command></command>
+						<packageName></packageName>
+						<regex></regex>
+						<AliasGroup isActive="yes" isFolder="yes">
+							<name>Energy</name>
+							<script></script>
+							<command></command>
+							<packageName></packageName>
+							<regex></regex>
+							<Alias isActive="yes" isFolder="no">
+								<name>Empower amor</name>
+								<script>Tem.incant("empower amor")</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^liea$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Empower honestus</name>
+								<script>Tem.incant("empower honestus")</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^lieh$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Flow amor</name>
+								<script>Tem.incant("flow amor", matches[2])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^lifa(?: (.+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Flow honestus</name>
+								<script>Tem.incant("flow honestus", matches[2])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^lifh(?: (.+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Siphon amor</name>
+								<script>Tem.incant("siphon amor", matches[2])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^lisa(?: (.+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Siphon honestus</name>
+								<script>Tem.incant("siphon honestus", matches[2])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^lish(?: (.+))?$</regex>
+							</Alias>
+						</AliasGroup>
+						<AliasGroup isActive="yes" isFolder="yes">
+							<name>Harmonics</name>
+							<script></script>
+							<command></command>
+							<packageName></packageName>
+							<regex></regex>
+							<Alias isActive="yes" isFolder="no">
+								<name>Harmonics amor</name>
+								<script>Tem.incant("harmonics amor")</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^liha$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Harmonics clear</name>
+								<script>Tem.incant("harmonics clear")</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^lihc$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Harmonics honestus</name>
+								<script>Tem.incant("harmonics honestus")</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^lihh$</regex>
+							</Alias>
+						</AliasGroup>
+						<AliasGroup isActive="yes" isFolder="yes">
+							<name>Lord</name>
+							<script></script>
+							<command></command>
+							<packageName></packageName>
+							<regex></regex>
+							<Alias isActive="yes" isFolder="no">
+								<name>Lord amor</name>
+								<script>Tem.incant("lord amor")</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^lila$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Lord clear</name>
+								<script>Tem.incant("lord clear")</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^lilc$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Lord honestus</name>
+								<script>Tem.incant("lord honestus")</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^lilh$</regex>
+							</Alias>
+						</AliasGroup>
+						<AliasGroup isActive="yes" isFolder="yes">
+							<name>View</name>
+							<script></script>
+							<command></command>
+							<packageName></packageName>
+							<regex></regex>
+							<Alias isActive="yes" isFolder="no">
+								<name>View moons</name>
+								<script>Tem.incant("view")</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^liv$</regex>
+							</Alias>
+						</AliasGroup>
+					</AliasGroup>
+					<AliasGroup isActive="yes" isFolder="yes">
+						<name>Syzygies</name>
+						<script></script>
+						<command></command>
+						<packageName></packageName>
+						<regex></regex>
+						<AliasGroup isActive="yes" isFolder="yes">
+							<name>Amor</name>
+							<script></script>
+							<command></command>
+							<packageName></packageName>
+							<regex></regex>
+							<Alias isActive="yes" isFolder="no">
+								<name>Amor's Remedy</name>
+								<script>Tem.cycle("amorsremedy", matches[2])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^arem(?: (.+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Eclipse Amor</name>
+								<script>Tem.cycle("eclipse:amor", matches[2])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^eam(?: (.+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Gemini Storm</name>
+								<script>Tem.cycle("geministorm", matches[2])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^gms(?: (.+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Lumen Shards</name>
+								<script>Tem.cycle("lumenshards", matches[2])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^lsh(?: (.+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Luminary Crescents</name>
+								<script>Tem.cycle("luminarycrescents", matches[2])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^lcr(?: (.+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Nova Ray</name>
+								<script>Tem.cycle("novara", matches[2])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^nr(?: (.+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Occultation Amor</name>
+								<script>Tem.cycle("occultation:amor", matches[2])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^oam(?: (.+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Parhelic Crystal Multi-Beam</name>
+								<script>Tem.cycle("parheliccrystalmultibeam", matches[2])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^pmb(?: (.+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Proto Burst</name>
+								<script>Tem.cycle("protoburst", matches[2])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^pbur(?: (.+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Zeal of Amor</name>
+								<script>Tem.cycle("zealofamor", matches[2])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^zam(?: (.+))?$</regex>
+							</Alias>
+						</AliasGroup>
+						<AliasGroup isActive="yes" isFolder="yes">
+							<name>Honestus</name>
+							<script></script>
+							<command></command>
+							<packageName></packageName>
+							<regex></regex>
+							<Alias isActive="yes" isFolder="no">
+								<name>Antumbra Arc</name>
+								<script>Tem.cycle("antumbraarc", matches[2])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^aar(?: (.+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Blazing Iconoclasm</name>
+								<script>Tem.cycle("blazingiconoclasm", matches[2])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^bz(?: (.+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Eclipse Honestus</name>
+								<script>Tem.cycle("eclipse:honestus", matches[2])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^eh(?: (.+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Forgotten Ward</name>
+								<script>Tem.cycle("forgottenward", matches[2])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^fwa(?: (.+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Honestus Wrath</name>
+								<script>Tem.cycle("honestuswrath", matches[2])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^hwr(?: (.+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Occultation Honestus</name>
+								<script>Tem.cycle("occultation:honestus", matches[2])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^oho(?: (.+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Perihelion Beam</name>
+								<script>Tem.cycle("perihelionbeam", matches[2])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^pbeam(?: (.+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Remnant Flux</name>
+								<script>Tem.cycle("remnantflux", matches[2])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^rfl(?: (.+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Unforgiving Fate</name>
+								<script>Tem.cycle("unforgivingfate", matches[2])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^uff(?: (.+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Zero Dawn</name>
+								<script>Tem.cycle("zerodawn", matches[2])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^zd(?: (.+))?$</regex>
+							</Alias>
+						</AliasGroup>
+						<AliasGroup isActive="yes" isFolder="yes">
+							<name>None</name>
+							<script></script>
+							<command></command>
+							<packageName></packageName>
+							<regex></regex>
+							<Alias isActive="yes" isFolder="no">
+								<name>Moonwalk</name>
+								<script>Tem.cycle("moonwalk", matches[2])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^mwk(?: (.+))?$</regex>
+							</Alias>
+						</AliasGroup>
+					</AliasGroup>
+					<AliasGroup isActive="yes" isFolder="yes">
+						<name>UI</name>
+						<script></script>
+						<command></command>
+						<packageName></packageName>
+						<regex></regex>
+						<Alias isActive="yes" isFolder="no">
+							<name>Moon UI off</name>
+							<script>Tem.uihide()</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^lmoonoff$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Moon UI on</name>
+							<script>Tem.uishow()</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^lmoonon$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Moon UI toggle</name>
+							<script>Tem.uitog()</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^lmoon$</regex>
+						</Alias>
+					</AliasGroup>
+				</AliasGroup>
+			</AliasGroup>
+		</AliasGroup>
+	</AliasPackage>
+	<ActionPackage />
+	<ScriptPackage>
+		<ScriptGroup isActive="yes" isFolder="yes">
+			<name>Tempest</name>
+			<packageName></packageName>
+			<script></script>
+			<eventHandlerList />
+			<ScriptGroup isActive="yes" isFolder="yes">
+				<name>Tempest Core</name>
+				<packageName></packageName>
+				<script></script>
+				<eventHandlerList />
+				<Script isActive="yes" isFolder="no">
+					<name>target helper</name>
+					<packageName></packageName>
+					<script>
+Tem = Tem or {}
+
+Tem.tgt = Tem.tgt or ""
+Tem.risk = Tem.risk or "neutral"
+-- Preference when the wielded weapon supports both slashing and blunt (see weapon_can_*).
+Tem.wln = Tem.wln or "blunt"
+-- weapon_can_slash / weapon_can_blunt: nil until triggers fire or you wreset (see TempestCombat.xml).
+Tem.charname = Tem.charname or ""
+-- From "You can move Nft(Uunits)!"; optional cap for move_by_units (e.g. 1 when server allows one unit per command).
+Tem.mvft = Tem.mvft or nil
+Tem.mvunits = Tem.mvunits or nil
+Tem.mvcap = Tem.mvcap or nil
+
+function Tem.setname(name)
+  Tem.charname = tostring(name or ""):match("^%s*(.-)%s*$") or ""
+  if Tem.charname ~= "" then
+    cecho("&lt;cyan&gt;[Tempest] Character name set for self-checks: &lt;white&gt;" .. Tem.charname .. "\n")
+  end
+end
+
+function Tem.selfname()
+  local n = Tem.charname or ""
+  if n ~= "" then
+    return n
+  end
+  if type(gmcp) == "table" and gmcp.Char and gmcp.Char.Name then
+    return tostring(gmcp.Char.Name)
+  end
+  return ""
+end
+
+local function norm_lower(s)
+  return tostring(s or ""):match("^%s*(.-)%s*$"):lower()
+end
+
+local function is_target_self(name)
+  local self_name = Tem.selfname()
+  if self_name == "" or name == "" then
+    return false
+  end
+  return norm_lower(name) == norm_lower(self_name)
+end
+
+function Tem.setwln(line)
+  local key = norm_lower(line)
+  if key ~= "sharp" and key ~= "blunt" then
+    cecho("&lt;red&gt;[Tempest] weapon_line must be sharp or blunt.\n")
+    return false
+  end
+  Tem.wln = key
+  return true
+end
+
+function Tem.resetw()
+  Tem.wslash = nil
+  Tem.wblunt = nil
+end
+
+function Tem.noteslash(line)
+  Tem.wslash = true
+end
+
+function Tem.noteblunt(line)
+  Tem.wblunt = true
+end
+
+--- Effective line for verb choice: single-style from probes, or weapon_line when both apply.
+function Tem.effwln()
+  local s = Tem.wslash
+  local b = Tem.wblunt
+  if s == true and b ~= true then
+    return "sharp"
+  end
+  if b == true and s ~= true then
+    return "blunt"
+  end
+  if s == true and b == true then
+    return Tem.wln or "blunt"
+  end
+  return Tem.wln or "blunt"
+end
+
+function Tem.mverb(tier)
+  local t = tostring(tier or ""):lower()
+  local wl = Tem.effwln()
+  if t == "safe" then
+    return wl == "sharp" and "slash" or "pound"
+  end
+  if t == "mid" then
+    return wl == "sharp" and "slice" or "crush"
+  end
+  if t == "heavy" then
+    return wl == "sharp" and "cleave" or "smash"
+  end
+  return nil
+end
+
+--- Ranged attack style for fire: safe -&gt; rapid, mid -&gt; deftly, heavy -&gt; precisely (see attackinfo / help fire).
+function Tem.rverb(tier)
+  local t = tostring(tier or ""):lower()
+  if t == "safe" then
+    return "rapid"
+  end
+  if t == "mid" then
+    return "deftly"
+  end
+  if t == "heavy" then
+    return "precisely"
+  end
+  return nil
+end
+
+function Tem.settgt(name)
+  name = tostring(name or ""):match("^%s*(.-)%s*$")
+
+  if name == "" then
+    cecho("&lt;red&gt;[Tempest] No target supplied.\n")
+    return false
+  end
+
+  Tem.tgt = name
+
+  -- Compatibility with older/simple aliases that may expect a global target.
+  target = name
+
+  cecho("&lt;cyan&gt;[Tempest] Target set: &lt;white&gt;" .. name .. "\n")
+  return true
+end
+
+function Tem.gettgt()
+  if Tem.tgt and Tem.tgt ~= "" then
+    return Tem.tgt
+  end
+
+  if target and target ~= "" then
+    return target
+  end
+
+  return nil
+end
+
+function Tem.reqtgt()
+  local tgt = Tem.gettgt()
+
+  if not tgt or tgt == "" then
+    cecho("&lt;red&gt;[Tempest] No target set. Use: tt &lt;name&gt;\n")
+    return nil
+  end
+
+  if is_target_self(tgt) then
+    cecho("&lt;red&gt;[Tempest] Target is your character name; clear or change target with tt.\n")
+    return nil
+  end
+
+  return tgt
+end
+
+function Tem.normfav(value, silent)
+  local text = tostring(value or ""):match("^%s*(.-)%s*$"):lower()
+  if text == "" then
+    return nil
+  end
+
+  if text == "min" or text == "max" or text:match("^%d+$") then
+    return text
+  end
+
+  if not silent then
+    cecho("&lt;red&gt;[Tempest] Invalid favors value. Use: min, max, or a number.\n")
+  end
+  return nil
+end
+
+function Tem.pray(gift, target_name, favors)
+  local cmd = "pray " .. gift
+  local target_text = tostring(target_name or ""):match("^%s*(.-)%s*$")
+  if target_text ~= "" then
+    cmd = cmd .. " " .. target_text
+  end
+
+  local favors_text = Tem.normfav(favors)
+  if favors_text then
+    cmd = cmd .. " " .. favors_text
+  end
+
+  send(cmd)
+end
+
+--- Buff-style alias: target is tt (or self if unset). If the first optional word is a
+--- favors token (min/max/digits), it applies to that target. Otherwise the first word is
+--- a manual denizen name for this cast only (tt unchanged). Optional second word = favors.
+--- Not used for celestial grasp (self-only).
+function Tem.praybuff(gift, opt_first, opt_second)
+  local target_name
+  local favors
+
+  local first = tostring(opt_first or ""):match("^%s*(.-)%s*$")
+  if first == "" then
+    local gt = Tem.gettgt()
+    target_name = (gt and gt ~= "") and gt or "self"
+    favors = nil
+  else
+    local maybe_favors = Tem.normfav(first, true)
+    if maybe_favors then
+      local gt = Tem.gettgt()
+      target_name = (gt and gt ~= "") and gt or "self"
+      favors = maybe_favors
+    else
+      target_name = first
+      favors = opt_second
+    end
+  end
+
+  Tem.pray(gift, target_name, favors)
+end
+
+--- Offense / require-target prayers: use Tem.reqtgt() when no manual name.
+--- If the first optional word is a favors token, target comes from require_target().
+--- Otherwise the first word is a manual denizen name (tt unchanged); optional second = favors.
+function Tem.prayoff(gift, opt_first, opt_second)
+  local target_name
+  local favors
+
+  local first = tostring(opt_first or ""):match("^%s*(.-)%s*$")
+
+  if first == "" then
+    target_name = Tem.reqtgt()
+    if not target_name then
+      return
+    end
+    favors = nil
+  else
+    local maybe_favors = Tem.normfav(first, true)
+    if maybe_favors then
+      target_name = Tem.reqtgt()
+      if not target_name then
+        return
+      end
+      favors = maybe_favors
+    else
+      target_name = first
+      favors = opt_second
+    end
+  end
+
+  Tem.pray(gift, target_name, favors)
+end
+
+local function resolve_attack_target(explicit_target)
+  local text = tostring(explicit_target or ""):match("^%s*(.-)%s*$")
+  if text ~= "" then
+    return text
+  end
+  return Tem.gettgt()
+end
+
+function Tem.atk(attack, explicit_target)
+  local target_name = resolve_attack_target(explicit_target)
+  if target_name and target_name ~= "" then
+    if is_target_self(target_name) then
+      cecho("&lt;red&gt;[Tempest] Refusing to attack yourself; fix target (tt) or character name (Tem.setname).\n")
+      return false
+    end
+    send(attack .. " " .. target_name)
+  else
+    send(attack)
+  end
+  return true
+end
+
+--- Syntax: fire &lt;rapid|deftly|precisely&gt; &lt;target&gt; (game allows abbreviations; we send full words).
+function Tem.fire(verb, explicit_target)
+  local v = tostring(verb or ""):match("^%s*(.-)%s*$")
+  if v == "" then
+    return false
+  end
+  local target_name = resolve_attack_target(explicit_target)
+  if not target_name or target_name == "" then
+    cecho("&lt;red&gt;[Tempest] Ranged fire needs a target (tt or second argument).\n")
+    return false
+  end
+  if is_target_self(target_name) then
+    cecho("&lt;red&gt;[Tempest] Refusing to fire on yourself; fix target (tt) or character name (Tem.setname).\n")
+    return false
+  end
+  send("fire " .. v .. " " .. target_name)
+  return true
+end
+
+function Tem.setrisk(value)
+  local band = tostring(value or ""):lower():match("^%s*(.-)%s*$")
+  local valid = {
+    good = true,
+    neutral = true,
+    bad = true,
+    critical = true,
+  }
+
+  if not valid[band] then
+    cecho("&lt;red&gt;[Tempest] Invalid risk band. Use: good, neutral, bad, critical.\n")
+    return false
+  end
+
+  Tem.risk = band
+  cecho("&lt;cyan&gt;[Tempest] Risk band set: &lt;white&gt;" .. band .. "\n")
+  return true
+end
+
+function Tem.melee(kind, explicit_target)
+  local key = tostring(kind or ""):lower()
+  local tier = nil
+
+  if key == "safe" then
+    tier = "safe"
+  elseif key == "mid" then
+    tier = "mid"
+  elseif key == "heavy" then
+    tier = "heavy"
+  elseif key == "auto" then
+    if Tem.risk == "good" then
+      tier = "heavy"
+    elseif Tem.risk == "bad" or Tem.risk == "critical" then
+      tier = "safe"
+    else
+      tier = "mid"
+    end
+  else
+    cecho("&lt;red&gt;[Tempest] Unknown melee mode. Use: safe, mid, heavy, auto.\n")
+    return false
+  end
+
+  local attack = Tem.mverb(tier)
+  if not attack then
+    return false
+  end
+
+  Tem.atk(attack, explicit_target)
+  return true
+end
+
+--- Same modes as send_melee: safe/mid/heavy/auto from Risk (parallel to melee tier mapping).
+function Tem.ranged(kind, explicit_target)
+  local key = tostring(kind or ""):lower()
+  local tier = nil
+
+  if key == "safe" then
+    tier = "safe"
+  elseif key == "mid" then
+    tier = "mid"
+  elseif key == "heavy" then
+    tier = "heavy"
+  elseif key == "auto" then
+    if Tem.risk == "good" then
+      tier = "heavy"
+    elseif Tem.risk == "bad" or Tem.risk == "critical" then
+      tier = "safe"
+    else
+      tier = "mid"
+    end
+  else
+    cecho("&lt;red&gt;[Tempest] Unknown ranged mode. Use: safe, mid, heavy, auto.\n")
+    return false
+  end
+
+  local verb = Tem.rverb(tier)
+  if not verb then
+    return false
+  end
+
+  return Tem.fire(verb, explicit_target)
+end
+
+--- Room positioning: move +/-&lt;units&gt; (1 unit = 5ft per help move). Honors Tem.mvcap when set.
+function Tem.mv(delta)
+  local n = tonumber(delta)
+  if not n or n == 0 then
+    cecho("&lt;red&gt;[Tempest] move_by_units needs a non-zero number (e.g. +1 or -2).\n")
+    return false
+  end
+  local cap = tonumber(Tem.mvcap)
+  if cap and cap &gt; 0 and math.abs(n) &gt; cap then
+    n = n &gt; 0 and cap or -cap
+  end
+  if n &gt; 0 then
+    send("move +" .. tostring(n))
+  else
+    send("move " .. tostring(n))
+  end
+  return true
+end
+
+--- move &lt;target&gt; — advance toward a denizen or player name.
+function Tem.mvt(name)
+  name = tostring(name or ""):match("^%s*(.-)%s*$") or ""
+  if name == "" then
+    cecho("&lt;red&gt;[Tempest] move_towards needs a target name.\n")
+    return false
+  end
+  send("move " .. name)
+  return true
+end
+
+--- Trigger helper: game line "You can move 5ft(1units)!". Pass feet and units from capture groups, or one full line string.
+function Tem.notemv(a, b)
+  local feet, units = a, b
+  if b == nil and type(a) == "string" then
+    feet, units = tostring(a):match("You can move (%d+)ft%((%d+)units%)")
+  end
+  feet = tonumber(feet)
+  units = tonumber(units)
+  if feet then
+    Tem.mvft = feet
+  end
+  if units then
+    Tem.mvunits = units
+  end
+end
+
+</script>
+					<eventHandlerList />
+				</Script>
+				<Script isActive="yes" isFolder="no">
+					<name>combat automation</name>
+					<packageName></packageName>
+					<script>-- Shared Tempest combat automation (all classes). Depends on Tem.* from target.lua.
+Tem.autoon = Tem.autoon or false
+Tem.posture = Tem.posture or "mid"
+Tem.aadelay = Tem.aadelay or 2.1
+Tem._aatimer = Tem._aatimer or nil
+-- True while server reports Knocked Down (posture line or knockdown message).
+Tem.kd = Tem.kd or false
+-- Set true when Posture trigger has fired at least once (see update_posture_from_line).
+Tem._postseen = Tem._postseen or false
+-- After queue clear + stand, cleared when posture line shows upright (no Knocked Down).
+Tem._kdrec = Tem._kdrec or false
+
+local function cancel_attack_timer()
+  if Tem._aatimer and killTimer then
+    killTimer(Tem._aatimer)
+    Tem._aatimer = nil
+  end
+end
+
+--- Rank for merging: lower = safer (pound/slash), higher = heavier (smash/cleave).
+
+local function _tier_to_rank(t)
+  local x = tostring(t or ""):lower()
+  if x == "safe" then
+    return 1
+  end
+  if x == "mid" then
+    return 2
+  end
+  if x == "heavy" then
+    return 3
+  end
+  return 2
+end
+
+local function _rank_to_tier(r)
+  if r &lt;= 1 then
+    return "safe"
+  end
+  if r &lt;= 2 then
+    return "mid"
+  end
+  return "heavy"
+end
+
+--- Same tier mapping as Tem.melee("auto", ...): good→heavy, bad/critical→safe, else mid.
+
+local function _risk_tier_from_band()
+  local rb = tostring(Tem.risk or "neutral"):lower()
+  if rb == "good" then
+    return "heavy"
+  end
+  if rb == "bad" or rb == "critical" then
+    return "safe"
+  end
+  return "mid"
+end
+
+--- Merge posture tier with Risk band: use the safer (lower rank) of the two.
+--- Until any posture line is seen, Risk alone drives tier (default posture is not real data).
+
+function Tem.autotier()
+  local posture = Tem.posture or "mid"
+  local risk = _risk_tier_from_band()
+  if not Tem._postseen then
+    return risk, posture, risk
+  end
+  local m = math.min(_tier_to_rank(posture), _tier_to_rank(risk))
+  return _rank_to_tier(m), posture, risk
+end
+
+--- Queue clear + stand once per knockdown; shared by message triggers and posture line.
+
+local function knockdown_apply_recovery()
+  Tem.kd = true
+  Tem.posture = "safe"
+  cancel_attack_timer()
+  if not Tem._kdrec then
+    Tem._kdrec = true
+    send("queue clear")
+    send("stand")
+  end
+end
+
+function Tem.acoff(message)
+  Tem.autoon = false
+  cancel_attack_timer()
+  if message ~= false then
+    cecho("&lt;yellow&gt;[Tempest Combat] Auto combat off.\n")
+  end
+end
+
+function Tem.acon(message)
+  Tem.autoon = true
+  if message ~= false then
+    cecho("&lt;green&gt;[Tempest Combat] Auto combat on (melee or ranged per weapon).\n")
+  end
+  Tem.aaonce()
+end
+
+function Tem.aasched()
+  cancel_attack_timer()
+  if not Tem.autoon then
+    return
+  end
+  local delay = tonumber(Tem.aadelay) or 2.1
+  if tempTimer then
+    Tem._aatimer =
+      tempTimer(
+        delay,
+        function()
+          Tem.aaonce()
+        end
+      )
+  end
+end
+
+function Tem.aaonce()
+  if not Tem.autoon then
+    return
+  end
+  -- Do not queue attacks from the client while prone; server queue + delays block stand.
+  if Tem.kd then
+    return
+  end
+  local tier = select(1, Tem.autotier())
+  if Tem.lcranged then
+    if not Tem.ranged(tier, nil) then
+      Tem.aasched()
+      return
+    end
+    Tem.aasched()
+    return
+  end
+  local attack = Tem.mverb(tier)
+  if not attack then
+    Tem.aasched()
+    return
+  end
+  Tem.atk(attack, nil)
+  Tem.aasched()
+end
+
+--- Map posture text from game output to melee tier: safe | mid | heavy
+
+function Tem.updposture(line)
+  line = tostring(line or "")
+  Tem._postseen = true
+  local lower = line:lower()
+  if lower:find("knocked down", 1, true) then
+    knockdown_apply_recovery()
+    return
+  end
+  Tem.kd = false
+  Tem._kdrec = false
+  if line:find("Feeble") or line:find("Very Weak") or line:find("Very Unsteady") then
+    Tem.posture = "safe"
+    if Tem.autoon then
+      Tem.aasched()
+    end
+    return
+  end
+  if line:find("Unsteady") then
+    Tem.posture = "safe"
+    if Tem.autoon then
+      Tem.aasched()
+    end
+    return
+  end
+  if line:find("Weak") and not line:find("Very Weak") then
+    Tem.posture = "mid"
+    if Tem.autoon then
+      Tem.aasched()
+    end
+    return
+  end
+  if line:find("Neutral") then
+    Tem.posture = "mid"
+    if Tem.autoon then
+      Tem.aasched()
+    end
+    return
+  end
+  if line:find("Good") or line:find("Strong") then
+    Tem.posture = "heavy"
+    if Tem.autoon then
+      Tem.aasched()
+    end
+    return
+  end
+  if Tem.autoon then
+    Tem.aasched()
+  end
+end
+
+function Tem.onkd()
+  knockdown_apply_recovery()
+end
+
+--- Stops auto melee when the game rejects melee for "no usable weapon" reasons.
+--- Lunar Sage owns the same line and converts to ranged-only; defer to it when set.
+
+function Tem.onmunu(reason)
+  if not Tem.autoon then
+    return
+  end
+  if Tem.lcranged then
+    return
+  end
+  send("queue clear")
+  Tem.acoff(false)
+  cecho(
+    "&lt;yellow&gt;[Tempest Combat] Auto combat off: melee rejected (" ..
+    tostring(reason or "no weapon") ..
+    "). Wield a weapon (or use ranged) and `acon` again.\n"
+  )
+end
+
+--- Stops auto melee when the game says the current target is invalid (e.g. mob dead, wrong name).
+
+function Tem.onbadtgt()
+  if not Tem.autoon then
+    return
+  end
+  send("queue clear")
+  Tem.acoff(false)
+  cecho("&lt;yellow&gt;[Tempest Combat] Auto combat off: invalid target. Set target with tt.\n")
+end
+
+--- Call from a trigger on your game's stand-success line if posture updates lag behind.
+
+function Tem.noteup()
+  Tem.kd = false
+  Tem._kdrec = false
+  if Tem.autoon then
+    Tem.aasched()
+  end
+end</script>
+					<eventHandlerList />
+				</Script>
+				<ScriptGroup isActive="yes" isFolder="yes">
+					<name>Classes</name>
+					<packageName></packageName>
+					<script></script>
+					<eventHandlerList />
+					<ScriptGroup isActive="yes" isFolder="yes">
+						<name>Lunar Sage Core</name>
+						<packageName></packageName>
+						<script></script>
+						<eventHandlerList />
+						<Script isActive="yes" isFolder="no">
+							<name>Lunar helper functions</name>
+							<packageName></packageName>
+							<script>
+Tem = Tem or {}
+
+Tem.lcranged = Tem.lcranged or false
+
+local function trim(text)
+  return tostring(text or ""):match("^%s*(.-)%s*$")
+end
+
+function Tem.cycle(token, extra)
+  local spell = trim(token)
+  if spell == "" then
+    cecho("&lt;red&gt;[Tempest] Missing cycle token.\n")
+    return false
+  end
+
+  local cmd = "cycle " .. spell
+  local suffix = trim(extra)
+  if suffix ~= "" then
+    cmd = cmd .. " " .. suffix
+  end
+
+  send(cmd)
+  return true
+end
+
+function Tem.syz(filter_text)
+  local cmd = "syzygies"
+  local filter = trim(filter_text)
+  if filter ~= "" then
+    cmd = cmd .. " " .. filter
+  end
+
+  send(cmd)
+  return true
+end
+
+function Tem.incant(path, args)
+  local incant = trim(path)
+  if incant == "" then
+    cecho("&lt;red&gt;[Tempest] Missing lunar incantation path.\n")
+    return false
+  end
+
+  local cmd = "use lunarincantations " .. incant
+  local suffix = trim(args)
+  if suffix ~= "" then
+    cmd = cmd .. " " .. suffix
+  end
+
+  send(cmd)
+  return true
+end
+
+function Tem.onlc()
+  Tem.lcranged = true
+  if Tem.autoon and Tem.aasched then
+    Tem.aasched()
+  end
+end
+
+function Tem.onlmunu()
+  Tem.lcranged = true
+  if Tem.autoon and Tem.aasched then
+    Tem.aasched()
+  end
+end
+
+</script>
+							<eventHandlerList />
+						</Script>
+						<Script isActive="yes" isFolder="no">
+							<name>Moon UI helpers</name>
+							<packageName></packageName>
+							<script>
+Tem = Tem or {}
+
+Tem.ui = Tem.ui or {
+  enabled = false,
+  amor_label = nil,
+  honestus_label = nil,
+}
+
+local MOON = 58
+local MOON_GAP = 10
+-- Inset from bottom-right (px): larger Y lifts moons above the status/input strip.
+local MOON_INSET_X = 40
+local MOON_INSET_Y = 52
+
+local AMOR_MOON_CSS = [[
+QLabel {
+  background: qradialgradient(cx:0.32, cy:0.28, radius:0.95, fx:0.28, fy:0.24,
+    stop:0 #ffffff, stop:0.35 #e6e6e6, stop:0.7 #a8a8a8, stop:1 #5c5c5c);
+  border: 2px solid #b8b8b8;
+  border-radius: 29px;
+  color: #1a1a1a;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px;
+  min-width: 58px;
+  max-width: 58px;
+  min-height: 58px;
+  max-height: 58px;
+}
+]]
+
+local HONESTUS_MOON_CSS = [[
+QLabel {
+  background: qradialgradient(cx:0.38, cy:0.30, radius:0.95, fx:0.32, fy:0.26,
+    stop:0 #c9a8ff, stop:0.4 #7b4ec9, stop:0.75 #3d1f6e, stop:1 #1a0d33);
+  border: 2px solid #9b6ee5;
+  border-radius: 29px;
+  color: #f0e8ff;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px;
+  min-width: 58px;
+  max-width: 58px;
+  min-height: 58px;
+  max-height: 58px;
+}
+]]
+
+local function have_labels()
+  return Tem.ui.amorlbl and Tem.ui.honlbl
+end
+
+local function safe_hide(label_name)
+  if label_name then
+    hideWindow(label_name)
+  end
+end
+
+local function parse_prompt_values(line)
+  local amor = tonumber((line or ""):match("Amor:%s*(-?%d+)"))
+  local honestus = tonumber((line or ""):match("Honestus:%s*(-?%d+)"))
+  return amor, honestus
+end
+
+function Tem.uipos()
+  if not have_labels() or not getMainWindowSize then
+    return
+  end
+  local w, h = getMainWindowSize()
+  if not w or not h then
+    return
+  end
+  local hx = w - MOON_INSET_X - MOON
+  local hy = h - MOON_INSET_Y - MOON
+  local ax = hx - MOON_GAP - MOON
+  moveWindow(Tem.ui.amorlbl, ax, hy)
+  moveWindow(Tem.ui.honlbl, hx, hy)
+end
+
+function Tem.uiinit()
+  if have_labels() then
+    Tem.uipos()
+    return true
+  end
+
+  Tem.ui.amorlbl = Tem.ui.amorlbl or "tempest_lunar_ui_amor"
+  Tem.ui.honlbl = Tem.ui.honlbl or "tempest_lunar_ui_honestus"
+
+  createLabel(Tem.ui.amorlbl, 0, 0, MOON, MOON, 1)
+  createLabel(Tem.ui.honlbl, 0, 0, MOON, MOON, 1)
+
+  setLabelStyleSheet(Tem.ui.amorlbl, AMOR_MOON_CSS)
+  setLabelStyleSheet(Tem.ui.honlbl, HONESTUS_MOON_CSS)
+
+  echo(Tem.ui.amorlbl, "Amor\n—")
+  echo(Tem.ui.honlbl, "Honestus\n—")
+  Tem.uipos()
+  safe_hide(Tem.ui.amorlbl)
+  safe_hide(Tem.ui.honlbl)
+
+  if not Tem._uireshook and registerAnonymousEventHandler then
+    Tem._uireshook = true
+    registerAnonymousEventHandler("sysWindowResize", "Tem.uipos")
+  end
+
+  return true
+end
+
+function Tem.uishow()
+  Tem.uiinit()
+  Tem.ui.on = true
+  Tem.uipos()
+  showWindow(Tem.ui.amorlbl)
+  showWindow(Tem.ui.honlbl)
+end
+
+function Tem.uihide()
+  Tem.ui.on = false
+  safe_hide(Tem.ui.amorlbl)
+  safe_hide(Tem.ui.honlbl)
+end
+
+function Tem.uitog()
+  if Tem.ui.on then
+    Tem.uihide()
+  else
+    Tem.uishow()
+  end
+end
+
+function Tem.uiamor(n)
+  if not Tem.ui.on or not have_labels() then
+    return
+  end
+  local v = tonumber(n)
+  if not v then
+    return
+  end
+  clearWindow(Tem.ui.amorlbl)
+  echo(Tem.ui.amorlbl, string.format("Amor\n%d", v))
+end
+
+function Tem.uihon(n)
+  if not Tem.ui.on or not have_labels() then
+    return
+  end
+  local v = tonumber(n)
+  if not v then
+    return
+  end
+  clearWindow(Tem.ui.honlbl)
+  echo(Tem.ui.honlbl, string.format("Honestus\n%d", v))
+end
+
+function Tem.uiupd(line)
+  if not Tem.ui.on or not have_labels() then
+    return
+  end
+
+  local amor, honestus = parse_prompt_values(line or "")
+  if amor then
+    Tem.uiamor(amor)
+  end
+  if honestus then
+    Tem.uihon(honestus)
+  end
+end
+
+</script>
+							<eventHandlerList />
+						</Script>
+					</ScriptGroup>
+				</ScriptGroup>
+			</ScriptGroup>
+		</ScriptGroup>
+	</ScriptPackage>
+	<KeyPackage />
+</MudletPackage>

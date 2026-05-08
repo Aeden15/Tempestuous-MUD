@@ -1,5 +1,13 @@
 .tmp_paste.br
 .tmp_cleric_pkg/
+.tmp_inspect/
+.tmp_inspect.zip
+.tmp_*.js
+.tmp_*.html
+.tmp_*.br
+
+# Built Mudlet package blob (rebuild from Tempest.xml + config.lua)
+Tempest.mpackage
 
 # Windows folder metadata (do not commit)
 desktop.ini
