@@ -2502,8 +2502,9 @@ function Tem.notemorale(line)
     return
   end
 
-  local gained = lower:match("your morale grew by%s+([%d%.]+)%%")
+  local gained = lower:match("your morale grew by%s+([%d%.]+)")
   if gained then
+    gained = tostring(gained):gsub("%.$", "")
     Tem.moralePct = tonumber(gained) or Tem.moralePct or 0
     Tem.notecombatactivity("morale")
     return
