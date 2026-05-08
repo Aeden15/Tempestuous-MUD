@@ -2840,7 +2840,13 @@ end
 
 function Tem.autotier()
   local posture = Tem.posture or "mid"
-  local risk = _risk_tier_from_band()
+  local rb = tostring(Tem.risk or "neutral"):lower()
+  local risk = "mid"
+  if rb == "good" then
+    risk = "heavy"
+  elseif rb == "bad" or rb == "critical" then
+    risk = "safe"
+  end
   if not Tem._postseen then
     return risk, posture, risk
   end
@@ -2871,6 +2877,19 @@ end
 
 function Tem.acon(message)
   Tem.autoon = true
+  -- #region agent log
+  _agent_log(
+    "H9",
+    "Tem.acon",
+    "called",
+    {
+      lcranged = tostring(Tem.lcranged),
+      target = tostring(Tem.gettgt and Tem.gettgt() or ""),
+      autoposture = tostring(Tem.autoposture),
+      postureGate = tostring(Tem.posture_level_gate),
+    }
+  )
+  -- #endregion
   if message ~= false then
     combat_cecho("&lt;green&gt;[Tempest Combat] Auto combat on (melee or ranged per weapon).\n")
   end
