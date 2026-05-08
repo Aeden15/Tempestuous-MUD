@@ -7,7 +7,7 @@ This repo holds a **single** Mudlet package for **Tempest Season** ([tempestseas
 | File | Role |
 |------|------|
 | [`Tempest.xml`](Tempest.xml) | Triggers, aliases, and all Lua (combat, target helper, Cleric, Lunar Sage). **Edit this file** (or export from Mudlet and replace this file). |
-| [`config.lua`](config.lua) | Mudlet package metadata (`mpackage`, description, version). Keep alongside `Tempest.xml` when building an `.mpackage`. |
+| [`config.lua`](config.lua) | Mudlet package metadata (`mpackage`, description, version) shown by Mudlet Package Manager. Keep alongside `Tempest.xml` when building an `.mpackage`. |
 
 ## Install (Mudlet 4.20)
 

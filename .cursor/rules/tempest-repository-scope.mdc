@@ -7,5 +7,5 @@ alwaysApply: true
 
 - **Single game:** This workspace is **Tempest Season** Mudlet packages only (`tempestseason.com`). Treat all Lua/XML as game-specific.
 - **Do not intermix repositories:** Do not import concepts, file paths, globals, or “fix” Tempest by borrowing from other MUD automation repos (e.g. unrelated curing/offense stacks). They are separate products with separate install bases.
-- **Implementation:** When editing this repo, only reference **Tempest** mechanics, this repo’s `Classes/` and `Combat/` trees, [wiki.mudlet.org](https://wiki.mudlet.org/), and Lua PIL—not third-party Achaea or other-game package internals unless the user explicitly pastes them for comparison.
+- **Implementation:** When editing this repo, only reference **Tempest** mechanics, the single-source `Tempest.xml` and `config.lua`, [wiki.mudlet.org](https://wiki.mudlet.org/), and Lua PIL—not third-party Achaea or other-game package internals unless the user explicitly pastes them for comparison.
 - **User profiles:** If the user mentions conflicts with another framework, recommend **isolating profiles** or package lists rather than merging codebases here.

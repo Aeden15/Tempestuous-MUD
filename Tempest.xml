@@ -1263,11 +1263,11 @@ Tem = Tem or {}
 
 Tem.tgt = Tem.tgt or ""
 Tem.risk = Tem.risk or "neutral"
--- Preference when the wielded weapon supports both slashing and blunt (see weapon_can_*).
+-- Preference when the wielded weapon supports both slashing and blunt.
 Tem.wln = Tem.wln or "blunt"
--- weapon_can_slash / weapon_can_blunt: nil until triggers fire or you wreset (see TempestCombat.xml).
+-- wslash / wblunt: nil until weapon-probe triggers fire, or you wreset.
 Tem.charname = Tem.charname or ""
--- From "You can move Nft(Uunits)!"; optional cap for move_by_units (e.g. 1 when server allows one unit per command).
+-- From "You can move Nft(Uunits)!"; optional cap for Tem.mv (e.g. 1 when server allows one unit per command).
 Tem.mvft = Tem.mvft or nil
 Tem.mvunits = Tem.mvunits or nil
 Tem.mvcap = Tem.mvcap or nil
@@ -1476,7 +1476,7 @@ function Tem.praybuff(gift, opt_first, opt_second)
 end
 
 --- Offense / require-target prayers: use Tem.reqtgt() when no manual name.
---- If the first optional word is a favors token, target comes from require_target().
+--- If the first optional word is a favors token, target comes from Tem.reqtgt().
 --- Otherwise the first word is a manual denizen name (tt unchanged); optional second = favors.
 function Tem.prayoff(gift, opt_first, opt_second)
   local target_name
@@ -1635,7 +1635,7 @@ end
 function Tem.mv(delta)
   local n = tonumber(delta)
   if not n or n == 0 then
-    cecho("&lt;red&gt;[Tempest] move_by_units needs a non-zero number (e.g. +1 or -2).\n")
+    cecho("&lt;red&gt;[Tempest] mv needs a non-zero number (e.g. +1 or -2).\n")
     return false
   end
   local cap = tonumber(Tem.mvcap)
@@ -1683,7 +1683,7 @@ end
 				<Script isActive="yes" isFolder="no">
 					<name>combat automation</name>
 					<packageName></packageName>
-					<script>-- Shared Tempest combat automation (all classes). Depends on Tem.* from target.lua.
+					<script>-- Shared Tempest combat automation (all classes). Depends on the target helpers above.
 Tem.autoon = Tem.autoon or false
 Tem.posture = Tem.posture or "mid"
 Tem.aadelay = Tem.aadelay or 2.1
@@ -2014,9 +2014,9 @@ end
 Tem = Tem or {}
 
 Tem.ui = Tem.ui or {
-  enabled = false,
-  amor_label = nil,
-  honestus_label = nil,
+  on = false,
+  amorlbl = nil,
+  honlbl = nil,
 }
 
 local MOON = 58

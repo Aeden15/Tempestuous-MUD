@@ -1,28 +1,23 @@
 mpackage = [[Tempest]]
-description = [[(recommended)
-
-This package description is shown in the package manager.  The editor supports Commonmark markdown.  Follow the description below for a thorough example of what to include in your package description.
+description = [[Tempest Season Mudlet package.
 
 ### Description
 
-A full description of what this package achieves. If the package is game specific then mention that here.  Specify if the package has autoupdating or, if not, add a link in the See Also section below to the code repository.
+Single-source package for Tempest Season combat helpers, Cleric gift aliases,
+Lunar Sage aliases, targeting, movement helpers, and optional moon UI.
 
 ### Usage
 
-If this package uses aliases, show a few examples and expected output.
+Import `Tempest.xml` directly, or zip `Tempest.xml` with this `config.lua` and
+rename the archive to `Tempest.mpackage`.
 
-`> alias_1`
-
-    output of alias_1  -- indent by four spaces
-    more output        -- for code blocks
-
-If this package is a GUI implementation consider adding screenshots by directly dragging and dropping images into this editor.
+Core aliases include `tt <name>`, `acon`, `acoff`, `wsharp`, `wblunt`,
+`wreset`, `setname <name>`, `frap`, `fdeft`, `fprec`, `fauto`, `mv`, `mvt`,
+Cleric gift aliases, and Lunar Sage aliases.
 
 ### See Also
 
-Further reading material. e.g. a link to the Mudlet wiki, forums, Github package repository or webpage.
-
-* https://wiki.mudlet.org/w/Manual:Best_Practices#Package_and_Module_best_practices
-* [Link 2 might be a webpage](https://example.org)]]
+* https://github.com/Aeden15/Tempestuous-MUD
+* https://wiki.mudlet.org/w/Manual:Best_Practices#Package_and_Module_best_practices]]
 version = [[1]]
 created = "2026-05-08T00:29:49-05:00"
