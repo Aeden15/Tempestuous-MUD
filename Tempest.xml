@@ -280,7 +280,7 @@
 				</Trigger>
 				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
 					<name>Posture control feedback</name>
-					<script>Tem.notepostureevent(matches[1] or "")</script>
+					<script>Tem.notepostureevent(getCurrentLine())</script>
 					<triggerType>0</triggerType>
 					<conditonLineDelta>0</conditonLineDelta>
 					<mStayOpen>0</mStayOpen>
@@ -292,7 +292,7 @@
 					<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
 					<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
 					<regexCodeList>
-						<string>(?i)^\s*(you enter the .* posture!|you stop using posture: .*|you do not have a posture set!.*|you cannot use this ability because you have another risk posture active!|posture:\s*\w+\s+cannot be used for another\s+\d+s\.|posture:\s*\w+\s+is now ready to be used\.|you specified a target\(.+\)\s+for an ability which does not need one\..*)\s*$</string>
+						<string>(?i)^\s*(you enter the .* posture!|you enter posture:\s*\w+\s*!|you stop using posture: .*|you do not have a posture set!.*|you cannot use this ability because you have another risk posture active!|posture:\s*\w+\s+cannot be used for another\s+\d+s\.|posture:\s*\w+\s+is now ready to be used\.|you specified a target\(.+\)\s+for an ability which does not need one\..*)\s*$</string>
 					</regexCodeList>
 					<regexCodePropertyList>
 						<integer>1</integer>
@@ -375,6 +375,26 @@ Tem.noteenemyposture(getCurrentLine(), matches[2], matches[3])</script>
 					<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
 					<regexCodeList>
 						<string>(?i)^You have gained a new mind state:\s*(.+)\s*!\s*$</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>1</integer>
+					</regexCodePropertyList>
+				</Trigger>
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>Combat blocks quit/travel</name>
+					<script>Tem.notecombatrestriction(getCurrentLine())</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>transparent</mFgColor>
+					<mBgColor>transparent</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
+					<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
+					<regexCodeList>
+						<string>(?i)^\s*You are in combat and cannot do this action\.\s*You may do so in\s+(\d+)\s+seconds\.\s*$</string>
 					</regexCodeList>
 					<regexCodePropertyList>
 						<integer>1</integer>
@@ -1912,6 +1932,7 @@ Tem.lastCombatActionAt = Tem.lastCombatActionAt or 0
 Tem.lastMoraleTickAt = Tem.lastMoraleTickAt or 0
 Tem.moraleDecaySeconds = tonumber(Tem.moraleDecaySeconds) or 60
 Tem.npcPostureDB = Tem.npcPostureDB or {}
+Tem.combatRestrictedUntil = tonumber(Tem.combatRestrictedUntil) or 0
 
 -- #region agent log
 local function _agent_log(hypothesisId, location, message, data)
@@ -2154,6 +2175,26 @@ function Tem.notecombatactivity(_src)
   Tem.lastMoraleTickAt = now
 end
 
+function Tem.notecombatrestriction(line)
+  local lower = tostring(line or ""):lower()
+  local secs = lower:match(
+    "you are in combat and cannot do this action%. you may do so in (%d+) seconds"
+  )
+  if not secs then
+    return
+  end
+  local n = tonumber(secs) or 0
+  local now = _now_s()
+  Tem.combatRestrictedUntil = math.max(tonumber(Tem.combatRestrictedUntil or 0), now + n)
+  Tem.notecombatactivity("combat_restrict")
+  _agent_log(
+    "H8",
+    "notecombatrestriction",
+    "parsed",
+    {seconds = tostring(n), until_ts = tostring(Tem.combatRestrictedUntil)}
+  )
+end
+
 function Tem.noteenemyposture(full_line, target_name, posture_name)
   if posture_name == nil then
     posture_name = target_name
@@ -2320,16 +2361,22 @@ function Tem.notepostureevent(line)
   local lower = text:lower()
 
   local entered = lower:match("you enter the%s+([a-z]+)%s+posture!")
+  if not entered then
+    entered = lower:match("you enter posture:%s*([a-z]+)!?")
+  end
   if entered then
     local posture = _canon_posture(entered)
     Tem.postureActive = posture ~= nil
     Tem.myPostureName = posture
     Tem._pendingPosture = nil
     Tem._lastPostureSwitchAt = _now_s()
+    if lower:find("you enter posture:", 1, true) then
+      _agent_log("H9", "notepostureevent", "enter_via_posture_colon", {posture = tostring(posture or "?")})
+    end
     return
   end
 
-  local stopped = lower:match("you stop using posture:%s*([a-z]+)")
+  local stopped = lower:match("you stop using posture:%s*([a-z]+)%s*!?$")
   if stopped then
     local just_stopped = _canon_posture(stopped)
     if Tem.myPostureName == just_stopped then
@@ -2519,6 +2566,8 @@ function Tem.autoposturestatus()
       tostring(Tem.mindStateName or "none") ..
       " knownTargets=" ..
       tostring(known) ..
+      " combatRestrictedUntil=" ..
+      tostring(Tem.combatRestrictedUntil or 0) ..
       "\n"
   )
   return true
