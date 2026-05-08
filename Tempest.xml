@@ -702,13 +702,6 @@ Tem.pray("restoration", tgt, matches[2])</script>
 							<packageName></packageName>
 							<regex></regex>
 							<Alias isActive="yes" isFolder="no">
-								<name>Holy Burning Recant</name>
-								<script>Tem.pray("holyburningrecant", "self", matches[2])</script>
-								<command></command>
-								<packageName></packageName>
-								<regex>^hbr(?: (\w+))?$</regex>
-							</Alias>
-							<Alias isActive="yes" isFolder="no">
 								<name>Teleport</name>
 								<script>Tem.pray("celestialgrasp", "self", matches[2])</script>
 								<command></command>

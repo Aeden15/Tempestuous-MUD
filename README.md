@@ -70,7 +70,6 @@ Aliases and triggers call functions on the **`Tem`** table (short names). User-v
 
 | Alias | Notes |
 |-------|--------|
-| `hbr` | **Holy Burning Recant** — self + favors (`pray holyburningrecant self …`). |
 | `recall` | **Celestial grasp** — self-only favors. |
 
 ### Basic Gifts — Offense
@@ -97,7 +96,7 @@ Aliases and triggers call functions on the **`Tem`** table (short names). User-v
 
 `black`, `obc`.
 
-Spells shown **in red** in your `gifts` list (e.g. Exodus, Exalted Spirit, Empathic Fire, Beacon Of Green Flames) are **not** aliased here—no access per your filter.
+Spells shown **in red** in your `gifts` list (e.g. Exodus, Holy Burning Recant, Exalted Spirit, Empathic Fire, Beacon Of Green Flames) are **not** aliased here—no access per your filter.
 
 ## Lunar Sage (in same package)
 
@@ -129,7 +128,7 @@ Set once: `setname Yourname` or rely on **GMCP** `Char.Name` if the game fills i
 
 1. Load [`Tempest.xml`](Tempest.xml) in Mudlet.
 2. Optional: parse as XML in an editor or `Select-Xml` in PowerShell to catch typos.
-3. In-game: `tt`, `wreset` + weapon probe, `acon` / `acoff`, Cleric `alac`, new gifts `hbr` / `bsf` / `brf` if you have them.
+3. In-game: `tt`, `wreset` + weapon probe, `acon` / `acoff`, Cleric `alac`, new gifts `bsf` / `brf` if you have them.
 
 ## References
 
