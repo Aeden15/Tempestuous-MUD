@@ -536,6 +536,30 @@ Tem.noteenemyposture(getCurrentLine(), matches[2], matches[3])</script>
 						</regexCodePropertyList>
 					</Trigger>
 					<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+						<name>Lunar cores examine prose</name>
+						<script>Tem.onlc()</script>
+						<triggerType>0</triggerType>
+						<conditonLineDelta>0</conditonLineDelta>
+						<mStayOpen>0</mStayOpen>
+						<mCommand></mCommand>
+						<packageName></packageName>
+						<mFgColor>transparent</mFgColor>
+						<mBgColor>transparent</mBgColor>
+						<mSoundFile></mSoundFile>
+						<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
+						<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
+						<regexCodeList>
+							<string>(?i)^\s*You\s+examine\b.*\blunar\s+cores\b</string>
+							<string>(?i)^\s*You\s+are\s+looking\s+at\b.*\blunar\s+cores\b</string>
+							<string>(?i)^\s*two\s+.+\blunar\s+cores\b</string>
+						</regexCodeList>
+						<regexCodePropertyList>
+							<integer>1</integer>
+							<integer>1</integer>
+							<integer>1</integer>
+						</regexCodePropertyList>
+					</Trigger>
+					<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
 						<name>Lunar prompt Amor value</name>
 						<script>Tem.uiamor(tonumber(matches[2]))</script>
 						<triggerType>0</triggerType>
