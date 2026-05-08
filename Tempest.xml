@@ -1484,7 +1484,7 @@ send(cmd)</script>
 Tem = Tem or {}
 
 Tem.tgt = Tem.tgt or ""
-Tem.risk = Tem.risk or "neutral"
+Tem.risk = Tem.risk or "good"
 -- Preference when the wielded weapon supports both slashing and blunt.
 Tem.wln = Tem.wln or "blunt"
 -- wslash / wblunt: nil until weapon-probe triggers fire, or you wreset.
@@ -1952,6 +1952,10 @@ end
 
 -- #endregion agent log
 
+local function combat_cecho(msg)
+  cecho("\n" .. tostring(msg or ""))
+end
+
 local _POSTURES = {"dominance", "form", "mind", "movement"}
 
 local function _now_s()
@@ -2129,7 +2133,7 @@ local function _request_posture(posture_name, why)
     Tem._pendingPosture = posture
     Tem._nextPostureSwitchAt = now + 2
     send("use posture:" .. Tem.myPostureName)
-    cecho("&lt;cyan&gt;[Tempest Combat] Auto posture: toggling off " .. Tem.myPostureName .. " (" .. tostring(why or "switch") .. ").\n")
+    combat_cecho("&lt;cyan&gt;[Tempest Combat] Auto posture: toggling off " .. Tem.myPostureName .. " (" .. tostring(why or "switch") .. ").\n")
     return true
   end
 
@@ -2137,7 +2141,7 @@ local function _request_posture(posture_name, why)
   Tem._nextPostureSwitchAt = now + 2
   Tem._lastPostureSwitchAt = now
   send("use posture:" .. posture)
-  cecho("&lt;cyan&gt;[Tempest Combat] Auto posture: use posture:" .. posture .. " (" .. tostring(why or "switch") .. ").\n")
+  combat_cecho("&lt;cyan&gt;[Tempest Combat] Auto posture: use posture:" .. posture .. " (" .. tostring(why or "switch") .. ").\n")
   return true
 end
 
@@ -2246,7 +2250,7 @@ function Tem.noteenemyposture(full_line, target_name, posture_name)
     seenAt = _now_s(),
   }
   _agent_log("H2", "noteenemyposture", "accepted", {target_key = target, posture = posture, hits = tostring(hits)})
-  cecho("&lt;cyan&gt;[Tempest Combat] Learned posture: " .. target .. " =&gt; " .. posture .. ".\n")
+  combat_cecho("&lt;cyan&gt;[Tempest Combat] Learned posture: " .. target .. " =&gt; " .. posture .. ".\n")
 end
 
 function Tem.notemindstate(capture)
@@ -2290,7 +2294,7 @@ function Tem.noteweakness(line)
           "accepted_apply_line",
           {target_key = target, posture = mob_posture}
         )
-        cecho(
+        combat_cecho(
           "&lt;cyan&gt;[Tempest Combat] Learned posture (weakness apply): " ..
             target ..
             " =&gt; " ..
@@ -2329,7 +2333,7 @@ function Tem.noteweakness(line)
     seenAt = _now_s(),
   }
   _agent_log("H2", "noteweakness", "accepted", {target_key = target, posture = posture})
-  cecho("&lt;cyan&gt;[Tempest Combat] Weakness inference: " .. target .. " likely " .. posture .. ".\n")
+  combat_cecho("&lt;cyan&gt;[Tempest Combat] Weakness inference: " .. target .. " likely " .. posture .. ".\n")
 end
 
 function Tem.notepostureevent(line)
@@ -2459,7 +2463,7 @@ function Tem.notepostureevent(line)
     else
       Tem.postureActive = true
       _agent_log("H7", "notepostureevent", "risk_posture_conflict_untracked", {})
-      cecho(
+      combat_cecho(
         "&lt;yellow&gt;[Tempest Combat] Risk posture conflict but no tracked posture; toggle your active posture manually or check triggers.\n"
       )
     end
@@ -2538,13 +2542,13 @@ end
 
 function Tem.setautoposture(on)
   Tem.autoposture = on and true or false
-  cecho("&lt;cyan&gt;[Tempest Combat] Auto posture " .. (Tem.autoposture and "on" or "off") .. ".\n")
+  combat_cecho("&lt;cyan&gt;[Tempest Combat] Auto posture " .. (Tem.autoposture and "on" or "off") .. ".\n")
   return true
 end
 
 function Tem.clearposturedb()
   Tem.npcPostureDB = {}
-  cecho("&lt;cyan&gt;[Tempest Combat] Cleared learned NPC posture data.\n")
+  combat_cecho("&lt;cyan&gt;[Tempest Combat] Cleared learned NPC posture data.\n")
   return true
 end
 
@@ -2584,7 +2588,7 @@ function Tem.pruneposturedb()
       removed = removed + 1
     end
   end
-  cecho("&lt;cyan&gt;[Tempest Combat] Pruned " .. tostring(removed) .. " bogus posture DB key(s).\n")
+  combat_cecho("&lt;cyan&gt;[Tempest Combat] Pruned " .. tostring(removed) .. " bogus posture DB key(s).\n")
   return true
 end
 
@@ -2593,7 +2597,7 @@ function Tem.autoposturestatus()
   for _ in pairs(Tem.npcPostureDB or {}) do
     known = known + 1
   end
-  cecho(
+  combat_cecho(
     "&lt;cyan&gt;[Tempest Combat] autoPosture=" ..
       tostring(Tem.autoposture) ..
       " myPosture=" ..
@@ -2637,11 +2641,11 @@ function Tem.dumposturedb()
   )
 
   if #rows == 0 then
-    cecho("&lt;cyan&gt;[Tempest Combat] No learned NPC posture entries.\n")
+    combat_cecho("&lt;cyan&gt;[Tempest Combat] No learned NPC posture entries.\n")
     return true
   end
 
-  cecho("&lt;cyan&gt;[Tempest Combat] Learned NPC postures (" .. tostring(#rows) .. "):\n")
+  combat_cecho("&lt;cyan&gt;[Tempest Combat] Learned NPC postures (" .. tostring(#rows) .. "):\n")
   for i = 1, #rows do
     local r = rows[i]
     cecho(
@@ -2788,14 +2792,14 @@ function Tem.acoff(message)
   Tem.autoon = false
   cancel_attack_timer()
   if message ~= false then
-    cecho("&lt;yellow&gt;[Tempest Combat] Auto combat off.\n")
+    combat_cecho("&lt;yellow&gt;[Tempest Combat] Auto combat off.\n")
   end
 end
 
 function Tem.acon(message)
   Tem.autoon = true
   if message ~= false then
-    cecho("&lt;green&gt;[Tempest Combat] Auto combat on (melee or ranged per weapon).\n")
+    combat_cecho("&lt;green&gt;[Tempest Combat] Auto combat on (melee or ranged per weapon).\n")
   end
   Tem.aaonce()
 end
@@ -2919,7 +2923,7 @@ function Tem.onmunu(reason)
   end
   send("queue clear")
   Tem.acoff(false)
-  cecho(
+  combat_cecho(
     "&lt;yellow&gt;[Tempest Combat] Auto combat off: melee rejected (" ..
     tostring(reason or "no weapon") ..
     "). Wield a weapon (or use ranged) and `acon` again.\n"
@@ -2934,7 +2938,7 @@ function Tem.onbadtgt()
   end
   send("queue clear")
   Tem.acoff(false)
-  cecho("&lt;yellow&gt;[Tempest Combat] Auto combat off: invalid target. Set target with tt.\n")
+  combat_cecho("&lt;yellow&gt;[Tempest Combat] Auto combat off: invalid target. Set target with tt.\n")
 end
 
 --- Call from a trigger on your game's stand-success line if posture updates lag behind.

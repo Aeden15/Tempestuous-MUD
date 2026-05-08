@@ -41,6 +41,12 @@ Aliases and triggers call functions on the **`Tem`** table (short names). User-v
 | `Tem.cycle` / `Tem.syz` / `Tem.incant` | Lunar Sage cycle / `syzygies` / `use lunarincantations …`. |
 | `Tem.uishow` / `Tem.uihide` / `Tem.uitog` | Moon UI (`lmoonon`, `lmoonoff`, `lmoon`). |
 
+### Risk band, posture, and auto combat
+
+On a fresh profile, **`Tem.risk` defaults to `good`**. Auto combat (`acon`) picks a melee/ranged tier from **`Tem.autotier()`**, which uses the **safer** (lower) of: (1) your **combat posture** tier parsed from game output, and (2) the tier implied by your **risk band** (`good` → heavy, `neutral` → mid, `bad` / `critical` → safe). With morale and posture in play, leaving the band at **`neutral`** can **cap** automation at mid even when your posture would support heavier attacks; **`rgb`** sets **good** if you want that ceiling raised. Aliases **`rgb`** / **`rgn`** / **`rbd`** / **`rcr`** still override the band anytime.
+
+`[Tempest Combat]` status lines from the package print on their **own** line (leading newline) so they do not run onto the same line as incoming game text.
+
 ## Cleric gift aliases (reference)
 
 **Buff-style prayers** (`praybuff`): optional first token is either favors (`min` / `max` / digits) or a one-shot denizen name; optional second is favors. If `tt` points at a mob but you want yourself, use an explicit name (e.g. `alac self`). **`recall`** (`celestialgrasp`) is self-only: optional word is favors only.
