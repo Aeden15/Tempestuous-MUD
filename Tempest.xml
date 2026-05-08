@@ -278,6 +278,152 @@
 						<integer>1</integer>
 					</regexCodePropertyList>
 				</Trigger>
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>Posture control feedback</name>
+					<script>Tem.notepostureevent(matches[1] or "")</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>transparent</mFgColor>
+					<mBgColor>transparent</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
+					<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
+					<regexCodeList>
+						<string>(?i)^\s*(you enter the .* posture!|you stop using posture: .*|you do not have a posture set!.*|you cannot use this ability because you have another risk posture active!|posture:\s*\w+\s+cannot be used for another\s+\d+s\.|posture:\s*\w+\s+is now ready to be used\.|you specified a target\(.+\)\s+for an ability which does not need one\..*)\s*$</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>1</integer>
+					</regexCodePropertyList>
+				</Trigger>
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>Morale feedback</name>
+					<script>Tem.notemorale(matches[1] or "")</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>transparent</mFgColor>
+					<mBgColor>transparent</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
+					<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
+					<regexCodeList>
+						<string>(?i)^\s*(you summon forth a burst of energy and vigor, raising your morale!|your morale has grown!.*|you lose all of your morale buffs from switching out of this risk stance!|you lose the morale affect of: .*|your morale state has decayed to .*|the iron-will ends and your morale can now be lost!|you've gained the new morale buff .*|you have no morale active\.)\s*$</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>1</integer>
+					</regexCodePropertyList>
+				</Trigger>
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>Enemy posture exposure</name>
+					<script>Tem.dbg_enemy_posture_trigger(matches)
+Tem.noteenemyposture(getCurrentLine(), matches[2], matches[3])</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>transparent</mFgColor>
+					<mBgColor>transparent</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
+					<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
+					<regexCodeList>
+						<string>(?i)^\s*(?!you\s)(.+?)\s+.*posture:\s*(form|dominance|mind|movement)\b.*$</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>1</integer>
+					</regexCodePropertyList>
+				</Trigger>
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>Enemy posture exposure alt</name>
+					<script>Tem.dbg_enemy_posture_trigger(matches)
+Tem.noteenemyposture(getCurrentLine(), matches[2], matches[3])</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>transparent</mFgColor>
+					<mBgColor>transparent</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
+					<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
+					<regexCodeList>
+						<string>(?i)^\s*(?!you\s)(.+?)\s+.*posture\s+is\s+(form|dominance|mind|movement)\b.*$</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>1</integer>
+					</regexCodePropertyList>
+				</Trigger>
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>Mind state gained</name>
+					<script>Tem.notemindstate(matches[2] or matches[1] or "")</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>transparent</mFgColor>
+					<mBgColor>transparent</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
+					<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
+					<regexCodeList>
+						<string>(?i)^You have gained a new mind state:\s*(.+)\s*!\s*$</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>1</integer>
+					</regexCodePropertyList>
+				</Trigger>
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>Kill queue clear</name>
+					<script>Tem.notecombatactivity("kill")</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>transparent</mFgColor>
+					<mBgColor>transparent</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
+					<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
+					<regexCodeList>
+						<string>^Clearing command queue on kill\.\s*$</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>1</integer>
+					</regexCodePropertyList>
+				</Trigger>
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>Weakness feedback</name>
+					<script>Tem.noteweakness(getCurrentLine())</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>transparent</mFgColor>
+					<mBgColor>transparent</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
+					<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
+					<regexCodeList>
+						<string>(?i)^You apply the weakness</string>
+						<string>(?i)^.*\byou\b.*\b(afflict|exploit)\b.*\bweakness\b.*$</string>
+						<string>(?i)^.*\bweakness\b.*\b(afflict|exploit)\b.*\byou\b.*$</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>1</integer>
+						<integer>1</integer>
+						<integer>1</integer>
+					</regexCodePropertyList>
+				</Trigger>
 			</TriggerGroup>
 			<TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
 				<name>Classes</name>
@@ -517,6 +663,55 @@
 					<command></command>
 					<packageName></packageName>
 					<regex>^mvt (.+)$</regex>
+				</Alias>
+				<Alias isActive="yes" isFolder="no">
+					<name>Auto posture on</name>
+					<script>Tem.setautoposture(true)</script>
+					<command></command>
+					<packageName></packageName>
+					<regex>^apon$</regex>
+				</Alias>
+				<Alias isActive="yes" isFolder="no">
+					<name>Auto posture off</name>
+					<script>Tem.setautoposture(false)</script>
+					<command></command>
+					<packageName></packageName>
+					<regex>^apoff$</regex>
+				</Alias>
+				<Alias isActive="yes" isFolder="no">
+					<name>Auto posture status</name>
+					<script>Tem.autoposturestatus()</script>
+					<command></command>
+					<packageName></packageName>
+					<regex>^apstat$</regex>
+				</Alias>
+				<Alias isActive="yes" isFolder="no">
+					<name>Auto posture status alt</name>
+					<script>Tem.autoposturestatus()</script>
+					<command></command>
+					<packageName></packageName>
+					<regex>^apstats$</regex>
+				</Alias>
+				<Alias isActive="yes" isFolder="no">
+					<name>Auto posture clear learned</name>
+					<script>Tem.clearposturedb()</script>
+					<command></command>
+					<packageName></packageName>
+					<regex>^apclear$</regex>
+				</Alias>
+				<Alias isActive="yes" isFolder="no">
+					<name>Auto posture prune bogus keys</name>
+					<script>Tem.pruneposturedb()</script>
+					<command></command>
+					<packageName></packageName>
+					<regex>^apprune$</regex>
+				</Alias>
+				<Alias isActive="yes" isFolder="no">
+					<name>Auto posture dump learned</name>
+					<script>Tem.dumposturedb()</script>
+					<command></command>
+					<packageName></packageName>
+					<regex>^apdump$</regex>
 				</Alias>
 			</AliasGroup>
 			<AliasGroup isActive="yes" isFolder="yes">
@@ -1526,6 +1721,9 @@ function Tem.atk(attack, explicit_target)
   else
     send(attack)
   end
+  if Tem.notecombatactivity then
+    Tem.notecombatactivity("attack")
+  end
   return true
 end
 
@@ -1545,6 +1743,9 @@ function Tem.fire(verb, explicit_target)
     return false
   end
   send("fire " .. v .. " " .. target_name)
+  if Tem.notecombatactivity then
+    Tem.notecombatactivity("attack")
+  end
   return true
 end
 
@@ -1694,6 +1895,733 @@ Tem.kd = Tem.kd or false
 Tem._postseen = Tem._postseen or false
 -- After queue clear + stand, cleared when posture line shows upright (no Knocked Down).
 Tem._kdrec = Tem._kdrec or false
+Tem.autoposture = Tem.autoposture ~= false
+Tem.autosom = false
+Tem.mindStateName = Tem.mindStateName or nil
+Tem.myPostureName = Tem.myPostureName or nil
+Tem.postureActive = Tem.postureActive or false
+Tem.postureCooldowns = Tem.postureCooldowns or {}
+Tem._pendingPosture = Tem._pendingPosture or nil
+Tem._nextPostureSwitchAt = Tem._nextPostureSwitchAt or 0
+Tem._lastPostureSwitchAt = Tem._lastPostureSwitchAt or 0
+Tem._postureRotateIx = Tem._postureRotateIx or 1
+Tem.moraleState = Tem.moraleState or "none"
+Tem.moralePct = Tem.moralePct or 0
+Tem.moraleProtected = Tem.moraleProtected or false
+Tem.lastCombatActionAt = Tem.lastCombatActionAt or 0
+Tem.lastMoraleTickAt = Tem.lastMoraleTickAt or 0
+Tem.moraleDecaySeconds = tonumber(Tem.moraleDecaySeconds) or 60
+Tem.npcPostureDB = Tem.npcPostureDB or {}
+
+-- #region agent log
+local function _agent_log(hypothesisId, location, message, data)
+  local ts = (os and os.time and os.time() or 0) * 1000
+  local ds = "{}"
+  if type(data) == "table" then
+    local p = {}
+    for k, v in pairs(data) do
+      p[#p + 1] = string.format("%q:%q", tostring(k), tostring(v))
+    end
+    ds = "{" .. table.concat(p, ",") .. "}"
+  end
+  local msg = tostring(message or ""):gsub("\\", "\\\\"):gsub('"', '\\"')
+  local line =
+    string.format(
+      '{"sessionId":"758110","hypothesisId":%q,"location":%q,"message":%q,"data":%s,"timestamp":%s}\n',
+      tostring(hypothesisId or "?"),
+      tostring(location or "?"),
+      msg,
+      ds,
+      tostring(ts)
+    )
+  local paths = {
+    [[C:/Users/shuji/OneDrive/Desktop/Tempest/debug-758110.log]],
+  }
+  if type(getMudletHomeDir) == "function" then
+    local h = getMudletHomeDir()
+    if h and h ~= "" then
+      h = tostring(h):gsub("\\", "/")
+      if h:sub(-1) ~= "/" then
+        h = h .. "/"
+      end
+      paths[#paths + 1] = h .. "debug-758110.log"
+    end
+  end
+  local ok_any = false
+  for _, p in ipairs(paths) do
+    local f = io.open(p, "a")
+    if f then
+      f:write(line)
+      f:close()
+      ok_any = true
+    end
+  end
+  if not ok_any and not Tem._agent_log_fail then
+    Tem._agent_log_fail = true
+    cecho("&lt;yellow&gt;[Tempest] Debug log write failed (io.open). Check Mudlet io permissions.\n")
+  end
+end
+
+function Tem.dbg_enemy_posture_trigger(matches)
+  local t = {}
+  for i = 1, 8 do
+    if matches and matches[i] then
+      t["m" .. i] = tostring(matches[i]):sub(1, 160)
+    end
+  end
+  _agent_log("H5", "EnemyPostureTrigger", "fired", t)
+end
+
+-- #endregion agent log
+
+local _POSTURES = {"dominance", "form", "mind", "movement"}
+
+local function _now_s()
+  if os and os.time then
+    return tonumber(os.time()) or 0
+  end
+  return 0
+end
+
+local function _trim(s)
+  return tostring(s or ""):match("^%s*(.-)%s*$")
+end
+
+local function _canon_posture(name)
+  local x = _trim(name):lower()
+  if x == "dominance" or x == "form" or x == "mind" or x == "movement" then
+    return x
+  end
+  return nil
+end
+
+local function _target_key(name)
+  local x = _trim(name):lower()
+  x = x:gsub("^[%a']+%s+", "")
+  x = x:gsub("[^%w%s%-_']", "")
+  x = x:gsub("%s+", " ")
+  return _trim(x)
+end
+
+local function _is_helpfile_or_skill_line(line)
+  local l = _trim(tostring(line or "")):lower()
+  if l == "" then
+    return false
+  end
+  if l:find("^keywords%s*:") then
+    return true
+  end
+  if l:find("^syntax%s*:") then
+    return true
+  end
+  if l:find("^training%s*:") then
+    return true
+  end
+  if l:find("^range%s*:") then
+    return true
+  end
+  if l:find("^toggle%s*:") then
+    return true
+  end
+  if l:find("^type%s*:") then
+    return true
+  end
+  if l:find("^skill%s*$") then
+    return true
+  end
+  if l:find("^maximum training level%s*:") then
+    return true
+  end
+  if l:find("^character level required%s*:") then
+    return true
+  end
+  if l:find("^training key%s*:") then
+    return true
+  end
+  if l:find("^additional info%s*:") then
+    return true
+  end
+  if l:find("^%-%s*type%s*:") then
+    return true
+  end
+  if l:find("^morale buffs") then
+    return true
+  end
+  if l:find("^weakness debuffs") then
+    return true
+  end
+  local raw = _trim(tostring(line or ""))
+  if raw:find("^POSTURE%s*:") then
+    return true
+  end
+  return false
+end
+
+local function _morale_rank(state)
+  local s = tostring(state or "none"):lower()
+  if s == "eager" then
+    return 1
+  end
+  if s == "steady" then
+    return 2
+  end
+  if s == "determined" then
+    return 3
+  end
+  return 0
+end
+
+local function _known_target_posture()
+  if not Tem.gettgt then
+    return nil
+  end
+  local target = _target_key(Tem.gettgt() or "")
+  if target == "" then
+    return nil
+  end
+  local row = Tem.npcPostureDB[target]
+  if not row then
+    return nil
+  end
+  return _canon_posture(row.posture), target
+end
+
+local function _sync_idle_morale_decay()
+  if Tem.moraleProtected then
+    return
+  end
+  if _morale_rank(Tem.moraleState) &lt;= 0 then
+    return
+  end
+  local now = _now_s()
+  local last = tonumber(Tem.lastCombatActionAt) or 0
+  if last &lt;= 0 then
+    return
+  end
+  local due = tonumber(Tem.lastMoraleTickAt) or last
+  local step = tonumber(Tem.moraleDecaySeconds) or 60
+  if step &lt; 10 then
+    step = 60
+  end
+  if now - due &lt; step then
+    return
+  end
+  local rank = _morale_rank(Tem.moraleState)
+  rank = rank - 1
+  if rank &lt;= 0 then
+    Tem.moraleState = "none"
+  elseif rank == 1 then
+    Tem.moraleState = "eager"
+  else
+    Tem.moraleState = "steady"
+  end
+  Tem.lastMoraleTickAt = now
+end
+
+local function _request_posture(posture_name, why)
+  local posture = _canon_posture(posture_name)
+  if not posture then
+    return false
+  end
+  local now = _now_s()
+  if now &lt; tonumber(Tem._nextPostureSwitchAt or 0) then
+    return false
+  end
+  local cd = tonumber(Tem.postureCooldowns[posture] or 0)
+  if now &lt; cd then
+    return false
+  end
+
+  if Tem.postureActive and Tem.myPostureName and Tem.myPostureName ~= posture then
+    Tem._pendingPosture = posture
+    Tem._nextPostureSwitchAt = now + 2
+    send("use posture:" .. Tem.myPostureName)
+    cecho("&lt;cyan&gt;[Tempest Combat] Auto posture: toggling off " .. Tem.myPostureName .. " (" .. tostring(why or "switch") .. ").\n")
+    return true
+  end
+
+  Tem._pendingPosture = nil
+  Tem._nextPostureSwitchAt = now + 2
+  Tem._lastPostureSwitchAt = now
+  send("use posture:" .. posture)
+  cecho("&lt;cyan&gt;[Tempest Combat] Auto posture: use posture:" .. posture .. " (" .. tostring(why or "switch") .. ").\n")
+  return true
+end
+
+function Tem.notecombatactivity(_src)
+  local now = _now_s()
+  Tem.lastCombatActionAt = now
+  Tem.lastMoraleTickAt = now
+end
+
+function Tem.noteenemyposture(full_line, target_name, posture_name)
+  if posture_name == nil then
+    posture_name = target_name
+    target_name = full_line
+    full_line = nil
+  end
+  if full_line and _is_helpfile_or_skill_line(full_line) then
+    _agent_log("H1", "noteenemyposture", "reject", {reason = "help_or_skill_line"})
+    return
+  end
+  local raw = _trim(target_name):lower()
+  _agent_log(
+    "H1",
+    "noteenemyposture",
+    "enter",
+    {raw = tostring(target_name or ""):sub(1, 160), posture = tostring(posture_name or "")}
+  )
+  if raw == "you" or raw:find("^you%s", 1) or raw:find("^you'", 1) then
+    _agent_log("H1", "noteenemyposture", "reject", {reason = "raw_second_person", raw = raw})
+    return
+  end
+  local target = _target_key(target_name)
+  local posture = _canon_posture(posture_name)
+  if target == "" or not posture then
+    _agent_log(
+      "H3",
+      "noteenemyposture",
+      "reject",
+      {reason = "empty_or_bad_posture", target_key = target, posture = tostring(posture_name or "")}
+    )
+    return
+  end
+  local bad_keys = {
+    you = true,
+    stop = true,
+    using = true,
+    enter = true,
+    lose = true,
+    the = true,
+    your = true,
+    keywords = true,
+    syntax = true,
+    training = true,
+    range = true,
+    toggle = true,
+    type = true,
+    skill = true,
+    reuse = true,
+    maximum = true,
+    additional = true,
+    character = true,
+    posture = true,
+    morale = true,
+    weakness = true,
+  }
+  if bad_keys[target] or #target &lt; 3 then
+    _agent_log("H3", "noteenemyposture", "reject", {reason = "bad_key_or_short", target_key = target})
+    return
+  end
+  if target == "you"
+    or target:find("you stop using posture", 1, true)
+    or target:find("you enter the", 1, true)
+    or target:find("posture", 1, true) then
+    _agent_log("H1", "noteenemyposture", "reject", {reason = "target_guard", target_key = target})
+    return
+  end
+  local prev = Tem.npcPostureDB[target] or {}
+  local hits = tonumber(prev.hits or 0) + 1
+  Tem.npcPostureDB[target] = {
+    posture = posture,
+    source = "line",
+    hits = hits,
+    seenAt = _now_s(),
+  }
+  _agent_log("H2", "noteenemyposture", "accepted", {target_key = target, posture = posture, hits = tostring(hits)})
+  cecho("&lt;cyan&gt;[Tempest Combat] Learned posture: " .. target .. " =&gt; " .. posture .. ".\n")
+end
+
+function Tem.notemindstate(capture)
+  local name = _trim(capture or "")
+  name = name:gsub("%s*!$", "")
+  if name == "" then
+    return
+  end
+  Tem.mindStateName = name
+  Tem.notecombatactivity("mind")
+  _agent_log("H4", "notemindstate", "gained", {name = name})
+end
+
+function Tem.noteweakness(line)
+  local t = tostring(line or "")
+  if _is_helpfile_or_skill_line(t) then
+    return
+  end
+  local lower = t:lower()
+  if not lower:find("weakness", 1, true) then
+    return
+  end
+
+  local applied = lower:match("you apply the weakness%s+([a-z]+)%s+weakness:")
+  if applied then
+    local mob_posture = _canon_posture(applied)
+    if mob_posture and Tem.gettgt then
+      local target = _target_key(Tem.gettgt() or "")
+      if target ~= "" then
+        local prev = Tem.npcPostureDB[target] or {}
+        local hits = tonumber(prev.hits or 0) + 1
+        Tem.npcPostureDB[target] = {
+          posture = mob_posture,
+          source = "weakness_apply",
+          hits = hits,
+          seenAt = _now_s(),
+        }
+        _agent_log(
+          "H2",
+          "noteweakness",
+          "accepted_apply_line",
+          {target_key = target, posture = mob_posture}
+        )
+        cecho(
+          "&lt;cyan&gt;[Tempest Combat] Learned posture (weakness apply): " ..
+            target ..
+            " =&gt; " ..
+            mob_posture ..
+            ".\n"
+        )
+      end
+    end
+    return
+  end
+
+  if not (lower:find("exploit", 1, true) or lower:find("afflict", 1, true)) then
+    _agent_log("H2", "noteweakness", "skip_no_exploit", {line = lower:sub(1, 160)})
+    return
+  end
+  if not Tem.gettgt then
+    return
+  end
+  local target = _target_key(Tem.gettgt() or "")
+  local posture = _canon_posture(Tem.myPostureName)
+  if target == "" or not posture then
+    _agent_log(
+      "H2",
+      "noteweakness",
+      "skip_no_tgt_posture",
+      {target_key = target, my_posture = tostring(Tem.myPostureName or "")}
+    )
+    return
+  end
+  local prev = Tem.npcPostureDB[target] or {}
+  local hits = tonumber(prev.hits or 0) + 1
+  Tem.npcPostureDB[target] = {
+    posture = posture,
+    source = "weakness",
+    hits = hits,
+    seenAt = _now_s(),
+  }
+  _agent_log("H2", "noteweakness", "accepted", {target_key = target, posture = posture})
+  cecho("&lt;cyan&gt;[Tempest Combat] Weakness inference: " .. target .. " likely " .. posture .. ".\n")
+end
+
+function Tem.notepostureevent(line)
+  local text = tostring(line or "")
+  local lower = text:lower()
+
+  local entered = lower:match("you enter the%s+([a-z]+)%s+posture!")
+  if entered then
+    local posture = _canon_posture(entered)
+    Tem.postureActive = posture ~= nil
+    Tem.myPostureName = posture
+    Tem._pendingPosture = nil
+    Tem._lastPostureSwitchAt = _now_s()
+    return
+  end
+
+  local stopped = lower:match("you stop using posture:%s*([a-z]+)")
+  if stopped then
+    local just_stopped = _canon_posture(stopped)
+    if Tem.myPostureName == just_stopped then
+      Tem.myPostureName = nil
+    end
+    Tem.postureActive = false
+    if Tem._pendingPosture then
+      local want = Tem._pendingPosture
+      Tem._pendingPosture = nil
+      if tempTimer then
+        tempTimer(
+          0.2,
+          function()
+            _request_posture(want, "continue switch")
+          end
+        )
+      end
+    end
+    return
+  end
+
+  local lock_name, lock_secs = lower:match("posture:%s*([a-z]+)%s+cannot be used for another%s+(%d+)s")
+  if lock_name and lock_secs then
+    local posture = _canon_posture(lock_name)
+    if posture then
+      local now = _now_s()
+      local cd_until = now + tonumber(lock_secs)
+      Tem.postureCooldowns[posture] = cd_until
+      if Tem.myPostureName == posture then
+        -- If this line fires while we expected a toggle, treat posture as currently inactive.
+        Tem.postureActive = false
+      end
+      Tem._pendingPosture = nil
+      Tem._nextPostureSwitchAt = math.max(tonumber(Tem._nextPostureSwitchAt or 0), cd_until)
+    end
+    return
+  end
+
+  local ready_name = lower:match("posture:%s*([a-z]+)%s+is now ready to be used")
+  if ready_name then
+    local posture = _canon_posture(ready_name)
+    if posture then
+      Tem.postureCooldowns[posture] = 0
+    end
+    return
+  end
+
+  if lower:find("you do not have a posture set", 1, true) then
+    Tem.postureActive = false
+    Tem.myPostureName = nil
+    return
+  end
+
+  if lower:find("you cannot use this ability because you have another risk posture active", 1, true) then
+    if Tem.myPostureName then
+      send("use posture:" .. Tem.myPostureName)
+    else
+      Tem.postureActive = true
+      _agent_log("H7", "notepostureevent", "risk_posture_conflict_untracked", {})
+      cecho(
+        "&lt;yellow&gt;[Tempest Combat] Risk posture conflict but no tracked posture; toggle your active posture manually or check triggers.\n"
+      )
+    end
+    return
+  end
+end
+
+function Tem.notemorale(line)
+  local text = tostring(line or "")
+  local lower = text:lower()
+
+  if lower:find("raising your morale", 1, true) then
+    Tem.notecombatactivity("morale")
+  end
+
+  local state = lower:match("your morale has grown!%s*you are now%s+([a-z]+)")
+  if state then
+    state = tostring(state):lower()
+    if state == "eager" or state == "steady" or state == "determined" then
+      Tem.moraleState = state
+      Tem.notecombatactivity("morale")
+    end
+    return
+  end
+
+  local gained = lower:match("your morale grew by%s+([%d%.]+)%%")
+  if gained then
+    Tem.moralePct = tonumber(gained) or Tem.moralePct or 0
+    Tem.notecombatactivity("morale")
+    return
+  end
+
+  if lower:find("you lose all of your morale buffs", 1, true)
+    or lower:find("you have no morale active", 1, true)
+    or lower:find("your morale state has decayed to none", 1, true) then
+    Tem.moraleState = "none"
+    Tem.moralePct = 0
+    return
+  end
+
+  if lower:find("your morale state has decayed to", 1, true) then
+    local d = lower:match("your morale state has decayed to%s+([a-z]+)")
+    d = tostring(d or ""):gsub("[^a-z]", "")
+    if d == "eager" or d == "steady" or d == "determined" then
+      Tem.moraleState = d
+    elseif d == "none" then
+      Tem.moraleState = "none"
+    end
+    return
+  end
+
+  if lower:find("the iron-will ends and your morale can now be lost", 1, true) then
+    Tem.moraleProtected = false
+    return
+  end
+
+  if lower:find("your morale can no longer be lost", 1, true)
+    or lower:find("morale cannot be lost", 1, true) then
+    Tem.moraleProtected = true
+    return
+  end
+end
+
+function Tem.setautoposture(on)
+  Tem.autoposture = on and true or false
+  cecho("&lt;cyan&gt;[Tempest Combat] Auto posture " .. (Tem.autoposture and "on" or "off") .. ".\n")
+  return true
+end
+
+function Tem.clearposturedb()
+  Tem.npcPostureDB = {}
+  cecho("&lt;cyan&gt;[Tempest Combat] Cleared learned NPC posture data.\n")
+  return true
+end
+
+function Tem.pruneposturedb()
+  local bad_keys = {
+    you = true,
+    stop = true,
+    using = true,
+    enter = true,
+    lose = true,
+    the = true,
+    your = true,
+    keywords = true,
+    syntax = true,
+    training = true,
+    range = true,
+    toggle = true,
+    type = true,
+    skill = true,
+    reuse = true,
+    maximum = true,
+    additional = true,
+    character = true,
+    posture = true,
+    morale = true,
+    weakness = true,
+  }
+  local removed = 0
+  for k in pairs(Tem.npcPostureDB or {}) do
+    local key = tostring(k):lower()
+    if bad_keys[key] or #key &lt; 3 then
+      Tem.npcPostureDB[k] = nil
+      removed = removed + 1
+    end
+  end
+  cecho("&lt;cyan&gt;[Tempest Combat] Pruned " .. tostring(removed) .. " bogus posture DB key(s).\n")
+  return true
+end
+
+function Tem.autoposturestatus()
+  local known = 0
+  for _ in pairs(Tem.npcPostureDB or {}) do
+    known = known + 1
+  end
+  cecho(
+    "&lt;cyan&gt;[Tempest Combat] autoPosture=" ..
+      tostring(Tem.autoposture) ..
+      " myPosture=" ..
+      tostring(Tem.myPostureName or "none") ..
+      " postureActive=" ..
+      tostring(Tem.postureActive) ..
+      " morale=" ..
+      tostring(Tem.moraleState or "none") ..
+      " mindState=" ..
+      tostring(Tem.mindStateName or "none") ..
+      " knownTargets=" ..
+      tostring(known) ..
+      "\n"
+  )
+  return true
+end
+
+function Tem.dumposturedb()
+  local rows = {}
+  local now = _now_s()
+  for target, info in pairs(Tem.npcPostureDB or {}) do
+    rows[#rows + 1] = {
+      target = tostring(target),
+      posture = tostring(info.posture or "unknown"),
+      source = tostring(info.source or "unknown"),
+      hits = tonumber(info.hits or 0),
+      age = math.max(0, now - tonumber(info.seenAt or now)),
+    }
+  end
+
+  table.sort(
+    rows,
+    function(a, b)
+      if a.hits ~= b.hits then
+        return a.hits &gt; b.hits
+      end
+      return a.target &lt; b.target
+    end
+  )
+
+  if #rows == 0 then
+    cecho("&lt;cyan&gt;[Tempest Combat] No learned NPC posture entries.\n")
+    return true
+  end
+
+  cecho("&lt;cyan&gt;[Tempest Combat] Learned NPC postures (" .. tostring(#rows) .. "):\n")
+  for i = 1, #rows do
+    local r = rows[i]
+    cecho(
+      "&lt;cyan&gt;  " ..
+        r.target ..
+        " =&gt; &lt;white&gt;" ..
+        r.posture ..
+        "&lt;cyan&gt; src=&lt;white&gt;" ..
+        r.source ..
+        "&lt;cyan&gt; hits=&lt;white&gt;" ..
+        tostring(r.hits) ..
+        "&lt;cyan&gt; age=&lt;white&gt;" ..
+        tostring(r.age) ..
+        "s\n"
+    )
+    if i &gt;= 20 then
+      cecho("&lt;cyan&gt;  ... truncated to top 20 entries.\n")
+      break
+    end
+  end
+  return true
+end
+
+local function maybe_adjust_posture()
+  if not Tem.autoposture then
+    return false
+  end
+  if Tem.kd then
+    return false
+  end
+
+  _sync_idle_morale_decay()
+
+  local now = _now_s()
+  if now &lt; tonumber(Tem._nextPostureSwitchAt or 0) then
+    return false
+  end
+
+  local known, key = _known_target_posture()
+  local morale_rank = _morale_rank(Tem.moraleState)
+  local desired = nil
+  local reason = "hold"
+
+  if known then
+    desired = known
+    reason = "known target " .. tostring(key or "")
+  elseif not Tem.postureActive then
+    desired = "form"
+    reason = "ensure active posture"
+  end
+
+  if not desired then
+    return false
+  end
+
+  if morale_rank &gt; 0 and not known then
+    return false
+  end
+
+  if Tem.postureActive and Tem.myPostureName == desired then
+    return false
+  end
+
+  if now - tonumber(Tem._lastPostureSwitchAt or 0) &lt; 8 then
+    return false
+  end
+
+  return _request_posture(desired, reason)
+end
 
 local function cancel_attack_timer()
   if Tem._aatimer and killTimer then
@@ -1808,6 +2736,10 @@ function Tem.aaonce()
   if Tem.kd then
     return
   end
+  if maybe_adjust_posture() then
+    Tem.aasched()
+    return
+  end
   local tier = select(1, Tem.autotier())
   if Tem.lcranged then
     if not Tem.ranged(tier, nil) then
@@ -1832,6 +2764,10 @@ function Tem.updposture(line)
   line = tostring(line or "")
   Tem._postseen = true
   local lower = line:lower()
+  local pos_morale = lower:match("position%s*,%s*(eager|steady|determined)%+")
+  if pos_morale then
+    Tem.moraleState = pos_morale
+  end
   if lower:find("knocked down", 1, true) then
     knockdown_apply_recovery()
     return
@@ -1920,7 +2856,9 @@ function Tem.noteup()
   if Tem.autoon then
     Tem.aasched()
   end
-end</script>
+end
+
+_agent_log("H0", "combat_automation", "script_loaded", {ok = "1"})</script>
 					<eventHandlerList />
 				</Script>
 				<ScriptGroup isActive="yes" isFolder="yes">

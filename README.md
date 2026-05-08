@@ -130,6 +130,40 @@ Set once: `setname Yourname` or rely on **GMCP** `Char.Name` if the game fills i
 2. Optional: parse as XML in an editor or `Select-Xml` in PowerShell to catch typos.
 3. In-game: `tt`, `wreset` + weapon probe, `acon` / `acoff`, Cleric `alac`, new gifts `bsf` / `brf` if you have them.
 
+## Posture/morale validation
+
+- Toggle controls: `apon`, `apoff`, `apstat`, `apstats` (same as `apstat`), `apclear`, `apprune` (remove bogus keys like `you` / `stop` from old saves), `apdump`.
+- Confirm posture parser lines:
+  - `You enter the <Posture> posture!`
+  - `You stop using Posture: <Posture>!`
+  - `Posture: <Posture> cannot be used for another <N>s.`
+  - `Posture: <Posture> is now ready to be used.`
+- Weakness apply (learn NPC posture): `You apply the weakness Form Weakness: ...` (and other posture names) uses current `tt` target.
+- Mind / combat activity (from live logs):
+  - `You have gained a new mind state: …!` → tracked as `mindState` in `apstat` / `apstats`.
+  - `Clearing command queue on kill.` → refreshes last-combat time (morale idle model).
+- Confirm morale parser lines:
+  - `Your morale has grown! You are now EAGER/STEADY/DETERMINED!`
+  - `You lose all of your morale buffs from switching out of this Risk Stance!`
+  - `Your morale state has decayed to ...`
+  - `The iron-will ends and your morale can now be lost!`
+- Verify policy behavior:
+  - With active morale and unknown NPC posture, auto posture does not churn.
+  - With known NPC posture, auto posture can switch to match the known target.
+  - No posture selected is detected and auto posture re-establishes a stance.
+- Verify idle decay model:
+  - Stop combat and observe morale-state tracking downgrade on ~60s intervals out of combat.
+  - Re-engage combat and ensure activity refreshes timing.
+- Regression: confirm existing melee/ranged aliases and knockdown stand recovery still behave as before.
+
+### Live regression (posture cooldown / false `you` learn)
+
+1. Reload the package in Mudlet, then in a safe room: `apoff`, `apstats` — confirm status prints (no unknown command).
+2. `apclear` — empty learned DB.
+3. `tt <mob>`, `apon`, `acon` — fight until one kill. Expect no spam of `Auto posture: toggling off …` while `Posture: … cannot be used for another Ns` is showing.
+4. `apoff`, `apstats`, `apdump` — `apdump` must **not** list a target key `you`. Entries should be real mob names (normalized) when posture was learned from lines.
+5. Turn `apon` again only if you want auto posture; verify morale lines still update state after kills.
+
 ## References
 
 - Mudlet scripting: [wiki.mudlet.org](https://wiki.mudlet.org/w/Manual:Scripting)
