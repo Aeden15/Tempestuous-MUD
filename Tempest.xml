@@ -1936,61 +1936,11 @@ Tem.combatRestrictedUntil = tonumber(Tem.combatRestrictedUntil) or 0
 
 -- #region agent log
 local function _agent_log(hypothesisId, location, message, data)
-  local ts = (os and os.time and os.time() or 0) * 1000
-  local ds = "{}"
-  if type(data) == "table" then
-    local p = {}
-    for k, v in pairs(data) do
-      p[#p + 1] = string.format("%q:%q", tostring(k), tostring(v))
-    end
-    ds = "{" .. table.concat(p, ",") .. "}"
-  end
-  local msg = tostring(message or ""):gsub("\\", "\\\\"):gsub('"', '\\"')
-  local line =
-    string.format(
-      '{"sessionId":"758110","hypothesisId":%q,"location":%q,"message":%q,"data":%s,"timestamp":%s}\n',
-      tostring(hypothesisId or "?"),
-      tostring(location or "?"),
-      msg,
-      ds,
-      tostring(ts)
-    )
-  local paths = {
-    [[C:/Users/shuji/OneDrive/Desktop/Tempest/debug-758110.log]],
-  }
-  if type(getMudletHomeDir) == "function" then
-    local h = getMudletHomeDir()
-    if h and h ~= "" then
-      h = tostring(h):gsub("\\", "/")
-      if h:sub(-1) ~= "/" then
-        h = h .. "/"
-      end
-      paths[#paths + 1] = h .. "debug-758110.log"
-    end
-  end
-  local ok_any = false
-  for _, p in ipairs(paths) do
-    local f = io.open(p, "a")
-    if f then
-      f:write(line)
-      f:close()
-      ok_any = true
-    end
-  end
-  if not ok_any and not Tem._agent_log_fail then
-    Tem._agent_log_fail = true
-    cecho("&lt;yellow&gt;[Tempest] Debug log write failed (io.open). Check Mudlet io permissions.\n")
-  end
+  return
 end
 
 function Tem.dbg_enemy_posture_trigger(matches)
-  local t = {}
-  for i = 1, 8 do
-    if matches and matches[i] then
-      t["m" .. i] = tostring(matches[i]):sub(1, 160)
-    end
-  end
-  _agent_log("H5", "EnemyPostureTrigger", "fired", t)
+  return
 end
 
 -- #endregion agent log
@@ -2028,6 +1978,15 @@ local function _is_helpfile_or_skill_line(line)
   local l = _trim(tostring(line or "")):lower()
   if l == "" then
     return false
+  end
+  if l:find("^see%s*:") then
+    return true
+  end
+  if l:find("^starting at level%s+%d+") then
+    return true
+  end
+  if l:find("^the postures are%s*:") then
+    return true
   end
   if l:find("^keywords%s*:") then
     return true
@@ -2069,6 +2028,12 @@ local function _is_helpfile_or_skill_line(line)
     return true
   end
   if l:find("^weakness debuffs") then
+    return true
+  end
+  if l:find("help%s+posture:%s*") then
+    return true
+  end
+  if l:find("for example,%s*if%s+") and l:find("posture:%s*") then
     return true
   end
   local raw = _trim(tostring(line or ""))
@@ -2249,6 +2214,10 @@ function Tem.noteenemyposture(full_line, target_name, posture_name)
     posture = true,
     morale = true,
     weakness = true,
+    must = true,
+    see = true,
+    help = true,
+    example = true,
   }
   if bad_keys[target] or #target &lt; 3 then
     _agent_log("H3", "noteenemyposture", "reject", {reason = "bad_key_or_short", target_key = target})
@@ -2359,17 +2328,40 @@ end
 function Tem.notepostureevent(line)
   local text = tostring(line or "")
   local lower = text:lower()
+  -- #region agent log
+  _agent_log(
+    "H10",
+    "notepostureevent",
+    "line_seen",
+    {
+      line = lower:sub(1, 180),
+      my = tostring(Tem.myPostureName or "nil"),
+      active = tostring(Tem.postureActive),
+    }
+  )
+  -- #endregion agent log
 
   local entered = lower:match("you enter the%s+([a-z]+)%s+posture!")
   if not entered then
     entered = lower:match("you enter posture:%s*([a-z]+)!?")
   end
   if entered then
-    local posture = _canon_posture(entered)
-    Tem.postureActive = posture ~= nil
+    local posture = _canon_posture(entered) or _trim(entered):lower()
+    Tem.postureActive = true
     Tem.myPostureName = posture
     Tem._pendingPosture = nil
     Tem._lastPostureSwitchAt = _now_s()
+    -- #region agent log
+    _agent_log(
+      "H11",
+      "notepostureevent",
+      "entered",
+      {
+        parsed = tostring(posture or "nil"),
+        line = lower:sub(1, 180),
+      }
+    )
+    -- #endregion agent log
     if lower:find("you enter posture:", 1, true) then
       _agent_log("H9", "notepostureevent", "enter_via_posture_colon", {posture = tostring(posture or "?")})
     end
@@ -2378,7 +2370,18 @@ function Tem.notepostureevent(line)
 
   local stopped = lower:match("you stop using posture:%s*([a-z]+)%s*!?$")
   if stopped then
-    local just_stopped = _canon_posture(stopped)
+    local just_stopped = _canon_posture(stopped) or _trim(stopped):lower()
+    -- #region agent log
+    _agent_log(
+      "H12",
+      "notepostureevent",
+      "stopped",
+      {
+        stopped = tostring(just_stopped or "nil"),
+        line = lower:sub(1, 180),
+      }
+    )
+    -- #endregion agent log
     if Tem.myPostureName == just_stopped then
       Tem.myPostureName = nil
     end
@@ -2404,6 +2407,19 @@ function Tem.notepostureevent(line)
     if posture then
       local now = _now_s()
       local cd_until = now + tonumber(lock_secs)
+      -- #region agent log
+      _agent_log(
+        "H13",
+        "notepostureevent",
+        "cooldown_seen",
+        {
+          posture = posture,
+          secs = tostring(lock_secs),
+          my = tostring(Tem.myPostureName or "nil"),
+          active = tostring(Tem.postureActive),
+        }
+      )
+      -- #endregion agent log
       Tem.postureCooldowns[posture] = cd_until
       if Tem.myPostureName == posture then
         -- If this line fires while we expected a toggle, treat posture as currently inactive.
@@ -2442,6 +2458,19 @@ function Tem.notepostureevent(line)
     end
     return
   end
+
+  -- #region agent log
+  _agent_log(
+    "H14",
+    "notepostureevent",
+    "matched_trigger_but_unhandled",
+    {
+      line = lower:sub(1, 180),
+      my = tostring(Tem.myPostureName or "nil"),
+      active = tostring(Tem.postureActive),
+    }
+  )
+  -- #endregion agent log
 end
 
 function Tem.notemorale(line)
@@ -2535,6 +2564,10 @@ function Tem.pruneposturedb()
     posture = true,
     morale = true,
     weakness = true,
+    must = true,
+    see = true,
+    help = true,
+    example = true,
   }
   local removed = 0
   for k in pairs(Tem.npcPostureDB or {}) do
