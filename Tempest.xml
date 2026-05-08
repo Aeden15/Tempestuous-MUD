@@ -1538,16 +1538,22 @@ function Tem.resetw()
   Tem.wslash = nil
   Tem.wblunt = nil
   Tem.lcranged = false
+  Tem.lunar_core_weapon = false
 end
 
 function Tem.noteslash(line)
   Tem.wslash = true
-  Tem.lcranged = false
+  -- Lunar cores still print slashing/blunt probe lines; do not drop ranged auto.
+  if not Tem.lunar_core_weapon then
+    Tem.lcranged = false
+  end
 end
 
 function Tem.noteblunt(line)
   Tem.wblunt = true
-  Tem.lcranged = false
+  if not Tem.lunar_core_weapon then
+    Tem.lcranged = false
+  end
 end
 
 --- Effective line for verb choice: single-style from probes, or weapon_line when both apply.
@@ -2966,6 +2972,7 @@ _agent_log("H0", "combat_automation", "script_loaded", {ok = "1"})</script>
 Tem = Tem or {}
 
 Tem.lcranged = Tem.lcranged or false
+Tem.lunar_core_weapon = Tem.lunar_core_weapon or false
 
 local function trim(text)
   return tostring(text or ""):match("^%s*(.-)%s*$")
@@ -3017,6 +3024,7 @@ function Tem.incant(path, args)
 end
 
 function Tem.onlc()
+  Tem.lunar_core_weapon = true
   Tem.lcranged = true
   if Tem.autoon and Tem.aasched then
     Tem.aasched()
@@ -3024,6 +3032,7 @@ function Tem.onlc()
 end
 
 function Tem.onlmunu()
+  Tem.lunar_core_weapon = true
   Tem.lcranged = true
   if Tem.autoon and Tem.aasched then
     Tem.aasched()
