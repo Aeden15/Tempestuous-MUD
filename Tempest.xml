@@ -1482,6 +1482,18 @@ send(cmd)</script>
 								<packageName></packageName>
 								<regex>^mwk(?: (.+))?$</regex>
 							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Twin Rend</name>
+								<script>local tgt = matches[2]
+if not tgt or tgt == "" then
+  tgt = Tem.reqtgt()
+  if not tgt then return end
+end
+send("use twinrend " .. tgt)</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^tr(?: (\w+))?$</regex>
+							</Alias>
 						</AliasGroup>
 					</AliasGroup>
 					<AliasGroup isActive="yes" isFolder="yes">
