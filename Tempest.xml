@@ -299,6 +299,26 @@
 					</regexCodePropertyList>
 				</Trigger>
 				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>Posture level requirement</name>
+					<script>Tem.onposturelevelgate(getCurrentLine())</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>transparent</mFgColor>
+					<mBgColor>transparent</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
+					<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
+					<regexCodeList>
+						<string>(?i)^You have to be level \d+ to use Posture:.*$</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>1</integer>
+					</regexCodePropertyList>
+				</Trigger>
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
 					<name>Morale feedback</name>
 					<script>Tem.notemorale(matches[1] or "")</script>
 					<triggerType>0</triggerType>
@@ -756,6 +776,13 @@ Tem.noteenemyposture(getCurrentLine(), matches[2], matches[3])</script>
 					<command></command>
 					<packageName></packageName>
 					<regex>^apdump$</regex>
+				</Alias>
+				<Alias isActive="yes" isFolder="no">
+					<name>Clear posture level gate</name>
+					<script>Tem.clearposturelevelgate()</script>
+					<command></command>
+					<packageName></packageName>
+					<regex>^apunlock$</regex>
 				</Alias>
 			</AliasGroup>
 			<AliasGroup isActive="yes" isFolder="yes">
@@ -1955,6 +1982,7 @@ Tem._postseen = Tem._postseen or false
 -- After queue clear + stand, cleared when posture line shows upright (no Knocked Down).
 Tem._kdrec = Tem._kdrec or false
 Tem.autoposture = Tem.autoposture ~= false
+Tem.posture_level_gate = Tem.posture_level_gate or false
 Tem.mindStateName = Tem.mindStateName or nil
 Tem.myPostureName = Tem.myPostureName or nil
 Tem.postureActive = Tem.postureActive or false
@@ -2584,6 +2612,21 @@ function Tem.setautoposture(on)
   return true
 end
 
+function Tem.onposturelevelgate(_line)
+  Tem.posture_level_gate = true
+  Tem.autoposture = false
+  combat_cecho(
+    "&lt;yellow&gt;[Tempest Combat] Auto posture off: Postures are not available at your level yet. After unlocking Postures, run `apunlock` then `apon`.\n"
+  )
+  return true
+end
+
+function Tem.clearposturelevelgate()
+  Tem.posture_level_gate = false
+  combat_cecho("&lt;cyan&gt;[Tempest Combat] Posture level gate cleared; use `apon` if your character can use Postures.\n")
+  return true
+end
+
 function Tem.clearposturedb()
   Tem.npcPostureDB = {}
   combat_cecho("&lt;cyan&gt;[Tempest Combat] Cleared learned NPC posture data.\n")
@@ -2638,6 +2681,8 @@ function Tem.autoposturestatus()
   combat_cecho(
     "&lt;cyan&gt;[Tempest Combat] autoPosture=" ..
       tostring(Tem.autoposture) ..
+      " postureLevelGate=" ..
+      tostring(Tem.posture_level_gate) ..
       " myPosture=" ..
       tostring(Tem.myPostureName or "none") ..
       " postureActive=" ..
@@ -2709,6 +2754,9 @@ end
 
 local function maybe_adjust_posture()
   if not Tem.autoposture then
+    return false
+  end
+  if Tem.posture_level_gate then
     return false
   end
   if Tem.kd then
