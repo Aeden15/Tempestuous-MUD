@@ -106,7 +106,7 @@
 					<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
 					<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
 					<regexCodeList>
-						<string>(?i).*knocked down.*</string>
+						<string>(?i)^\s*you\s+(?:are|have been)\s+knocked down.*$</string>
 					</regexCodeList>
 					<regexCodePropertyList>
 						<integer>1</integer>
@@ -333,7 +333,7 @@ Tem.noteenemyposture(getCurrentLine(), matches[2], matches[3])</script>
 					<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
 					<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
 					<regexCodeList>
-						<string>(?i)^\s*(?!you\s)(.+?)\s+.*posture:\s*(form|dominance|mind|movement)\b.*$</string>
+						<string>(?i)^\s*(?!you\b)(.+?)'s\s+posture:\s*(form|dominance|mind|movement)\b.*$</string>
 					</regexCodeList>
 					<regexCodePropertyList>
 						<integer>1</integer>
@@ -354,7 +354,7 @@ Tem.noteenemyposture(getCurrentLine(), matches[2], matches[3])</script>
 					<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
 					<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
 					<regexCodeList>
-						<string>(?i)^\s*(?!you\s)(.+?)\s+.*posture\s+is\s+(form|dominance|mind|movement)\b.*$</string>
+						<string>(?i)^\s*(?!you\b)(.+?)\s+posture\s+is\s+(form|dominance|mind|movement)\b.*$</string>
 					</regexCodeList>
 					<regexCodePropertyList>
 						<integer>1</integer>
@@ -1537,14 +1537,17 @@ end
 function Tem.resetw()
   Tem.wslash = nil
   Tem.wblunt = nil
+  Tem.lcranged = false
 end
 
 function Tem.noteslash(line)
   Tem.wslash = true
+  Tem.lcranged = false
 end
 
 function Tem.noteblunt(line)
   Tem.wblunt = true
+  Tem.lcranged = false
 end
 
 --- Effective line for verb choice: single-style from probes, or weapon_line when both apply.
@@ -1795,6 +1798,17 @@ function Tem.setrisk(value)
   return true
 end
 
+local function _risk_tier_from_band()
+  local rb = tostring(Tem.risk or "neutral"):lower()
+  if rb == "good" then
+    return "heavy"
+  end
+  if rb == "bad" or rb == "critical" then
+    return "safe"
+  end
+  return "mid"
+end
+
 function Tem.melee(kind, explicit_target)
   local key = tostring(kind or ""):lower()
   local tier = nil
@@ -1806,13 +1820,7 @@ function Tem.melee(kind, explicit_target)
   elseif key == "heavy" then
     tier = "heavy"
   elseif key == "auto" then
-    if Tem.risk == "good" then
-      tier = "heavy"
-    elseif Tem.risk == "bad" or Tem.risk == "critical" then
-      tier = "safe"
-    else
-      tier = "mid"
-    end
+    tier = _risk_tier_from_band()
   else
     cecho("&lt;red&gt;[Tempest] Unknown melee mode. Use: safe, mid, heavy, auto.\n")
     return false
@@ -1839,13 +1847,7 @@ function Tem.ranged(kind, explicit_target)
   elseif key == "heavy" then
     tier = "heavy"
   elseif key == "auto" then
-    if Tem.risk == "good" then
-      tier = "heavy"
-    elseif Tem.risk == "bad" or Tem.risk == "critical" then
-      tier = "safe"
-    else
-      tier = "mid"
-    end
+    tier = _risk_tier_from_band()
   else
     cecho("&lt;red&gt;[Tempest] Unknown ranged mode. Use: safe, mid, heavy, auto.\n")
     return false
@@ -1923,7 +1925,6 @@ Tem._postseen = Tem._postseen or false
 -- After queue clear + stand, cleared when posture line shows upright (no Knocked Down).
 Tem._kdrec = Tem._kdrec or false
 Tem.autoposture = Tem.autoposture ~= false
-Tem.autosom = false
 Tem.mindStateName = Tem.mindStateName or nil
 Tem.myPostureName = Tem.myPostureName or nil
 Tem.postureActive = Tem.postureActive or false
@@ -1931,7 +1932,6 @@ Tem.postureCooldowns = Tem.postureCooldowns or {}
 Tem._pendingPosture = Tem._pendingPosture or nil
 Tem._nextPostureSwitchAt = Tem._nextPostureSwitchAt or 0
 Tem._lastPostureSwitchAt = Tem._lastPostureSwitchAt or 0
-Tem._postureRotateIx = Tem._postureRotateIx or 1
 Tem.moraleState = Tem.moraleState or "none"
 Tem.moralePct = Tem.moralePct or 0
 Tem.moraleProtected = Tem.moraleProtected or false
@@ -1979,7 +1979,7 @@ end
 
 local function _target_key(name)
   local x = _trim(name):lower()
-  x = x:gsub("^[%a']+%s+", "")
+  x = x:gsub("^(a|an|the)%s+", "")
   x = x:gsub("[^%w%s%-_']", "")
   x = x:gsub("%s+", " ")
   return _trim(x)
@@ -2176,6 +2176,13 @@ function Tem.noteenemyposture(full_line, target_name, posture_name)
     posture_name = target_name
     target_name = full_line
     full_line = nil
+  end
+  local raw_line = tostring(full_line or "")
+  if raw_line ~= "" then
+    local parsed_target = raw_line:match("^%s*(.-)%s*'s%s+[Pp]osture%s*:") or raw_line:match("^%s*(.-)%s+[Pp]osture%s+is%s+")
+    if parsed_target and _trim(parsed_target) ~= "" then
+      target_name = parsed_target
+    end
   end
   if full_line and _is_helpfile_or_skill_line(full_line) then
     _agent_log("H1", "noteenemyposture", "reject", {reason = "help_or_skill_line"})
@@ -2750,19 +2757,6 @@ local function _rank_to_tier(r)
   return "heavy"
 end
 
---- Same tier mapping as Tem.melee("auto", ...): good→heavy, bad/critical→safe, else mid.
-
-local function _risk_tier_from_band()
-  local rb = tostring(Tem.risk or "neutral"):lower()
-  if rb == "good" then
-    return "heavy"
-  end
-  if rb == "bad" or rb == "critical" then
-    return "safe"
-  end
-  return "mid"
-end
-
 --- Merge posture tier with Risk band: use the safer (lower rank) of the two.
 --- Until any posture line is seen, Risk alone drives tier (default posture is not real data).
 
@@ -3101,12 +3095,6 @@ local function safe_hide(label_name)
   end
 end
 
-local function parse_prompt_values(line)
-  local amor = tonumber((line or ""):match("Amor:%s*(-?%d+)"))
-  local honestus = tonumber((line or ""):match("Honestus:%s*(-?%d+)"))
-  return amor, honestus
-end
-
 function Tem.uipos()
   if not have_labels() or not getMainWindowSize then
     return
@@ -3195,20 +3183,6 @@ function Tem.uihon(n)
   end
   clearWindow(Tem.ui.honlbl)
   echo(Tem.ui.honlbl, string.format("Honestus\n%d", v))
-end
-
-function Tem.uiupd(line)
-  if not Tem.ui.on or not have_labels() then
-    return
-  end
-
-  local amor, honestus = parse_prompt_values(line or "")
-  if amor then
-    Tem.uiamor(amor)
-  end
-  if honestus then
-    Tem.uihon(honestus)
-  end
 end
 
 </script>
