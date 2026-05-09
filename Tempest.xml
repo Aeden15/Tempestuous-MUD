@@ -3058,20 +3058,32 @@ end
 _agent_log("H0", "combat_automation", "script_loaded", {ok = "1"})</script>
 					<eventHandlerList />
 				</Script>
+				<Script isActive="yes" isFolder="no">
+					<name>Functions</name>
+					<packageName></packageName>
+					<script>
+---Weapon types---
+scythe = "slash"
+star = "blunt" or "slash"
+club = "blunt"
+</script>
+					<eventHandlerList />
+				</Script>
+			</ScriptGroup>
+			<ScriptGroup isActive="yes" isFolder="yes">
+				<name>Classes</name>
+				<packageName></packageName>
+				<script></script>
+				<eventHandlerList />
 				<ScriptGroup isActive="yes" isFolder="yes">
-					<name>Classes</name>
+					<name>Lunar Sage Core</name>
 					<packageName></packageName>
 					<script></script>
 					<eventHandlerList />
-					<ScriptGroup isActive="yes" isFolder="yes">
-						<name>Lunar Sage Core</name>
+					<Script isActive="yes" isFolder="no">
+						<name>Lunar helper functions</name>
 						<packageName></packageName>
-						<script></script>
-						<eventHandlerList />
-						<Script isActive="yes" isFolder="no">
-							<name>Lunar helper functions</name>
-							<packageName></packageName>
-							<script>
+						<script>
 Tem = Tem or {}
 
 Tem.lcranged = Tem.lcranged or false
@@ -3143,12 +3155,12 @@ function Tem.onlmunu()
 end
 
 </script>
-							<eventHandlerList />
-						</Script>
-						<Script isActive="yes" isFolder="no">
-							<name>Moon UI helpers</name>
-							<packageName></packageName>
-							<script>
+						<eventHandlerList />
+					</Script>
+					<Script isActive="yes" isFolder="no">
+						<name>Moon UI helpers</name>
+						<packageName></packageName>
+						<script>
 Tem = Tem or {}
 
 Tem.ui = Tem.ui or {
@@ -3298,9 +3310,8 @@ function Tem.uihon(n)
 end
 
 </script>
-							<eventHandlerList />
-						</Script>
-					</ScriptGroup>
+						<eventHandlerList />
+					</Script>
 				</ScriptGroup>
 			</ScriptGroup>
 		</ScriptGroup>
