@@ -292,7 +292,7 @@
 					<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
 					<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
 					<regexCodeList>
-						<string>(?i)^\s*This\s+is\s+a\s+.+?\s+and\s+does\s+tier\s+\d+\s+.+\s+damage\.\s*$</string>
+						<string>(?i)^\s*This\s+is\s+a\s+.+?\s+and\s+does\s+tier\s*-?\s*[0-9]+\s+.+\s+damage\.\s*$</string>
 					</regexCodeList>
 					<regexCodePropertyList>
 						<integer>1</integer>
@@ -3115,7 +3115,7 @@ function Tem.apply_weapon_keyword(keyword)
   end
 end
 
---- e.g. "This is a scythe and does tier 1 Slash damage." from inspect / examine.
+--- e.g. inspect line "This is a scythe and does tier N Slash damage." (any tier N; trigger uses [0-9]+).
 function Tem.note_inspect_damage_line(line)
   line = tostring(line or "")
   local low = line:lower()
