@@ -19,5 +19,5 @@ Cleric gift aliases, and Lunar Sage aliases.
 
 * https://github.com/Aeden15/Tempestuous-MUD
 * https://wiki.mudlet.org/w/Manual:Best_Practices#Package_and_Module_best_practices]]
-version = [[1]]
+version = [[2]]
 created = "2026-05-08T00:29:49-05:00"

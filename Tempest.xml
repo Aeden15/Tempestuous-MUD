@@ -279,6 +279,26 @@
 					</regexCodePropertyList>
 				</Trigger>
 				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>Inspect weapon damage line</name>
+					<script>Tem.note_inspect_damage_line(getCurrentLine())</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>transparent</mFgColor>
+					<mBgColor>transparent</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
+					<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
+					<regexCodeList>
+						<string>(?i)^\s*This\s+is\s+a\s+.+?\s+and\s+does\s+tier\s+\d+\s+.+\s+damage\.\s*$</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>1</integer>
+					</regexCodePropertyList>
+				</Trigger>
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
 					<name>Posture control feedback</name>
 					<script>Tem.notepostureevent(getCurrentLine())</script>
 					<triggerType>0</triggerType>
@@ -3062,10 +3082,64 @@ _agent_log("H0", "combat_automation", "script_loaded", {ok = "1"})</script>
 					<name>Functions</name>
 					<packageName></packageName>
 					<script>
----Weapon types---
-scythe = "slash"
-star = "blunt" or "slash"
-club = "blunt"
+Tem = Tem or {}
+
+--- Inspect/probe keyword -> damage style(s). String: single. Table: dual (both flags; Tem.effwln uses Tem.wln).
+Tem.weapon_types = {
+  scythe = "slash",
+  star = { "blunt", "slash" },
+  club = "blunt",
+}
+
+function Tem.apply_weapon_keyword(keyword)
+  local k = tostring(keyword or ""):lower():match("^%s*(%S+)")
+  if not k then
+    return
+  end
+  local t = Tem.weapon_types[k]
+  if not t then
+    return
+  end
+  if type(t) == "table" then
+    for _, style in ipairs(t) do
+      if style == "slash" then
+        Tem.noteslash("")
+      elseif style == "blunt" then
+        Tem.noteblunt("")
+      end
+    end
+  elseif t == "slash" then
+    Tem.noteslash("")
+  elseif t == "blunt" then
+    Tem.noteblunt("")
+  end
+end
+
+--- e.g. "This is a scythe and does tier 1 Slash damage." from inspect / examine.
+function Tem.note_inspect_damage_line(line)
+  line = tostring(line or "")
+  local low = line:lower()
+  if not low:find("this is a", 1, true) or not low:find("damage", 1, true) then
+    return
+  end
+  local has_slash = low:find("slash", 1, true)
+  local has_blunt = low:find("blunt", 1, true) or low:find("crush", 1, true)
+  if has_slash then
+    Tem.noteslash(line)
+  end
+  if has_blunt then
+    Tem.noteblunt(line)
+  end
+  if not has_slash and not has_blunt then
+    local phrase = low:match("this is a%s+(.-)%s+and does")
+    if phrase then
+      local kw = phrase:match("(%S+)$")
+      if kw then
+        Tem.apply_weapon_keyword(kw)
+      end
+    end
+  end
+end
 </script>
 					<eventHandlerList />
 				</Script>
