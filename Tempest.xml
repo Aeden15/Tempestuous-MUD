@@ -1163,6 +1163,111 @@ send(cmd)</script>
 					</AliasGroup>
 				</AliasGroup>
 				<AliasGroup isActive="yes" isFolder="yes">
+					<name>Psionics</name>
+					<script></script>
+					<command></command>
+					<packageName></packageName>
+					<regex></regex>
+					<AliasGroup isActive="yes" isFolder="yes">
+						<name>Astral Flame</name>
+						<script></script>
+						<command></command>
+						<packageName></packageName>
+						<regex></regex>
+						<Alias isActive="yes" isFolder="no">
+							<name>Eonic Flare</name>
+							<script>Tem.psi_cast("eonicflare", matches[2])</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^ef(?: (\w+))?$</regex>
+						</Alias>
+					</AliasGroup>
+					<AliasGroup isActive="yes" isFolder="yes">
+						<name>Clairsentience</name>
+						<script></script>
+						<command></command>
+						<packageName></packageName>
+						<regex></regex>
+					</AliasGroup>
+					<AliasGroup isActive="yes" isFolder="yes">
+						<name>Clairvoyance</name>
+						<script></script>
+						<command></command>
+						<packageName></packageName>
+						<regex></regex>
+					</AliasGroup>
+					<AliasGroup isActive="yes" isFolder="yes">
+						<name>Delusions</name>
+						<script></script>
+						<command></command>
+						<packageName></packageName>
+						<regex></regex>
+					</AliasGroup>
+					<AliasGroup isActive="yes" isFolder="yes">
+						<name>General Psionics</name>
+						<script></script>
+						<command></command>
+						<packageName></packageName>
+						<regex></regex>
+						<Alias isActive="yes" isFolder="no">
+							<name>Scorched Psyche</name>
+							<script>Tem.psi_cast("scorchedpsyche", matches[2])</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^sps(?: (\w+))?$</regex>
+						</Alias>
+					</AliasGroup>
+					<AliasGroup isActive="yes" isFolder="yes">
+						<name>Psychometabolism</name>
+						<script></script>
+						<command></command>
+						<packageName></packageName>
+						<regex></regex>
+					</AliasGroup>
+					<AliasGroup isActive="yes" isFolder="yes">
+						<name>Telekinesis</name>
+						<script></script>
+						<command></command>
+						<packageName></packageName>
+						<regex></regex>
+					</AliasGroup>
+					<AliasGroup isActive="yes" isFolder="yes">
+						<name>Telepathy</name>
+						<script></script>
+						<command></command>
+						<packageName></packageName>
+						<regex></regex>
+						<Alias isActive="yes" isFolder="no">
+							<name>Psi Blade (automatic)</name>
+							<script>Tem.psi_auto("psiblade")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^pbl$</regex>
+						</Alias>
+					</AliasGroup>
+					<AliasGroup isActive="yes" isFolder="yes">
+						<name>Thrall Drain</name>
+						<script></script>
+						<command></command>
+						<packageName></packageName>
+						<regex></regex>
+						<Alias isActive="yes" isFolder="no">
+							<name>Enthrall</name>
+							<script>Tem.psi_cast("enthrall", matches[2])</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^enth(?: (\w+))?$</regex>
+						</Alias>
+					</AliasGroup>
+					<AliasGroup isActive="yes" isFolder="yes">
+						<name>Vitakinesis</name>
+						<script></script>
+						<command></command>
+						<packageName></packageName>
+						<regex></regex>
+					</AliasGroup>
+				</AliasGroup>
+				<AliasGroup isActive="yes" isFolder="yes">
 					<name>Lunar Sage</name>
 					<script></script>
 					<command></command>
@@ -3139,6 +3244,53 @@ function Tem.note_inspect_damage_line(line)
       end
     end
   end
+end
+
+local function psi_trim(text)
+  return tostring(text or ""):match("^%s*(.-)%s*$")
+end
+
+--- Send manipulate ability [target]. If target is blank, fall back to tt; if tt is unset, send without target.
+function Tem.psi_cast(ability, explicitTarget)
+  local spell = psi_trim(ability):lower():gsub("%s+", "")
+  if spell == "" then
+    cecho("&lt;red&gt;[Tempest] Missing psionic ability token.\n")
+    return false
+  end
+
+  local tgt = psi_trim(explicitTarget)
+  if tgt == "" and type(Tem.gettgt) == "function" then
+    tgt = psi_trim(Tem.gettgt())
+  end
+
+  local cmd = "manipulate " .. spell
+  if tgt ~= "" then
+    cmd = cmd .. " " .. tgt
+  end
+  send(cmd)
+  return true
+end
+
+function Tem.psi_cast_no_target(ability)
+  local spell = psi_trim(ability):lower():gsub("%s+", "")
+  if spell == "" then
+    cecho("&lt;red&gt;[Tempest] Missing psionic ability token.\n")
+    return false
+  end
+  send("manipulate " .. spell)
+  return true
+end
+
+--- Some psionics are passive/automatic and cannot be manually manipulated.
+function Tem.psi_auto(ability)
+  local spell = psi_trim(ability):lower():gsub("%s+", "")
+  if spell == "" then
+    cecho("&lt;red&gt;[Tempest] Missing psionic ability token.\n")
+    return false
+  end
+  cecho("&lt;yellow&gt;[Tempest] " .. spell .. " is automatic; no manual manipulate cast.\n")
+  send("help " .. spell)
+  return true
 end
 </script>
 					<eventHandlerList />

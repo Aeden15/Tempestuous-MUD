@@ -113,6 +113,24 @@ Spells shown **in red** in your `gifts` list (e.g. Exodus, Holy Burning Recant, 
 
 Lunar cores / melee-invalid lines switch auto-combat to **ranged** when appropriate (`Tem.lcranged`).
 
+## Ethari Psionics (in same package)
+
+- Alias folder path: `Classes > Psionics`.
+- Trees included: `Astral Flame`, `Clairsentience`, `Clairvoyance`, `Delusions`, `General Psionics`, `Psychometabolism`, `Telekinesis`, `Telepathy`, `Thrall Drain`, `Vitakinesis`.
+- Current scope is **trained/unlocked abilities only** from your latest psionics list.
+
+### Shorthand aliases
+
+- `ef [target]` → `manipulate eonicflare [target]`
+- `sps [target]` → `manipulate scorchedpsyche [target]`
+- `enth [target]` → `manipulate enthrall [target]`
+- `pbl` → Psi Blade is automatic/passive; alias prints guidance and opens `help psiblade`.
+
+Target behavior:
+- If target is provided, alias uses that target.
+- If target is omitted, alias falls back to `tt` target when available.
+- If `tt` is unset, command is sent without a target (matches in-game `help manipulate` behavior where blank target auto-targets Ethari context).
+
 ## Combat quick reference
 
 | Player | Action |
