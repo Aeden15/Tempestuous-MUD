@@ -1253,10 +1253,10 @@ send(cmd)</script>
 						<regex></regex>
 						<Alias isActive="yes" isFolder="no">
 							<name>Oscillating Psycho-Shroud</name>
-							<script>Tem.psi_cast("oscillatingpsychoshroud", matches[2])</script>
+							<script>Tem.psi_cast_no_target("oscillatingpsycho-shroud")</script>
 							<command></command>
 							<packageName></packageName>
-							<regex>^oss(?: (\w+))?$</regex>
+							<regex>^oss$</regex>
 						</Alias>
 						<Alias isActive="yes" isFolder="no">
 							<name>Repulse</name>
