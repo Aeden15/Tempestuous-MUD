@@ -1181,6 +1181,13 @@ send(cmd)</script>
 							<packageName></packageName>
 							<regex>^ef(?: (\w+))?$</regex>
 						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Torched Lucidity</name>
+							<script>Tem.psi_cast("torchedlucidity", matches[2])</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^tluc(?: (\w+))?$</regex>
+						</Alias>
 					</AliasGroup>
 					<AliasGroup isActive="yes" isFolder="yes">
 						<name>Clairsentience</name>
@@ -1195,6 +1202,13 @@ send(cmd)</script>
 						<command></command>
 						<packageName></packageName>
 						<regex></regex>
+						<Alias isActive="yes" isFolder="no">
+							<name>Scry</name>
+							<script>Tem.psi_cast("scry", matches[2])</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^scry(?: (\w+))?$</regex>
+						</Alias>
 					</AliasGroup>
 					<AliasGroup isActive="yes" isFolder="yes">
 						<name>Delusions</name>
@@ -1202,6 +1216,13 @@ send(cmd)</script>
 						<command></command>
 						<packageName></packageName>
 						<regex></regex>
+						<Alias isActive="yes" isFolder="no">
+							<name>Manifest Delusion</name>
+							<script>Tem.psi_cast("manifestdelusion", matches[2])</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^mdel(?: (\w+))?$</regex>
+						</Alias>
 					</AliasGroup>
 					<AliasGroup isActive="yes" isFolder="yes">
 						<name>General Psionics</name>
@@ -1230,6 +1251,20 @@ send(cmd)</script>
 						<command></command>
 						<packageName></packageName>
 						<regex></regex>
+						<Alias isActive="yes" isFolder="no">
+							<name>Oscillating Psycho-Shroud</name>
+							<script>Tem.psi_cast("oscillatingpsychoshroud", matches[2])</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^oss(?: (\w+))?$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Repulse</name>
+							<script>Tem.psi_cast("repulse", matches[2])</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^repu(?: (\w+))?$</regex>
+						</Alias>
 					</AliasGroup>
 					<AliasGroup isActive="yes" isFolder="yes">
 						<name>Telepathy</name>
@@ -1243,6 +1278,13 @@ send(cmd)</script>
 							<command></command>
 							<packageName></packageName>
 							<regex>^pbl$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Ruptured Psyche</name>
+							<script>Tem.psi_cast("rupturedpsyche", matches[2])</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^rps(?: (\w+))?$</regex>
 						</Alias>
 					</AliasGroup>
 					<AliasGroup isActive="yes" isFolder="yes">
@@ -1265,6 +1307,13 @@ send(cmd)</script>
 						<command></command>
 						<packageName></packageName>
 						<regex></regex>
+						<Alias isActive="yes" isFolder="no">
+							<name>Life Squeeze</name>
+							<script>Tem.psi_cast("lifesqueeze", matches[2])</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^lsq(?: (\w+))?$</regex>
+						</Alias>
 					</AliasGroup>
 				</AliasGroup>
 				<AliasGroup isActive="yes" isFolder="yes">
