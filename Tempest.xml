@@ -1295,10 +1295,10 @@ send(cmd)</script>
 						</Alias>
 						<Alias isActive="yes" isFolder="no">
 							<name>Repulse</name>
-							<script>Tem.psi_cast("repulse", matches[2])</script>
+							<script>Tem.psi_repulse(matches[2], matches[3])</script>
 							<command></command>
 							<packageName></packageName>
-							<regex>^repu(?: (\w+))?$</regex>
+							<regex>^repu (throw|push)(?: (\w+))?$</regex>
 						</Alias>
 					</AliasGroup>
 					<AliasGroup isActive="yes" isFolder="yes">
@@ -3362,6 +3362,27 @@ function Tem.psi_cast_no_target(ability)
     return false
   end
   send("manipulate " .. spell)
+  return true
+end
+
+--- Repulse subcommands (help order: throw, then push).
+function Tem.psi_repulse(mode, explicitTarget)
+  local m = psi_trim(mode):lower()
+  if m ~= "throw" and m ~= "push" then
+    cecho("&lt;red&gt;[Tempest] Repulse: repu throw &lt;target&gt; or repu push &lt;target&gt; (uses tt if target omitted).\n")
+    return false
+  end
+
+  local tgt = psi_trim(explicitTarget)
+  if tgt == "" and type(Tem.gettgt) == "function" then
+    tgt = psi_trim(Tem.gettgt())
+  end
+
+  local cmd = "manipulate repulse " .. m
+  if tgt ~= "" then
+    cmd = cmd .. " " .. tgt
+  end
+  send(cmd)
   return true
 end
 
