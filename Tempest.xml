@@ -994,6 +994,13 @@ Tem.pray("restoration", tgt, matches[2])</script>
 								<packageName></packageName>
 								<regex>^recall(?: (\w+))?$</regex>
 							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Exodus</name>
+								<script>Tem.praybuff("exodus", matches[2], matches[3])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^exod(?: (\w+))?(?: (\w+))?$</regex>
+							</Alias>
 						</AliasGroup>
 						<AliasGroup isActive="yes" isFolder="yes">
 							<name>Offense</name>
@@ -1022,6 +1029,13 @@ Tem.pray("restoration", tgt, matches[2])</script>
 								<packageName></packageName>
 								<regex>^reb(?: (\w+))?(?: (\w+))?$</regex>
 							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Holy Burning Recant</name>
+								<script>Tem.pray("holyburningrecant", "self", matches[2])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^hbr(?: (\w+))?$</regex>
+							</Alias>
 						</AliasGroup>
 					</AliasGroup>
 					<AliasGroup isActive="yes" isFolder="yes">
@@ -1042,6 +1056,13 @@ Tem.pray("restoration", tgt, matches[2])</script>
 								<command></command>
 								<packageName></packageName>
 								<regex>^bsf(?: (\w+))?(?: (\w+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Empathic Fire</name>
+								<script>Tem.praybuff("empathicfire", matches[2], matches[3])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^empf(?: (\w+))?(?: (\w+))?$</regex>
 							</Alias>
 							<Alias isActive="yes" isFolder="no">
 								<name>Bestow Refulgent Flame</name>
@@ -1091,6 +1112,20 @@ Tem.pray("restoration", tgt, matches[2])</script>
 								<command></command>
 								<packageName></packageName>
 								<regex>^objm(?: (\w+))?(?: (\w+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Beacon Of Green Flames</name>
+								<script>Tem.prayoff("beaconofgreenflames", matches[2], matches[3])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^bgf(?: (\w+))?(?: (\w+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Exalted Spirit</name>
+								<script>Tem.prayoff("exaltedspirit", matches[2], matches[3])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^exalt(?: (\w+))?(?: (\w+))?$</regex>
 							</Alias>
 						</AliasGroup>
 					</AliasGroup>

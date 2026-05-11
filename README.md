@@ -77,22 +77,23 @@ On a fresh profile, **`Tem.risk` defaults to `good`**. Auto combat (`acon`) pick
 | Alias | Notes |
 |-------|--------|
 | `recall` | **Celestial grasp** — self-only favors. |
+| `exod` | **Exodus** (`praybuff`). |
 
 ### Basic Gifts — Offense
 
-`dword`, `hymn`, `reb`.
+`dword`, `hymn`, `reb`, `hbr` (**Holy Burning Recant** — `pray holyburningrecant self [favors]`).
 
 ### Empathy Gifts — Buffs
 
 | Alias | Gift token |
 |-------|------------|
-| `eff`, `inter`, `allev`, `desur`, `bsf`, `brf` | Curative Efflux, Intercession, Alleviation, Desurmras Blessing, **Blazing Soulfire**, **Bestow Refulgent Flame** |
+| `eff`, `inter`, `allev`, `desur`, `bsf`, `empf`, `brf` | Curative Efflux, Intercession, Alleviation, Desurmras Blessing, **Blazing Soulfire**, **Empathic Fire**, **Bestow Refulgent Flame** |
 
 `brf` sends `pray bestowrefulgentflame self [favors]`.
 
 ### Empathy Gifts — Offense
 
-`objm` → `objurgation:malice`.
+`objm` → `objurgation:malice`; `bgf` → **Beacon Of Green Flames**; `exalt` → **Exalted Spirit**.
 
 ### Cleric Skills
 
