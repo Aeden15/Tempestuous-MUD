@@ -11,9 +11,9 @@ Lunar Sage aliases, targeting, movement helpers, and optional moon UI.
 Import `Tempest.xml` directly, or zip `Tempest.xml` with this `config.lua` and
 rename the archive to `Tempest.mpackage`.
 
-Core aliases include `tt <name>`, `acon`, `acoff`, `wsharp`, `wblunt`,
+Core aliases include `tt <name>`, `acon`, `acoff`, `wsharp`, `wblunt`, `wthrust`,
 `wreset`, `setname <name>`, `frap`, `fdeft`, `fprec`, `fauto`, `mv`, `mvt`,
-Cleric gift aliases, and Lunar Sage aliases.
+thrust-line melee shorthands `jb`, `stb`, and `thr`, Cleric gift aliases, and Lunar Sage aliases.
 
 ### See Also
 

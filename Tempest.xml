@@ -279,6 +279,28 @@
 					</regexCodePropertyList>
 				</Trigger>
 				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>Weapon allows thrusting</name>
+					<script>Tem.notethrust(matches[1])</script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>transparent</mFgColor>
+					<mBgColor>transparent</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
+					<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
+					<regexCodeList>
+						<string>^\s*This\s+is\s+a\s+thrusting\s+weapon\s*\.?\s*$</string>
+						<string>^\s*This-is-a-thrusting-weapon\s*\.?\s*$</string>
+					</regexCodeList>
+					<regexCodePropertyList>
+						<integer>1</integer>
+						<integer>1</integer>
+					</regexCodePropertyList>
+				</Trigger>
+				<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
 					<name>Inspect weapon damage line</name>
 					<script>Tem.note_inspect_damage_line(getCurrentLine())</script>
 					<triggerType>0</triggerType>
@@ -693,6 +715,13 @@ Tem.noteenemyposture(getCurrentLine(), matches[2], matches[3])</script>
 					<regex>^wblunt$</regex>
 				</Alias>
 				<Alias isActive="yes" isFolder="no">
+					<name>Weapon thrust</name>
+					<script>Tem.setwln("thrust")</script>
+					<command></command>
+					<packageName></packageName>
+					<regex>^wthrust$</regex>
+				</Alias>
+				<Alias isActive="yes" isFolder="no">
 					<name>Weapon styles reset</name>
 					<script>Tem.resetw()</script>
 					<command></command>
@@ -944,6 +973,27 @@ Tem.pray("restoration", tgt, matches[2])</script>
 								<command></command>
 								<packageName></packageName>
 								<regex>^clv(?: (\w+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Jab</name>
+								<script>Tem.atk("jab", matches[2])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^jb(?: (\w+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Stab</name>
+								<script>Tem.atk("stab", matches[2])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^stb(?: (\w+))?$</regex>
+							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Thrust</name>
+								<script>Tem.atk("thrust", matches[2])</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^thr(?: (\w+))?$</regex>
 							</Alias>
 							<Alias isActive="yes" isFolder="no">
 								<name>Risk good</name>
@@ -1757,9 +1807,9 @@ Tem = Tem or {}
 
 Tem.tgt = Tem.tgt or ""
 Tem.risk = Tem.risk or "good"
--- Preference when the wielded weapon supports both slashing and blunt.
+-- Preference when the wielded weapon supports multiple melee lines (slash/blunt/thrust).
 Tem.wln = Tem.wln or "blunt"
--- wslash / wblunt: nil until weapon-probe triggers fire, or you wreset.
+-- wslash / wblunt / wthrust: nil until weapon-probe triggers fire, or you wreset.
 Tem.charname = Tem.charname or ""
 -- From "You can move Nft(Uunits)!"; optional cap for Tem.mv (e.g. 1 when server allows one unit per command).
 Tem.mvft = Tem.mvft or nil
@@ -1798,8 +1848,8 @@ end
 
 function Tem.setwln(line)
   local key = norm_lower(line)
-  if key ~= "sharp" and key ~= "blunt" then
-    cecho("&lt;red&gt;[Tempest] weapon_line must be sharp or blunt.\n")
+  if key ~= "sharp" and key ~= "blunt" and key ~= "thrust" then
+    cecho("&lt;red&gt;[Tempest] weapon_line must be sharp, blunt, or thrust.\n")
     return false
   end
   Tem.wln = key
@@ -1809,6 +1859,7 @@ end
 function Tem.resetw()
   Tem.wslash = nil
   Tem.wblunt = nil
+  Tem.wthrust = nil
   Tem.lcranged = false
   Tem.lunar_core_weapon = false
 end
@@ -1828,33 +1879,82 @@ function Tem.noteblunt(line)
   end
 end
 
---- Effective line for verb choice: single-style from probes, or weapon_line when both apply.
+function Tem.notethrust(line)
+  Tem.wthrust = true
+  if not Tem.lunar_core_weapon then
+    Tem.lcranged = false
+  end
+end
+
+--- Effective line for verb choice: single-style from probes, or weapon_line when dual/triple.
 function Tem.effwln()
   local s = Tem.wslash
   local b = Tem.wblunt
-  if s == true and b ~= true then
+  local th = Tem.wthrust
+  local w = Tem.wln or "blunt"
+
+  if s == true and b ~= true and th ~= true then
     return "sharp"
   end
-  if b == true and s ~= true then
+  if b == true and s ~= true and th ~= true then
     return "blunt"
   end
-  if s == true and b == true then
-    return Tem.wln or "blunt"
+  if th == true and s ~= true and b ~= true then
+    return "thrust"
   end
-  return Tem.wln or "blunt"
+
+  if s == true and b == true and th ~= true then
+    return w == "sharp" and "sharp" or "blunt"
+  end
+  if s == true and th == true and b ~= true then
+    return w == "thrust" and "thrust" or "sharp"
+  end
+  if b == true and th == true and s ~= true then
+    return w == "thrust" and "thrust" or "blunt"
+  end
+  if s == true and b == true and th == true then
+    if w == "sharp" or w == "blunt" or w == "thrust" then
+      return w
+    end
+    return "sharp"
+  end
+
+  return w
 end
 
 function Tem.mverb(tier)
   local t = tostring(tier or ""):lower()
   local wl = Tem.effwln()
-  if t == "safe" then
-    return wl == "sharp" and "slash" or "pound"
-  end
-  if t == "mid" then
-    return wl == "sharp" and "slice" or "crush"
-  end
-  if t == "heavy" then
-    return wl == "sharp" and "cleave" or "smash"
+  if wl == "sharp" then
+    if t == "safe" then
+      return "slash"
+    end
+    if t == "mid" then
+      return "slice"
+    end
+    if t == "heavy" then
+      return "cleave"
+    end
+  elseif wl == "thrust" then
+    if t == "safe" then
+      return "jab"
+    end
+    if t == "mid" then
+      return "stab"
+    end
+    if t == "heavy" then
+      return "thrust"
+    end
+  else
+    if t == "safe" then
+      return "pound"
+    end
+    if t == "mid" then
+      return "crush"
+    end
+    if t == "heavy" then
+      return "smash"
+    end
   end
   return nil
 end
@@ -3030,7 +3130,7 @@ local function cancel_attack_timer()
   end
 end
 
---- Rank for merging: lower = safer (pound/slash), higher = heavier (smash/cleave).
+--- Rank for merging: lower = safer (pound/slash/jab), higher = heavier (smash/cleave/thrust).
 
 local function _tier_to_rank(t)
   local x = tostring(t or ""):lower()
@@ -3273,11 +3373,12 @@ _agent_log("H0", "combat_automation", "script_loaded", {ok = "1"})</script>
 					<script>
 Tem = Tem or {}
 
---- Inspect/probe keyword -> damage style(s). String: single. Table: dual (both flags; Tem.effwln uses Tem.wln).
+--- Inspect/probe keyword -> damage style(s). String: single. Table: dual (Tem.effwln uses Tem.wln when multiple).
 Tem.weapon_types = {
   scythe = "slash",
   star = { "blunt", "slash" },
   club = "blunt",
+  dagger = { "slash", "thrust" },
 }
 
 function Tem.apply_weapon_keyword(keyword)
@@ -3295,12 +3396,16 @@ function Tem.apply_weapon_keyword(keyword)
         Tem.noteslash("")
       elseif style == "blunt" then
         Tem.noteblunt("")
+      elseif style == "thrust" then
+        Tem.notethrust("")
       end
     end
   elseif t == "slash" then
     Tem.noteslash("")
   elseif t == "blunt" then
     Tem.noteblunt("")
+  elseif t == "thrust" then
+    Tem.notethrust("")
   end
 end
 
