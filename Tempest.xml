@@ -599,6 +599,106 @@ Tem.noteenemyposture(getCurrentLine(), matches[2], matches[3])</script>
 							<integer>1</integer>
 						</regexCodePropertyList>
 					</Trigger>
+					<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+						<name>Essenic Blast on cooldown</name>
+						<script>Tem.note_essenic_blast_cooldown()</script>
+						<triggerType>0</triggerType>
+						<conditonLineDelta>0</conditonLineDelta>
+						<mStayOpen>0</mStayOpen>
+						<mCommand></mCommand>
+						<packageName></packageName>
+						<mFgColor>transparent</mFgColor>
+						<mBgColor>transparent</mBgColor>
+						<mSoundFile></mSoundFile>
+						<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
+						<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
+						<regexCodeList>
+							<string>^Essenic Blast cannot be used for another .+\.$</string>
+						</regexCodeList>
+						<regexCodePropertyList>
+							<integer>1</integer>
+						</regexCodePropertyList>
+					</Trigger>
+					<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+						<name>Essenic Blast ready</name>
+						<script>Tem.note_essenic_blast_ready_line()</script>
+						<triggerType>0</triggerType>
+						<conditonLineDelta>0</conditonLineDelta>
+						<mStayOpen>0</mStayOpen>
+						<mCommand></mCommand>
+						<packageName></packageName>
+						<mFgColor>transparent</mFgColor>
+						<mBgColor>transparent</mBgColor>
+						<mSoundFile></mSoundFile>
+						<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
+						<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
+						<regexCodeList>
+							<string>^Essenic Blast is now ready to be used\.$</string>
+						</regexCodeList>
+						<regexCodePropertyList>
+							<integer>1</integer>
+						</regexCodePropertyList>
+					</Trigger>
+					<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+						<name>Essenic Blast cast volley</name>
+						<script>Tem.note_essenic_blast_volley()</script>
+						<triggerType>0</triggerType>
+						<conditonLineDelta>0</conditonLineDelta>
+						<mStayOpen>0</mStayOpen>
+						<mCommand></mCommand>
+						<packageName></packageName>
+						<mFgColor>transparent</mFgColor>
+						<mBgColor>transparent</mBgColor>
+						<mSoundFile></mSoundFile>
+						<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
+						<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
+						<regexCodeList>
+							<string>^The volley crashes into .+, exploding violently!(\s+\[\d+\])?\s*$</string>
+						</regexCodeList>
+						<regexCodePropertyList>
+							<integer>1</integer>
+						</regexCodePropertyList>
+					</Trigger>
+					<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+						<name>Essenic Blast DoT tick</name>
+						<script>Tem.note_essenic_burn_line()</script>
+						<triggerType>0</triggerType>
+						<conditonLineDelta>0</conditonLineDelta>
+						<mStayOpen>0</mStayOpen>
+						<mCommand></mCommand>
+						<packageName></packageName>
+						<mFgColor>transparent</mFgColor>
+						<mBgColor>transparent</mBgColor>
+						<mSoundFile></mSoundFile>
+						<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
+						<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
+						<regexCodeList>
+							<string>^The essence burns .+!(\s+\[\d+\])?\s*$</string>
+						</regexCodeList>
+						<regexCodePropertyList>
+							<integer>1</integer>
+						</regexCodePropertyList>
+					</Trigger>
+					<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+						<name>Essenic Blast DoT expired</name>
+						<script>Tem.note_essenic_dot_expired()</script>
+						<triggerType>0</triggerType>
+						<conditonLineDelta>0</conditonLineDelta>
+						<mStayOpen>0</mStayOpen>
+						<mCommand></mCommand>
+						<packageName></packageName>
+						<mFgColor>transparent</mFgColor>
+						<mBgColor>transparent</mBgColor>
+						<mSoundFile></mSoundFile>
+						<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
+						<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
+						<regexCodeList>
+							<string>^The burning essence on .+ finally dies down\.\s*$</string>
+						</regexCodeList>
+						<regexCodePropertyList>
+							<integer>1</integer>
+						</regexCodePropertyList>
+					</Trigger>
 				</TriggerGroup>
 				<TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
 					<name>Lunar Sage</name>
@@ -3861,6 +3961,59 @@ end
 
 function Tem.note_dragonclaw_ready_line()
   Tem._dclaw_ready = true
+end
+
+--- Essenic Blast: skill cooldown (reuse / ready lines), cast volley hit line, then DoT ("The essence burns …" until "finally dies down").
+
+function Tem.essenic_blast_ready()
+  return Tem._eb_ready ~= false
+end
+
+function Tem.note_essenic_blast_cooldown()
+  Tem._eb_ready = false
+end
+
+function Tem.note_essenic_blast_ready_line()
+  Tem._eb_ready = true
+end
+
+--- True from successful volley hit (`The volley crashes into …`) until first DoT tick or DoT expiry (whichever comes first).
+function Tem.essenic_blast_after_volley()
+  return Tem._eb_after_volley == true
+end
+
+function Tem.note_essenic_blast_volley()
+  Tem._eb_dot_tics = 0
+  Tem._eb_dot_active = false
+  Tem._eb_after_volley = true
+end
+
+function Tem.essenic_blast_dot_active()
+  return Tem._eb_dot_active == true
+end
+
+--- Tick count for the current DoT window; 0 when inactive.
+function Tem.essenic_blast_dot_ticks()
+  return tonumber(Tem._eb_dot_tics) or 0
+end
+
+--- Tick count from the last completed DoT (after "finally dies down"); 0 if none yet.
+function Tem.essenic_blast_dot_last_ticks()
+  return tonumber(Tem._eb_dot_last_tics) or 0
+end
+
+function Tem.note_essenic_burn_line()
+  Tem._eb_after_volley = false
+  local n = (tonumber(Tem._eb_dot_tics) or 0) + 1
+  Tem._eb_dot_tics = n
+  Tem._eb_dot_active = true
+end
+
+function Tem.note_essenic_dot_expired()
+  Tem._eb_after_volley = false
+  Tem._eb_dot_last_tics = tonumber(Tem._eb_dot_tics) or 0
+  Tem._eb_dot_tics = 0
+  Tem._eb_dot_active = false
 end
 
 --- Rank for merging: lower = safer (pound/slash/jab), higher = heavier (smash/cleave/thrust).

@@ -40,6 +40,10 @@ Aliases and triggers call functions on the **`Tem`** table (short names). User-v
 | `Tem.acon()` / `Tem.acoff()` | Auto combat on/off (`acon`, `acoff`). When `Tem.is_dragon` is true (from `score`), `acon` sends `use tear` vs `tt` instead of weapon melee. |
 | `Tem.is_dragon` | Set by trigger on the `score` line starting with `You go by the name of` (dragon growth stages). `nil` until first matching `score`. |
 | `Tem.dragonclaw_ready()` | True unless a `Dragon Claw cannot be used for another …` line has fired since the last ready line. |
+| `Tem.essenic_blast_ready()` | True unless `Essenic Blast cannot be used for another …` fired since `Essenic Blast is now ready to be used.` |
+| `Tem.essenic_blast_after_volley()` | True from the cast hit line `The volley crashes into … exploding violently!` until the first DoT tick or DoT expiry. |
+| `Tem.essenic_blast_dot_active()` | True from each `The essence burns …!` tick until `The burning essence on … finally dies down.` |
+| `Tem.essenic_blast_dot_ticks()` / `Tem.essenic_blast_dot_last_ticks()` | Tick count in the current DoT window / tick count for the last completed window (0 if none). |
 | `Tem.dragon_use_target` / `Tem.dragon_use_self` / `Tem.dragon_passive` | Helpers for Dragon racial `use` aliases. |
 | `Tem.updposture(line)` etc. | Used by combat triggers (posture, knockdown, weapon probes). |
 | `Tem.cycle` / `Tem.syz` / `Tem.incant` | Lunar Sage cycle / `syzygies` / `use lunarincantations …`. |
@@ -147,6 +151,7 @@ Target behavior:
 - **Posture:** lines from the in-game skill list are **not** included here (shared across classes); use your class posture aliases or raw `use posture:…` as usual.
 - **`score`:** Triggers under **`Tempest > Classes > Dragon`** watch for `You go by the name of` and set **`Tem.is_dragon`** when the line contains **Dragon Whelp**, **Young Dragon**, **Adolescent Dragon**, **Adult Dragon**, or **Elder Dragon**; otherwise clears the flag on that same line shape.
 - **Dragon Claw cooldown:** Triggers on `Dragon Claw cannot be used for another …` and `Dragon Claw is now ready to be used.` — query with `lua display(Tem.dragonclaw_ready())` or branch in your own scripts.
+- **Essenic Blast:** Same cooldown pattern (`… cannot be used for another …` / `… is now ready to be used.`). **On cast:** `The volley crashes into <target>, exploding violently!` (optional `[damage]`). DoT is tracked on `The essence burns <target>!` and cleared on `The burning essence on <target> finally dies down.` — use `Tem.essenic_blast_after_volley()`, `Tem.essenic_blast_dot_active()`, `Tem.essenic_blast_dot_ticks()`, and `Tem.essenic_blast_dot_last_ticks()` alongside `Tem.essenic_blast_ready()`.
 - **Charge** is a HUD resource in Tempest Season; this package does not parse it yet.
 
 ### Shorthand table (`use` form; optional bare verb still works in-game)
