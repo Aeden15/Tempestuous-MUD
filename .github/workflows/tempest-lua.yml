@@ -1,0 +1,61 @@
+name: Tempest Lua Syntax
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  lua-syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Lua 5.1
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y lua5.1
+
+      - name: Parse Tempest.xml and run luac
+        run: |
+          python - <<'PY'
+          import subprocess
+          import tempfile
+          import xml.etree.ElementTree as ET
+          from pathlib import Path
+
+          xml_path = Path("Tempest.xml")
+          if not xml_path.exists():
+            raise SystemExit("Tempest.xml not found.")
+
+          root = ET.parse(xml_path).getroot()
+          scripts = []
+          for idx, node in enumerate(root.findall(".//script"), start=1):
+            text = node.text or ""
+            if text.strip():
+              scripts.append((idx, text))
+
+          if not scripts:
+            raise SystemExit("No non-empty <script> nodes found in Tempest.xml.")
+
+          tmp_dir = Path(tempfile.mkdtemp(prefix="tempest_lua_"))
+          failures = []
+
+          for idx, code in scripts:
+            lua_path = tmp_dir / f"chunk_{idx:04d}.lua"
+            lua_path.write_text(code, encoding="utf-8")
+            proc = subprocess.run(
+              ["luac5.1", "-p", str(lua_path)],
+              capture_output=True,
+              text=True,
+            )
+            if proc.returncode != 0:
+              failures.append((lua_path.name, proc.stderr.strip()))
+
+          print(f"Checked {len(scripts)} Lua chunk(s) from Tempest.xml.")
+          if failures:
+            print("Syntax failures:")
+            for name, err in failures:
+              print(f"- {name}: {err}")
+            raise SystemExit(1)
+          PY
