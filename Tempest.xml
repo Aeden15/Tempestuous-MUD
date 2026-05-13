@@ -523,6 +523,82 @@ Tem.noteenemyposture(getCurrentLine(), matches[2], matches[3])</script>
 				<regexCodeList />
 				<regexCodePropertyList />
 				<TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+					<name>Dragon</name>
+					<script></script>
+					<triggerType>0</triggerType>
+					<conditonLineDelta>0</conditonLineDelta>
+					<mStayOpen>0</mStayOpen>
+					<mCommand></mCommand>
+					<packageName></packageName>
+					<mFgColor>transparent</mFgColor>
+					<mBgColor>transparent</mBgColor>
+					<mSoundFile></mSoundFile>
+					<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
+					<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
+					<regexCodeList />
+					<regexCodePropertyList />
+					<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+						<name>Score dragon race line</name>
+						<script>Tem.note_score_dragon_line()</script>
+						<triggerType>0</triggerType>
+						<conditonLineDelta>0</conditonLineDelta>
+						<mStayOpen>0</mStayOpen>
+						<mCommand></mCommand>
+						<packageName></packageName>
+						<mFgColor>transparent</mFgColor>
+						<mBgColor>transparent</mBgColor>
+						<mSoundFile></mSoundFile>
+						<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
+						<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
+						<regexCodeList>
+							<string>(?i)^You go by the name of</string>
+						</regexCodeList>
+						<regexCodePropertyList>
+							<integer>1</integer>
+						</regexCodePropertyList>
+					</Trigger>
+					<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+						<name>Dragon Claw on cooldown</name>
+						<script>Tem.note_dragonclaw_cooldown()</script>
+						<triggerType>0</triggerType>
+						<conditonLineDelta>0</conditonLineDelta>
+						<mStayOpen>0</mStayOpen>
+						<mCommand></mCommand>
+						<packageName></packageName>
+						<mFgColor>transparent</mFgColor>
+						<mBgColor>transparent</mBgColor>
+						<mSoundFile></mSoundFile>
+						<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
+						<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
+						<regexCodeList>
+							<string>^Dragon Claw cannot be used for another .+\.$</string>
+						</regexCodeList>
+						<regexCodePropertyList>
+							<integer>1</integer>
+						</regexCodePropertyList>
+					</Trigger>
+					<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+						<name>Dragon Claw ready</name>
+						<script>Tem.note_dragonclaw_ready_line()</script>
+						<triggerType>0</triggerType>
+						<conditonLineDelta>0</conditonLineDelta>
+						<mStayOpen>0</mStayOpen>
+						<mCommand></mCommand>
+						<packageName></packageName>
+						<mFgColor>transparent</mFgColor>
+						<mBgColor>transparent</mBgColor>
+						<mSoundFile></mSoundFile>
+						<colorTriggerFgColor>#ff0000</colorTriggerFgColor>
+						<colorTriggerBgColor>#ffff00</colorTriggerBgColor>
+						<regexCodeList>
+							<string>^Dragon Claw is now ready to be used\.$</string>
+						</regexCodeList>
+						<regexCodePropertyList>
+							<integer>1</integer>
+						</regexCodePropertyList>
+					</Trigger>
+				</TriggerGroup>
+				<TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
 					<name>Lunar Sage</name>
 					<script></script>
 					<triggerType>0</triggerType>
@@ -1402,6 +1478,616 @@ send(cmd)</script>
 					</AliasGroup>
 				</AliasGroup>
 				<AliasGroup isActive="yes" isFolder="yes">
+					<name>Wizard</name>
+					<script></script>
+					<command></command>
+					<packageName></packageName>
+					<regex></regex>
+					<AliasGroup isActive="yes" isFolder="yes">
+						<name>Arcane</name>
+						<script></script>
+						<command></command>
+						<packageName></packageName>
+						<regex></regex>
+						<Alias isActive="yes" isFolder="no">
+							<name>Channel</name>
+							<script>Tem.wiz_use_no_target("channel")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wchan$</regex>
+						</Alias>
+					</AliasGroup>
+					<AliasGroup isActive="yes" isFolder="yes">
+						<name>Ethereal</name>
+						<script></script>
+						<command></command>
+						<packageName></packageName>
+						<regex></regex>
+						<Alias isActive="yes" isFolder="no">
+							<name>Invisibility</name>
+							<script>Tem.wiz_cast_no_target("invisibility")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^winv$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Pinpoint Teleport</name>
+							<script>if matches[2] and matches[2] ~= "" then Tem.wiz_cast_raw("pinpointteleport " .. matches[2]) else Tem.wiz_cast_no_target("pinpointteleport") end</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wppt(?: (.+))?$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Pinpoint Teleport Add</name>
+							<script>Tem.wiz_cast_raw("pinpointteleport add")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wppta$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Pinpoint Teleport List</name>
+							<script>Tem.wiz_cast_raw("pinpointteleport list")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wpptl$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Pinpoint Teleport Teleport</name>
+							<script>Tem.wiz_cast_raw("pinpointteleport teleport " .. matches[2])</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wpptt (\S+)$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Pinpoint Teleport Remove</name>
+							<script>Tem.wiz_cast_raw("pinpointteleport remove " .. matches[2])</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wpptr (\S+)$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Reactionary Teleport</name>
+							<script>Tem.wiz_cast_no_target("reactionaryteleport")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wrtp$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Void Pocket</name>
+							<script>Tem.wiz_cast_no_target("voidpocket")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wvp$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Anemokinesis</name>
+							<script>Tem.wiz_cast_no_target("anemokinesis")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wane$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Vacuous Delirium</name>
+							<script>if matches[2] and matches[2] ~= "" then Tem.wiz_cast_raw("vacuousdelirium " .. matches[2]) else Tem.wiz_cast_no_target("vacuousdelirium") end</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wvd(?: (teleport|summon))?$</regex>
+						</Alias>
+					</AliasGroup>
+					<AliasGroup isActive="yes" isFolder="yes">
+						<name>Ethereal Walker</name>
+						<script></script>
+						<command></command>
+						<packageName></packageName>
+						<regex></regex>
+						<Alias isActive="yes" isFolder="no">
+							<name>Dispersion Field</name>
+							<script>Tem.wiz_cast_no_target("dispersionfield")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wdf$</regex>
+						</Alias>
+					</AliasGroup>
+					<AliasGroup isActive="yes" isFolder="yes">
+						<name>Fragmentation</name>
+						<script></script>
+						<command></command>
+						<packageName></packageName>
+						<regex></regex>
+						<Alias isActive="yes" isFolder="no">
+							<name>Shatter Stance</name>
+							<script>Tem.wiz_cast_no_target("shatterstance")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wsh$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Control Stance</name>
+							<script>Tem.wiz_cast_no_target("controlstance")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wcs$</regex>
+						</Alias>
+					</AliasGroup>
+					<AliasGroup isActive="yes" isFolder="yes">
+						<name>High Wizardry</name>
+						<script></script>
+						<command></command>
+						<packageName></packageName>
+						<regex></regex>
+						<Alias isActive="yes" isFolder="no">
+							<name>Tri-axel Hexagonal Shield</name>
+							<script>Tem.wiz_cast("tri-axelhexagonalshield", matches[2])</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wths(?: (\w+))?$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Sublimation</name>
+							<script>Tem.wiz_cast_no_target("sublimation")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wsub$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Null-field</name>
+							<script>Tem.wiz_cast_no_target("null-field")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wnf$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Esoteric Stagnation</name>
+							<script>Tem.wiz_cast_no_target("esotericstagnation")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wes$</regex>
+						</Alias>
+					</AliasGroup>
+					<AliasGroup isActive="yes" isFolder="yes">
+						<name>Kinesis Empowerment</name>
+						<script></script>
+						<command></command>
+						<packageName></packageName>
+						<regex></regex>
+						<Alias isActive="yes" isFolder="no">
+							<name>Embrace the Dynamics</name>
+							<script>Tem.wiz_cast_no_target("embracethedynamics")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wetd$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Restricting Velocity</name>
+							<script>Tem.wiz_cast("restrictingvelocity", matches[2])</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wrv(?: (\w+))?$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Transmit Kinecity</name>
+							<script>Tem.wiz_cast("transmitkinecity", matches[2])</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wtk(?: (\w+))?$</regex>
+						</Alias>
+					</AliasGroup>
+					<AliasGroup isActive="yes" isFolder="yes">
+						<name>Wizard Spells</name>
+						<script></script>
+						<command></command>
+						<packageName></packageName>
+						<regex></regex>
+						<Alias isActive="yes" isFolder="no">
+							<name>Absorb Elements</name>
+							<script>Tem.wiz_cast("absorbelements", matches[2])</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wabs(?: (\w+))?$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Anchor</name>
+							<script>Tem.wiz_cast("anchor", matches[2])</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wanc(?: (\w+))?$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Blink</name>
+							<script>Tem.wiz_cast_no_target("blink")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wblink$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Blooming Replication</name>
+							<script>Tem.wiz_cast("bloomingreplication", matches[2])</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wbrp(?: (\w+))?$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Counterspell</name>
+							<script>Tem.wiz_cast_no_target("counterspell")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wcounter$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Decomposition</name>
+							<script>Tem.wiz_decomp(matches[2])</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wdecomp(?: (.+))?$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Dispel</name>
+							<script>Tem.wiz_cast("dispel", matches[2])</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wdis(?: (\w+))?$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Kentric Displacement</name>
+							<script>Tem.wiz_cast_no_target("kentricdisplacement")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wkd$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Kinetic Blast</name>
+							<script>Tem.wiz_cast("kineticblast", matches[2])</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wkb(?: (\w+))?$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Phasic Field (automatic)</name>
+							<script>Tem.wiz_auto("phasicfield")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wpf$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Rebounding Barrage</name>
+							<script>Tem.wiz_cast("reboundingbarrage", matches[2])</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wrb(?: (\w+))?$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Secure Shell</name>
+							<script>Tem.wiz_cast_no_target("secureshell")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wss$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Silence</name>
+							<script>Tem.wiz_cast("silence", matches[2])</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wsl(?: (\w+))?$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Speck of Light</name>
+							<script>Tem.wiz_cast_no_target("speckoflight")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wsol$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Storm of Rebounding Kinesis</name>
+							<script>Tem.wiz_cast_no_target("stormofreboundingkinesis")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wsrk$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Void Bolt</name>
+							<script>Tem.wiz_cast("voidbolt", matches[2])</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wvb(?: (\w+))?$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Wizard Mastery (automatic)</name>
+							<script>Tem.wiz_auto("wizardmastery")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wwm$</regex>
+						</Alias>
+					</AliasGroup>
+					<AliasGroup isActive="yes" isFolder="yes">
+						<name>Wizard Skills</name>
+						<script></script>
+						<command></command>
+						<packageName></packageName>
+						<regex></regex>
+						<Alias isActive="yes" isFolder="no">
+							<name>Sudden Smash</name>
+							<script>Tem.wiz_use("suddensmash", matches[2])</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wsm(?: (\w+))?$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Twirling Stave</name>
+							<script>Tem.wiz_use_no_target("twirlingstave")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wts$</regex>
+						</Alias>
+					</AliasGroup>
+					<AliasGroup isActive="yes" isFolder="yes">
+						<name>Wizard's Lab</name>
+						<script></script>
+						<command></command>
+						<packageName></packageName>
+						<regex></regex>
+						<Alias isActive="yes" isFolder="no">
+							<name>Wizard's Lab Generic</name>
+							<script>local action = matches[2]
+local arg = matches[3]
+if (action == "view" or action == "craft") and (not arg or arg == "") then
+  cecho("&lt;red&gt;[Tempest] Usage: wlab " .. action .. " &lt;slot&gt;.\n")
+  return
+end
+local cmd = "wizardslab " .. action
+if arg and arg ~= "" then
+  cmd = cmd .. " " .. arg
+end
+Tem.wiz_use_raw(cmd)</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wlab (setup|list|view|craft)(?: (.+))?$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Setup</name>
+							<script>Tem.wiz_use_raw("wizardslab setup")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wlabsetup$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>List</name>
+							<script>Tem.wiz_use_raw("wizardslab list")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wlablist$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>View</name>
+							<script>Tem.wiz_use_raw("wizardslab view " .. matches[2])</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wlabview (\d+)$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Craft</name>
+							<script>Tem.wiz_use_raw("wizardslab craft " .. matches[2])</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^wlabcraft (\d+)$</regex>
+						</Alias>
+					</AliasGroup>
+				</AliasGroup>
+				<AliasGroup isActive="yes" isFolder="yes">
+					<name>Dragon (race skills)</name>
+					<script></script>
+					<command></command>
+					<packageName></packageName>
+					<regex></regex>
+					<AliasGroup isActive="yes" isFolder="yes">
+						<name>Offense</name>
+						<script></script>
+						<command></command>
+						<packageName></packageName>
+						<regex></regex>
+						<Alias isActive="yes" isFolder="no">
+							<name>Dragon Claw</name>
+							<script>Tem.dragon_use_target("dragonclaw", matches[2])</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^ddc(?: (\w+))?$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Tear</name>
+							<script>Tem.dragon_use_target("tear", matches[2])</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^dte(?: (\w+))?$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Gore</name>
+							<script>Tem.dragon_use_target("gore", matches[2])</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^dgo(?: (\w+))?$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Essenic Blast</name>
+							<script>Tem.dragon_use_target("essenicblast", matches[2])</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^deb(?: (\w+))?$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Bane of Essenic</name>
+							<script>Tem.dragon_use_target("baneofessenic", matches[2])</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^dbe(?: (\w+))?$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Violent Uproar</name>
+							<script>Tem.dragon_use_target("violentuproar", matches[2])</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^dvu(?: (\w+))?$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Feed</name>
+							<script>Tem.dragon_use_target("feed", matches[2])</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^dfe(?: (\w+))?$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Infused Claws</name>
+							<script>Tem.dragon_use_target("infusedclaws", matches[2])</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^dic(?: (\w+))?$</regex>
+						</Alias>
+					</AliasGroup>
+					<AliasGroup isActive="yes" isFolder="yes">
+						<name>Dragon Form</name>
+						<script></script>
+						<command></command>
+						<packageName></packageName>
+						<regex></regex>
+						<Alias isActive="yes" isFolder="no">
+							<name>Dragon Form Force of Fire</name>
+							<script>Tem.dragon_use_self("dragonformforceoffire")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^dfof$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Dragon Form Speed of Lightning</name>
+							<script>Tem.dragon_use_self("dragonformspeedoflightning")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^dgsl$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Dragon Form Finesse of Water</name>
+							<script>Tem.dragon_use_self("dragonformfinesseofwater")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^dfow$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Dragon Form Knowledge of Death</name>
+							<script>Tem.dragon_use_self("dragonformknowledgeofdeath")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^dkod$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Dragon Form Touch of Poison</name>
+							<script>Tem.dragon_use_self("dragonformtouchofpoison")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^dtop$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Dragon Form Hardness of Ice</name>
+							<script>Tem.dragon_use_self("dragonformhardnessofice")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^dhoi$</regex>
+						</Alias>
+					</AliasGroup>
+					<AliasGroup isActive="yes" isFolder="yes">
+						<name>Support and buffs</name>
+						<script></script>
+						<command></command>
+						<packageName></packageName>
+						<regex></regex>
+						<Alias isActive="yes" isFolder="no">
+							<name>Bind Wounds</name>
+							<script>local tgt = matches[2]
+if not tgt or tgt == "" then
+  tgt = Tem.reqtgt()
+  if not tgt then return end
+end
+send("use bindwounds " .. tgt)</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^dbw(?: (\w+))?$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Feral Presence</name>
+							<script>Tem.dragon_use_self("feralpresence")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^dfp$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Wrath</name>
+							<script>Tem.dragon_use_self("wrath")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^dwr$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Scale Shield</name>
+							<script>Tem.dragon_use_self("scaleshield")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^dss$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Boost Morale</name>
+							<script>Tem.dragon_use_self("boostmorale")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^dbm$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Chameleon Cloak</name>
+							<script>Tem.dragon_use_self("chameleoncloak")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^dch$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Frenzied Swipe</name>
+							<script>Tem.dragon_use_self("frenziedswipe")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^dfs$</regex>
+						</Alias>
+					</AliasGroup>
+					<AliasGroup isActive="yes" isFolder="yes">
+						<name>Passive and automatic</name>
+						<script></script>
+						<command></command>
+						<packageName></packageName>
+						<regex></regex>
+						<Alias isActive="yes" isFolder="no">
+							<name>Defensive Maneuvers</name>
+							<script>Tem.dragon_passive("defensivemaneuvers")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^ddm$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Ama'rane Fortitude</name>
+							<script>Tem.dragon_passive("amaranefortitude")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^dama$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Dragon Rage</name>
+							<script>Tem.dragon_passive("dragonrage")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^ddr$</regex>
+						</Alias>
+						<Alias isActive="yes" isFolder="no">
+							<name>Enchanted Scales</name>
+							<script>Tem.dragon_passive("enchantedscales")</script>
+							<command></command>
+							<packageName></packageName>
+							<regex>^des$</regex>
+						</Alias>
+					</AliasGroup>
+				</AliasGroup>
+				<AliasGroup isActive="yes" isFolder="yes">
 					<name>Lunar Sage</name>
 					<script></script>
 					<command></command>
@@ -1816,8 +2502,12 @@ Tem.mvft = Tem.mvft or nil
 Tem.mvunits = Tem.mvunits or nil
 Tem.mvcap = Tem.mvcap or nil
 
+function Tem.trim(value)
+  return tostring(value or ""):match("^%s*(.-)%s*$")
+end
+
 function Tem.setname(name)
-  Tem.charname = tostring(name or ""):match("^%s*(.-)%s*$") or ""
+  Tem.charname = Tem.trim(name)
   if Tem.charname ~= "" then
     cecho("&lt;cyan&gt;[Tempest] Character name set for self-checks: &lt;white&gt;" .. Tem.charname .. "\n")
   end
@@ -1835,7 +2525,7 @@ function Tem.selfname()
 end
 
 local function norm_lower(s)
-  return tostring(s or ""):match("^%s*(.-)%s*$"):lower()
+  return Tem.trim(s):lower()
 end
 
 local function is_target_self(name)
@@ -1984,9 +2674,6 @@ function Tem.settgt(name)
 
   Tem.tgt = name
 
-  -- Compatibility with older/simple aliases that may expect a global target.
-  target = name
-
   cecho("&lt;cyan&gt;[Tempest] Target set: &lt;white&gt;" .. name .. "\n")
   return true
 end
@@ -1994,10 +2681,6 @@ end
 function Tem.gettgt()
   if Tem.tgt and Tem.tgt ~= "" then
     return Tem.tgt
-  end
-
-  if target and target ~= "" then
-    return target
   end
 
   return nil
@@ -2296,6 +2979,7 @@ Tem.autoon = Tem.autoon or false
 Tem.posture = Tem.posture or "mid"
 Tem.aadelay = Tem.aadelay or 2.1
 Tem._aatimer = Tem._aatimer or nil
+Tem._postswitchtimer = Tem._postswitchtimer or nil
 -- True while server reports Knocked Down (posture line or knockdown message).
 Tem.kd = Tem.kd or false
 -- Set true when Posture trigger has fired at least once (see update_posture_from_line).
@@ -2318,6 +3002,7 @@ Tem.lastCombatActionAt = Tem.lastCombatActionAt or 0
 Tem.lastMoraleTickAt = Tem.lastMoraleTickAt or 0
 Tem.moraleDecaySeconds = tonumber(Tem.moraleDecaySeconds) or 60
 Tem.npcPostureDB = Tem.npcPostureDB or {}
+Tem.postureDbMaxEntries = tonumber(Tem.postureDbMaxEntries) or 150
 Tem.combatRestrictedUntil = tonumber(Tem.combatRestrictedUntil) or 0
 
 -- #region agent log
@@ -2345,7 +3030,43 @@ local function _now_s()
 end
 
 local function _trim(s)
+  if type(Tem.trim) == "function" then
+    return Tem.trim(s)
+  end
   return tostring(s or ""):match("^%s*(.-)%s*$")
+end
+
+local function _enforce_posture_db_cap()
+  local max_entries = tonumber(Tem.postureDbMaxEntries) or 150
+  if max_entries &lt; 1 then
+    return
+  end
+
+  local rows = {}
+  for key, info in pairs(Tem.npcPostureDB or {}) do
+    rows[#rows + 1] = {
+      key = key,
+      seenAt = tonumber(info and info.seenAt or 0) or 0,
+    }
+  end
+
+  if #rows &lt;= max_entries then
+    return
+  end
+
+  table.sort(
+    rows,
+    function(a, b)
+      if a.seenAt == b.seenAt then
+        return tostring(a.key) &lt; tostring(b.key)
+      end
+      return a.seenAt &lt; b.seenAt
+    end
+  )
+
+  for i = 1, (#rows - max_entries) do
+    Tem.npcPostureDB[rows[i].key] = nil
+  end
 end
 
 local function _canon_posture(name)
@@ -2542,12 +3263,6 @@ function Tem.notecombatrestriction(line)
   local now = _now_s()
   Tem.combatRestrictedUntil = math.max(tonumber(Tem.combatRestrictedUntil or 0), now + n)
   Tem.notecombatactivity("combat_restrict")
-  _agent_log(
-    "H8",
-    "notecombatrestriction",
-    "parsed",
-    {seconds = tostring(n), until_ts = tostring(Tem.combatRestrictedUntil)}
-  )
 end
 
 function Tem.noteenemyposture(full_line, target_name, posture_name)
@@ -2564,29 +3279,15 @@ function Tem.noteenemyposture(full_line, target_name, posture_name)
     end
   end
   if full_line and _is_helpfile_or_skill_line(full_line) then
-    _agent_log("H1", "noteenemyposture", "reject", {reason = "help_or_skill_line"})
     return
   end
   local raw = _trim(target_name):lower()
-  _agent_log(
-    "H1",
-    "noteenemyposture",
-    "enter",
-    {raw = tostring(target_name or ""):sub(1, 160), posture = tostring(posture_name or "")}
-  )
   if raw == "you" or raw:find("^you%s", 1) or raw:find("^you'", 1) then
-    _agent_log("H1", "noteenemyposture", "reject", {reason = "raw_second_person", raw = raw})
     return
   end
   local target = _target_key(target_name)
   local posture = _canon_posture(posture_name)
   if target == "" or not posture then
-    _agent_log(
-      "H3",
-      "noteenemyposture",
-      "reject",
-      {reason = "empty_or_bad_posture", target_key = target, posture = tostring(posture_name or "")}
-    )
     return
   end
   local bad_keys = {
@@ -2617,14 +3318,12 @@ function Tem.noteenemyposture(full_line, target_name, posture_name)
     example = true,
   }
   if bad_keys[target] or #target &lt; 3 then
-    _agent_log("H3", "noteenemyposture", "reject", {reason = "bad_key_or_short", target_key = target})
     return
   end
   if target == "you"
     or target:find("you stop using posture", 1, true)
     or target:find("you enter the", 1, true)
     or target:find("posture", 1, true) then
-    _agent_log("H1", "noteenemyposture", "reject", {reason = "target_guard", target_key = target})
     return
   end
   local prev = Tem.npcPostureDB[target] or {}
@@ -2635,7 +3334,7 @@ function Tem.noteenemyposture(full_line, target_name, posture_name)
     hits = hits,
     seenAt = _now_s(),
   }
-  _agent_log("H2", "noteenemyposture", "accepted", {target_key = target, posture = posture, hits = tostring(hits)})
+  _enforce_posture_db_cap()
   combat_cecho("&lt;cyan&gt;[Tempest Combat] Learned posture: " .. target .. " =&gt; " .. posture .. ".\n")
 end
 
@@ -2647,7 +3346,6 @@ function Tem.notemindstate(capture)
   end
   Tem.mindStateName = name
   Tem.notecombatactivity("mind")
-  _agent_log("H4", "notemindstate", "gained", {name = name})
 end
 
 function Tem.noteweakness(line)
@@ -2674,12 +3372,7 @@ function Tem.noteweakness(line)
           hits = hits,
           seenAt = _now_s(),
         }
-        _agent_log(
-          "H2",
-          "noteweakness",
-          "accepted_apply_line",
-          {target_key = target, posture = mob_posture}
-        )
+        _enforce_posture_db_cap()
         combat_cecho(
           "&lt;cyan&gt;[Tempest Combat] Learned posture (weakness apply): " ..
             target ..
@@ -2693,7 +3386,6 @@ function Tem.noteweakness(line)
   end
 
   if not (lower:find("exploit", 1, true) or lower:find("afflict", 1, true)) then
-    _agent_log("H2", "noteweakness", "skip_no_exploit", {line = lower:sub(1, 160)})
     return
   end
   if not Tem.gettgt then
@@ -2702,12 +3394,6 @@ function Tem.noteweakness(line)
   local target = _target_key(Tem.gettgt() or "")
   local posture = _canon_posture(Tem.myPostureName)
   if target == "" or not posture then
-    _agent_log(
-      "H2",
-      "noteweakness",
-      "skip_no_tgt_posture",
-      {target_key = target, my_posture = tostring(Tem.myPostureName or "")}
-    )
     return
   end
   local prev = Tem.npcPostureDB[target] or {}
@@ -2718,25 +3404,13 @@ function Tem.noteweakness(line)
     hits = hits,
     seenAt = _now_s(),
   }
-  _agent_log("H2", "noteweakness", "accepted", {target_key = target, posture = posture})
+  _enforce_posture_db_cap()
   combat_cecho("&lt;cyan&gt;[Tempest Combat] Weakness inference: " .. target .. " likely " .. posture .. ".\n")
 end
 
 function Tem.notepostureevent(line)
   local text = tostring(line or "")
   local lower = text:lower()
-  -- #region agent log
-  _agent_log(
-    "H10",
-    "notepostureevent",
-    "line_seen",
-    {
-      line = lower:sub(1, 180),
-      my = tostring(Tem.myPostureName or "nil"),
-      active = tostring(Tem.postureActive),
-    }
-  )
-  -- #endregion agent log
 
   local entered = lower:match("you enter the%s+([a-z]+)%s+posture!")
   if not entered then
@@ -2748,37 +3422,12 @@ function Tem.notepostureevent(line)
     Tem.myPostureName = posture
     Tem._pendingPosture = nil
     Tem._lastPostureSwitchAt = _now_s()
-    -- #region agent log
-    _agent_log(
-      "H11",
-      "notepostureevent",
-      "entered",
-      {
-        parsed = tostring(posture or "nil"),
-        line = lower:sub(1, 180),
-      }
-    )
-    -- #endregion agent log
-    if lower:find("you enter posture:", 1, true) then
-      _agent_log("H9", "notepostureevent", "enter_via_posture_colon", {posture = tostring(posture or "?")})
-    end
     return
   end
 
   local stopped = lower:match("you stop using posture:%s*([a-z]+)%s*!?$")
   if stopped then
     local just_stopped = _canon_posture(stopped) or _trim(stopped):lower()
-    -- #region agent log
-    _agent_log(
-      "H12",
-      "notepostureevent",
-      "stopped",
-      {
-        stopped = tostring(just_stopped or "nil"),
-        line = lower:sub(1, 180),
-      }
-    )
-    -- #endregion agent log
     if Tem.myPostureName == just_stopped then
       Tem.myPostureName = nil
     end
@@ -2787,9 +3436,15 @@ function Tem.notepostureevent(line)
       local want = Tem._pendingPosture
       Tem._pendingPosture = nil
       if tempTimer then
-        tempTimer(
+        if Tem._postswitchtimer and killTimer then
+          killTimer(Tem._postswitchtimer)
+          Tem._postswitchtimer = nil
+        end
+        Tem._postswitchtimer =
+          tempTimer(
           0.2,
           function()
+            Tem._postswitchtimer = nil
             _request_posture(want, "continue switch")
           end
         )
@@ -2804,19 +3459,6 @@ function Tem.notepostureevent(line)
     if posture then
       local now = _now_s()
       local cd_until = now + tonumber(lock_secs)
-      -- #region agent log
-      _agent_log(
-        "H13",
-        "notepostureevent",
-        "cooldown_seen",
-        {
-          posture = posture,
-          secs = tostring(lock_secs),
-          my = tostring(Tem.myPostureName or "nil"),
-          active = tostring(Tem.postureActive),
-        }
-      )
-      -- #endregion agent log
       Tem.postureCooldowns[posture] = cd_until
       if Tem.myPostureName == posture then
         -- If this line fires while we expected a toggle, treat posture as currently inactive.
@@ -2848,26 +3490,12 @@ function Tem.notepostureevent(line)
       send("use posture:" .. Tem.myPostureName)
     else
       Tem.postureActive = true
-      _agent_log("H7", "notepostureevent", "risk_posture_conflict_untracked", {})
       combat_cecho(
         "&lt;yellow&gt;[Tempest Combat] Risk posture conflict but no tracked posture; toggle your active posture manually or check triggers.\n"
       )
     end
     return
   end
-
-  -- #region agent log
-  _agent_log(
-    "H14",
-    "notepostureevent",
-    "matched_trigger_but_unhandled",
-    {
-      line = lower:sub(1, 180),
-      my = tostring(Tem.myPostureName or "nil"),
-      active = tostring(Tem.postureActive),
-    }
-  )
-  -- #endregion agent log
 end
 
 function Tem.notemorale(line)
@@ -3130,6 +3758,94 @@ local function cancel_attack_timer()
   end
 end
 
+--- Dragon race: set from `score` line ("You go by the name of …"). nil = unknown until score.
+Tem.is_dragon = Tem.is_dragon or nil
+--- Dragon Claw skill reuse ready (combat lines); default true until a CD line is seen.
+if Tem._dclaw_ready == nil then
+  Tem._dclaw_ready = true
+end
+
+function Tem.note_score_dragon_line()
+  local l = getCurrentLine() or ""
+  local lower = l:lower()
+  local stages = {
+    "dragon whelp",
+    "young dragon",
+    "adolescent dragon",
+    "adult dragon",
+    "elder dragon",
+  }
+  for _, s in ipairs(stages) do
+    if lower:find(s, 1, true) then
+      Tem.is_dragon = true
+      return
+    end
+  end
+  if lower:find("you go by the name of", 1, true) then
+    Tem.is_dragon = false
+  end
+end
+
+function Tem.dragon_use_target(skill, explicit)
+  skill = Tem.trim(tostring(skill or "")):lower():gsub("%s+", "")
+  if skill == "" then
+    return false
+  end
+  local tgt = Tem.trim(tostring(explicit or ""))
+  if tgt == "" then
+    tgt = Tem.reqtgt()
+    if not tgt then
+      return false
+    end
+  end
+  send("use " .. skill .. " " .. tgt)
+  return true
+end
+
+function Tem.dragon_use_self(skill)
+  skill = Tem.trim(tostring(skill or "")):lower():gsub("%s+", "")
+  if skill == "" then
+    return false
+  end
+  send("use " .. skill)
+  return true
+end
+
+function Tem.dragon_passive(helpkey)
+  helpkey = Tem.trim(tostring(helpkey or "")):lower():gsub("%s+", "")
+  if helpkey == "" then
+    return false
+  end
+  cecho("&lt;yellow&gt;[Tempest] Passive or automatic — see help " .. helpkey .. ".\n")
+  send("help " .. helpkey)
+  return true
+end
+
+function Tem.dragon_tear_target()
+  local tgt = Tem.gettgt()
+  if not tgt or tgt == "" then
+    return false
+  end
+  local selfn = Tem.selfname()
+  if selfn ~= "" and Tem.trim(tgt):lower() == selfn:lower() then
+    return false
+  end
+  send("use tear " .. tgt)
+  return true
+end
+
+function Tem.dragonclaw_ready()
+  return Tem._dclaw_ready ~= false
+end
+
+function Tem.note_dragonclaw_cooldown()
+  Tem._dclaw_ready = false
+end
+
+function Tem.note_dragonclaw_ready_line()
+  Tem._dclaw_ready = true
+end
+
 --- Rank for merging: lower = safer (pound/slash/jab), higher = heavier (smash/cleave/thrust).
 
 local function _tier_to_rank(t)
@@ -3159,15 +3875,20 @@ end
 --- Merge posture tier with Risk band: use the safer (lower rank) of the two.
 --- Until any posture line is seen, Risk alone drives tier (default posture is not real data).
 
+local function _risk_tier_from_band_local()
+  local rb = tostring(Tem.risk or "neutral"):lower()
+  if rb == "good" then
+    return "heavy"
+  end
+  if rb == "bad" or rb == "critical" then
+    return "safe"
+  end
+  return "mid"
+end
+
 function Tem.autotier()
   local posture = Tem.posture or "mid"
-  local rb = tostring(Tem.risk or "neutral"):lower()
-  local risk = "mid"
-  if rb == "good" then
-    risk = "heavy"
-  elseif rb == "bad" or rb == "critical" then
-    risk = "safe"
-  end
+  local risk = _risk_tier_from_band_local()
   if not Tem._postseen then
     return risk, posture, risk
   end
@@ -3198,21 +3919,14 @@ end
 
 function Tem.acon(message)
   Tem.autoon = true
-  -- #region agent log
-  _agent_log(
-    "H9",
-    "Tem.acon",
-    "called",
-    {
-      lcranged = tostring(Tem.lcranged),
-      target = tostring(Tem.gettgt and Tem.gettgt() or ""),
-      autoposture = tostring(Tem.autoposture),
-      postureGate = tostring(Tem.posture_level_gate),
-    }
-  )
-  -- #endregion
   if message ~= false then
-    combat_cecho("&lt;green&gt;[Tempest Combat] Auto combat on (melee or ranged per weapon).\n")
+    if Tem.is_dragon == true then
+      combat_cecho(
+        "&lt;green&gt;[Tempest Combat] Auto combat on (dragon: use tear vs tt; run score if race unknown).\n"
+      )
+    else
+      combat_cecho("&lt;green&gt;[Tempest Combat] Auto combat on (melee or ranged per weapon).\n")
+    end
   end
   Tem.aaonce()
 end
@@ -3243,6 +3957,11 @@ function Tem.aaonce()
     return
   end
   if maybe_adjust_posture() then
+    Tem.aasched()
+    return
+  end
+  if Tem.is_dragon == true then
+    Tem.dragon_tear_target()
     Tem.aasched()
     return
   end
@@ -3364,7 +4083,7 @@ function Tem.noteup()
   end
 end
 
-_agent_log("H0", "combat_automation", "script_loaded", {ok = "1"})</script>
+</script>
 					<eventHandlerList />
 				</Script>
 				<Script isActive="yes" isFolder="no">
@@ -3436,6 +4155,9 @@ function Tem.note_inspect_damage_line(line)
 end
 
 local function psi_trim(text)
+  if type(Tem.trim) == "function" then
+    return Tem.trim(text)
+  end
   return tostring(text or ""):match("^%s*(.-)%s*$")
 end
 
@@ -3502,6 +4224,111 @@ function Tem.psi_auto(ability)
   send("help " .. spell)
   return true
 end
+
+local function wiz_token(text)
+  return psi_trim(text):lower():gsub("%s+", "")
+end
+
+function Tem.wiz_cast(ability, explicitTarget)
+  local spell = wiz_token(ability)
+  if spell == "" then
+    cecho("&lt;red&gt;[Tempest] Missing wizard spell token.\n")
+    return false
+  end
+
+  local tgt = psi_trim(explicitTarget)
+  if tgt == "" and type(Tem.gettgt) == "function" then
+    tgt = psi_trim(Tem.gettgt())
+  end
+
+  local cmd = "cast " .. spell
+  if tgt ~= "" then
+    cmd = cmd .. " " .. tgt
+  end
+  send(cmd)
+  return true
+end
+
+function Tem.wiz_cast_no_target(ability)
+  local spell = wiz_token(ability)
+  if spell == "" then
+    cecho("&lt;red&gt;[Tempest] Missing wizard spell token.\n")
+    return false
+  end
+  send("cast " .. spell)
+  return true
+end
+
+function Tem.wiz_cast_raw(args)
+  local suffix = psi_trim(args)
+  if suffix == "" then
+    cecho("&lt;red&gt;[Tempest] Missing wizard cast syntax.\n")
+    return false
+  end
+  send("cast " .. suffix)
+  return true
+end
+
+function Tem.wiz_use(ability, explicitTarget)
+  local skill = wiz_token(ability)
+  if skill == "" then
+    cecho("&lt;red&gt;[Tempest] Missing wizard skill token.\n")
+    return false
+  end
+
+  local tgt = psi_trim(explicitTarget)
+  if tgt == "" and type(Tem.gettgt) == "function" then
+    tgt = psi_trim(Tem.gettgt())
+  end
+
+  local cmd = "use " .. skill
+  if tgt ~= "" then
+    cmd = cmd .. " " .. tgt
+  end
+  send(cmd)
+  return true
+end
+
+function Tem.wiz_use_no_target(ability)
+  local skill = wiz_token(ability)
+  if skill == "" then
+    cecho("&lt;red&gt;[Tempest] Missing wizard skill token.\n")
+    return false
+  end
+  send("use " .. skill)
+  return true
+end
+
+function Tem.wiz_use_raw(args)
+  local suffix = psi_trim(args)
+  if suffix == "" then
+    cecho("&lt;red&gt;[Tempest] Missing wizard use syntax.\n")
+    return false
+  end
+  send("use " .. suffix)
+  return true
+end
+
+function Tem.wiz_decomp(item)
+  local target = psi_trim(item)
+  if target == "" then
+    cecho("&lt;red&gt;[Tempest] Decomposition: wdecomp &lt;item name|slot&gt;.\n")
+    return false
+  end
+  send("cast decomposition " .. target)
+  return true
+end
+
+function Tem.wiz_auto(ability)
+  local spell = wiz_token(ability)
+  if spell == "" then
+    cecho("&lt;red&gt;[Tempest] Missing wizard ability token.\n")
+    return false
+  end
+  cecho("&lt;yellow&gt;[Tempest] " .. spell .. " is automatic or triggered; opening help.\n")
+  send("help " .. spell)
+  return true
+end
 </script>
 					<eventHandlerList />
 				</Script>
@@ -3526,6 +4353,9 @@ Tem.lcranged = Tem.lcranged or false
 Tem.lunar_core_weapon = Tem.lunar_core_weapon or false
 
 local function trim(text)
+  if type(Tem.trim) == "function" then
+    return Tem.trim(text)
+  end
   return tostring(text or ""):match("^%s*(.-)%s*$")
 end
 

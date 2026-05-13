@@ -6,7 +6,7 @@ This repo holds a **single** Mudlet package for **Tempest Season** ([tempestseas
 
 | File | Role |
 |------|------|
-| [`Tempest.xml`](Tempest.xml) | Triggers, aliases, and all Lua (combat, target helper, Cleric, Lunar Sage). **Edit this file** (or export from Mudlet and replace this file). |
+| [`Tempest.xml`](Tempest.xml) | Triggers, aliases, and all Lua (combat, target helper, Cleric, Lunar Sage, Dragon). **Edit this file** (or export from Mudlet and replace this file). |
 | [`config.lua`](config.lua) | Mudlet package metadata (`mpackage`, description, version) shown by Mudlet Package Manager. Keep alongside `Tempest.xml` when building an `.mpackage`. |
 
 ## Install (Mudlet 4.20)
@@ -18,6 +18,7 @@ This repo holds a **single** Mudlet package for **Tempest Season** ([tempestseas
 
 - **Tempest Season only.** Lua assumes Tempest commands and mechanics.
 - Use **separate Mudlet profiles** (or package sets) if you use automation for other games so globals like `Tem.*` do not collide.
+- Targeting is namespaced: `tt` updates `Tem.tgt` only (Tempest does not mirror Mudlet global `target`).
 
 ## Lua namespace (`Tem`)
 
@@ -25,7 +26,7 @@ Aliases and triggers call functions on the **`Tem`** table (short names). User-v
 
 | Lua | Purpose |
 |-----|---------|
-| `Tem.settgt(name)` | Set alias target (`tt` → also sets legacy global `target`). |
+| `Tem.settgt(name)` | Set alias target (`tt` updates `Tem.tgt`). |
 | `Tem.gettgt()` / `Tem.reqtgt()` | Read target; `reqtgt` errors if unset or self-name. |
 | `Tem.setname(name)` | Character name for self-target guards (`setname`). |
 | `Tem.pray(gift, target, favors)` | Raw `pray …` with optional favors (`min` / `max` / number). |
@@ -36,7 +37,10 @@ Aliases and triggers call functions on the **`Tem`** table (short names). User-v
 | `Tem.mv(n)` / `Tem.mvt(name)` | `move ±units` / `move name`. |
 | `Tem.setrisk(band)` | `good` \| `neutral` \| `bad` \| `critical`. |
 | `Tem.setwln("sharp"\|"blunt")` / `Tem.resetw()` | Weapon style preference after probe lines (`wsharp`, `wblunt`, `wreset`). |
-| `Tem.acon()` / `Tem.acoff()` | Auto combat on/off (`acon`, `acoff`). |
+| `Tem.acon()` / `Tem.acoff()` | Auto combat on/off (`acon`, `acoff`). When `Tem.is_dragon` is true (from `score`), `acon` sends `use tear` vs `tt` instead of weapon melee. |
+| `Tem.is_dragon` | Set by trigger on the `score` line starting with `You go by the name of` (dragon growth stages). `nil` until first matching `score`. |
+| `Tem.dragonclaw_ready()` | True unless a `Dragon Claw cannot be used for another …` line has fired since the last ready line. |
+| `Tem.dragon_use_target` / `Tem.dragon_use_self` / `Tem.dragon_passive` | Helpers for Dragon racial `use` aliases. |
 | `Tem.updposture(line)` etc. | Used by combat triggers (posture, knockdown, weapon probes). |
 | `Tem.cycle` / `Tem.syz` / `Tem.incant` | Lunar Sage cycle / `syzygies` / `use lunarincantations …`. |
 | `Tem.uishow` / `Tem.uihide` / `Tem.uitog` | Moon UI (`lmoonon`, `lmoonoff`, `lmoon`). |
@@ -44,6 +48,8 @@ Aliases and triggers call functions on the **`Tem`** table (short names). User-v
 ### Risk band, posture, and auto combat
 
 On a fresh profile, **`Tem.risk` defaults to `good`**. Auto combat (`acon`) picks a melee/ranged tier from **`Tem.autotier()`**, which uses the **safer** (lower) of: (1) your **combat posture** tier parsed from game output, and (2) the tier implied by your **risk band** (`good` → heavy, `neutral` → mid, `bad` / `critical` → safe). With morale and posture in play, leaving the band at **`neutral`** can **cap** automation at mid even when your posture would support heavier attacks; **`rgb`** sets **good** if you want that ceiling raised. Aliases **`rgb`** / **`rgn`** / **`rbd`** / **`rcr`** still override the band anytime.
+
+If **`Tem.is_dragon`** is **true**, `acon` skips posture/melee/ranged auto-attack logic and repeatedly sends **`use tear`** with your **`tt`** target (no `reqtgt` spam: it silently waits if `tt` is unset). Run **`score`** once after login so the package can detect dragon growth stages on the `You go by the name of …` line.
 
 `[Tempest Combat]` status lines from the package print on their **own** line (leading newline) so they do not run onto the same line as incoming game text.
 
@@ -103,7 +109,7 @@ On a fresh profile, **`Tem.risk` defaults to `good`**. Auto combat (`acon`) pick
 
 `black`, `obc`.
 
-Spells shown **in red** in your `gifts` list (e.g. Exodus, Holy Burning Recant, Exalted Spirit, Empathic Fire, Beacon Of Green Flames) are **not** aliased here—no access per your filter.
+Gift rows in your latest Basic/Empathy/Obscurity screenshots are all represented in the current Cleric alias set.
 
 ## Lunar Sage (in same package)
 
@@ -113,6 +119,7 @@ Spells shown **in red** in your `gifts` list (e.g. Exodus, Holy Burning Recant, 
 - UI: `lmoon`, `lmoonon`, `lmoonoff`.
 
 Lunar cores / melee-invalid lines switch auto-combat to **ranged** when appropriate (`Tem.lcranged`).
+Moon UI registers an anonymous `sysWindowResize` handler once; if labels behave oddly after reinstall/reload, restart the profile or toggle `lmoonoff`/`lmoonon`.
 
 ## Ethari Psionics (in same package)
 
@@ -132,12 +139,52 @@ Target behavior:
 - If target is omitted, alias falls back to `tt` target when available.
 - If `tt` is unset, command is sent without a target (matches in-game `help manipulate` behavior where blank target auto-targets Ethari context).
 
+## Dragon (race skills)
+
+- Alias folder: **`Classes > Dragon (race skills)`** (disable the folder on non-dragon profiles).
+- **Posture:** lines from the in-game skill list are **not** included here (shared across classes); use your class posture aliases or raw `use posture:…` as usual.
+- **`score`:** Triggers under **`Tempest > Classes > Dragon`** watch for `You go by the name of` and set **`Tem.is_dragon`** when the line contains **Dragon Whelp**, **Young Dragon**, **Adolescent Dragon**, **Adult Dragon**, or **Elder Dragon**; otherwise clears the flag on that same line shape.
+- **Dragon Claw cooldown:** Triggers on `Dragon Claw cannot be used for another …` and `Dragon Claw is now ready to be used.` — query with `lua display(Tem.dragonclaw_ready())` or branch in your own scripts.
+- **Charge** is a HUD resource in Tempest Season; this package does not parse it yet.
+
+### Shorthand table (`use` form; optional bare verb still works in-game)
+
+| Alias | Sends (canonical) |
+|-------|---------------------|
+| `ddc [tgt]` | `use dragonclaw <target>` |
+| `dte [tgt]` | `use tear <target>` |
+| `dgo [tgt]` | `use gore <target>` |
+| `deb [tgt]` | `use essenicblast <target>` |
+| `dbe [tgt]` | `use baneofessenic <target>` |
+| `dvu [tgt]` | `use violentuproar <target>` |
+| `dfe [tgt]` | `use feed <target>` |
+| `dic [tgt]` | `use infusedclaws <target>` |
+| `dfof` | `use dragonformforceoffire` |
+| `dgsl` | `use dragonformspeedoflightning` |
+| `dfow` | `use dragonformfinesseofwater` |
+| `dkod` | `use dragonformknowledgeofdeath` |
+| `dtop` | `use dragonformtouchofpoison` |
+| `dhoi` | `use dragonformhardnessofice` |
+| `dbw [tgt]` | `use bindwounds <target>` |
+| `dfp` | `use feralpresence` |
+| `dwr` | `use wrath` |
+| `dss` | `use scaleshield` |
+| `dbm` | `use boostmorale` |
+| `dch` | `use chameleoncloak` |
+| `dfs` | `use frenziedswipe` |
+| `ddm` | passive — opens `help defensivemaneuvers` |
+| `dama` | passive — opens `help amaranefortitude` |
+| `ddr` | auto — opens `help dragonrage` |
+| `des` | passive — opens `help enchantedscales` |
+
+Confirm any token with **`help <skill name>`** if the MUD rejects a line; training and growth can rename rare edge cases.
+
 ## Combat quick reference
 
 | Player | Action |
 |--------|--------|
 | `tt <name>` | Set target |
-| `acoff` / `acon` | Auto combat |
+| `acoff` / `acon` | Auto combat (dragon + `score`: `use tear` vs `tt`) |
 | `wsharp` / `wblunt` / `wreset` | Weapon style / reset after swap |
 | `setname <name>` | Self-name for guards |
 | `frap` / `fdeft` / `fprec` / `fauto <target>` | Ranged |
