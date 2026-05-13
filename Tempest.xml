@@ -2081,8 +2081,8 @@ send("use bindwounds " .. tgt)</script>
 							<regex>^ddr$</regex>
 						</Alias>
 						<Alias isActive="yes" isFolder="no">
-							<name>Enchanted Scales</name>
-							<script>Tem.dragon_passive("enchantedscales")</script>
+							<name>Enchanted Scales (automatic)</name>
+							<script>Tem.dragon_auto("enchantedscales", "Enchanted Scales")</script>
 							<command></command>
 							<packageName></packageName>
 							<regex>^des$</regex>
@@ -3819,6 +3819,21 @@ function Tem.dragon_passive(helpkey)
     return false
   end
   cecho("&lt;yellow&gt;[Tempest] Passive or automatic — see help " .. helpkey .. ".\n")
+  send("help " .. helpkey)
+  return true
+end
+
+--- Dragon racial skills with syntax "automatic" in help (no manual `use` line).
+function Tem.dragon_auto(helpkey, label)
+  helpkey = Tem.trim(tostring(helpkey or "")):lower():gsub("%s+", "")
+  if helpkey == "" then
+    return false
+  end
+  local disp = Tem.trim(tostring(label or ""))
+  if disp == "" then
+    disp = helpkey
+  end
+  cecho("&lt;yellow&gt;[Tempest] " .. disp .. " is automatic; no manual use cast.\n")
   send("help " .. helpkey)
   return true
 end
