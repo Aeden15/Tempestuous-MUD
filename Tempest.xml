@@ -1011,6 +1011,111 @@ Tem.noteenemyposture(getCurrentLine(), matches[2], matches[3])</script>
 					<packageName></packageName>
 					<regex>^apunlock$</regex>
 				</Alias>
+				<AliasGroup isActive="yes" isFolder="yes">
+					<name>Melee</name>
+					<script></script>
+					<command></command>
+					<packageName></packageName>
+					<regex></regex>
+					<Alias isActive="yes" isFolder="no">
+						<name>Pound</name>
+						<script>Tem.melee("safe", matches[2])</script>
+						<command></command>
+						<packageName></packageName>
+						<regex>^bp(?: (\w+))?$</regex>
+					</Alias>
+					<Alias isActive="yes" isFolder="no">
+						<name>Crush</name>
+						<script>Tem.melee("mid", matches[2])</script>
+						<command></command>
+						<packageName></packageName>
+						<regex>^bc(?: (\w+))?$</regex>
+					</Alias>
+					<Alias isActive="yes" isFolder="no">
+						<name>Smash</name>
+						<script>Tem.melee("heavy", matches[2])</script>
+						<command></command>
+						<packageName></packageName>
+						<regex>^bs(?: (\w+))?$</regex>
+					</Alias>
+					<Alias isActive="yes" isFolder="no">
+						<name>Slash</name>
+						<script>Tem.atk("slash", matches[2])</script>
+						<command></command>
+						<packageName></packageName>
+						<regex>^sl(?: (\w+))?$</regex>
+					</Alias>
+					<Alias isActive="yes" isFolder="no">
+						<name>Slice</name>
+						<script>Tem.atk("slice", matches[2])</script>
+						<command></command>
+						<packageName></packageName>
+						<regex>^si(?: (\w+))?$</regex>
+					</Alias>
+					<Alias isActive="yes" isFolder="no">
+						<name>Cleave</name>
+						<script>Tem.atk("cleave", matches[2])</script>
+						<command></command>
+						<packageName></packageName>
+						<regex>^clv(?: (\w+))?$</regex>
+					</Alias>
+					<Alias isActive="yes" isFolder="no">
+						<name>Jab</name>
+						<script>Tem.atk("jab", matches[2])</script>
+						<command></command>
+						<packageName></packageName>
+						<regex>^jb(?: (\w+))?$</regex>
+					</Alias>
+					<Alias isActive="yes" isFolder="no">
+						<name>Stab</name>
+						<script>Tem.atk("stab", matches[2])</script>
+						<command></command>
+						<packageName></packageName>
+						<regex>^stb(?: (\w+))?$</regex>
+					</Alias>
+					<Alias isActive="yes" isFolder="no">
+						<name>Thrust</name>
+						<script>Tem.atk("thrust", matches[2])</script>
+						<command></command>
+						<packageName></packageName>
+						<regex>^thr(?: (\w+))?$</regex>
+					</Alias>
+					<Alias isActive="yes" isFolder="no">
+						<name>Risk good</name>
+						<script>Tem.setrisk("good")</script>
+						<command></command>
+						<packageName></packageName>
+						<regex>^rgb$</regex>
+					</Alias>
+					<Alias isActive="yes" isFolder="no">
+						<name>Risk neutral</name>
+						<script>Tem.setrisk("neutral")</script>
+						<command></command>
+						<packageName></packageName>
+						<regex>^rgn$</regex>
+					</Alias>
+					<Alias isActive="yes" isFolder="no">
+						<name>Risk bad</name>
+						<script>Tem.setrisk("bad")</script>
+						<command></command>
+						<packageName></packageName>
+						<regex>^rbd$</regex>
+					</Alias>
+					<Alias isActive="yes" isFolder="no">
+						<name>Risk critical</name>
+						<script>Tem.setrisk("critical")</script>
+						<command></command>
+						<packageName></packageName>
+						<regex>^rcr$</regex>
+					</Alias>
+					<Alias isActive="yes" isFolder="no">
+						<name>Smart melee</name>
+						<script>Tem.melee("auto", matches[2])</script>
+						<command></command>
+						<packageName></packageName>
+						<regex>^mma(?: (\w+))?$</regex>
+					</Alias>
+				</AliasGroup>
 			</AliasGroup>
 			<AliasGroup isActive="yes" isFolder="yes">
 				<name>Classes</name>
@@ -1064,6 +1169,13 @@ Tem.noteenemyposture(getCurrentLine(), matches[2], matches[3])</script>
 								<packageName></packageName>
 								<regex>^rejuv(?: (\w+))?(?: (\w+))?$</regex>
 							</Alias>
+							<Alias isActive="yes" isFolder="no">
+								<name>Self buff chain</name>
+								<script>Tem.sbuff()</script>
+								<command></command>
+								<packageName></packageName>
+								<regex>^sbuff$</regex>
+							</Alias>
 						</AliasGroup>
 						<AliasGroup isActive="yes" isFolder="yes">
 							<name>Healing</name>
@@ -1102,111 +1214,6 @@ Tem.pray("restoration", tgt, matches[2])</script>
 								<command></command>
 								<packageName></packageName>
 								<regex>^vit(?: (\w+))?(?: (\w+))?$</regex>
-							</Alias>
-						</AliasGroup>
-						<AliasGroup isActive="yes" isFolder="yes">
-							<name>Melee</name>
-							<script></script>
-							<command></command>
-							<packageName></packageName>
-							<regex></regex>
-							<Alias isActive="yes" isFolder="no">
-								<name>Pound</name>
-								<script>Tem.melee("safe", matches[2])</script>
-								<command></command>
-								<packageName></packageName>
-								<regex>^bp(?: (\w+))?$</regex>
-							</Alias>
-							<Alias isActive="yes" isFolder="no">
-								<name>Crush</name>
-								<script>Tem.melee("mid", matches[2])</script>
-								<command></command>
-								<packageName></packageName>
-								<regex>^bc(?: (\w+))?$</regex>
-							</Alias>
-							<Alias isActive="yes" isFolder="no">
-								<name>Smash</name>
-								<script>Tem.melee("heavy", matches[2])</script>
-								<command></command>
-								<packageName></packageName>
-								<regex>^bs(?: (\w+))?$</regex>
-							</Alias>
-							<Alias isActive="yes" isFolder="no">
-								<name>Slash</name>
-								<script>Tem.atk("slash", matches[2])</script>
-								<command></command>
-								<packageName></packageName>
-								<regex>^sl(?: (\w+))?$</regex>
-							</Alias>
-							<Alias isActive="yes" isFolder="no">
-								<name>Slice</name>
-								<script>Tem.atk("slice", matches[2])</script>
-								<command></command>
-								<packageName></packageName>
-								<regex>^si(?: (\w+))?$</regex>
-							</Alias>
-							<Alias isActive="yes" isFolder="no">
-								<name>Cleave</name>
-								<script>Tem.atk("cleave", matches[2])</script>
-								<command></command>
-								<packageName></packageName>
-								<regex>^clv(?: (\w+))?$</regex>
-							</Alias>
-							<Alias isActive="yes" isFolder="no">
-								<name>Jab</name>
-								<script>Tem.atk("jab", matches[2])</script>
-								<command></command>
-								<packageName></packageName>
-								<regex>^jb(?: (\w+))?$</regex>
-							</Alias>
-							<Alias isActive="yes" isFolder="no">
-								<name>Stab</name>
-								<script>Tem.atk("stab", matches[2])</script>
-								<command></command>
-								<packageName></packageName>
-								<regex>^stb(?: (\w+))?$</regex>
-							</Alias>
-							<Alias isActive="yes" isFolder="no">
-								<name>Thrust</name>
-								<script>Tem.atk("thrust", matches[2])</script>
-								<command></command>
-								<packageName></packageName>
-								<regex>^thr(?: (\w+))?$</regex>
-							</Alias>
-							<Alias isActive="yes" isFolder="no">
-								<name>Risk good</name>
-								<script>Tem.setrisk("good")</script>
-								<command></command>
-								<packageName></packageName>
-								<regex>^rgb$</regex>
-							</Alias>
-							<Alias isActive="yes" isFolder="no">
-								<name>Risk neutral</name>
-								<script>Tem.setrisk("neutral")</script>
-								<command></command>
-								<packageName></packageName>
-								<regex>^rgn$</regex>
-							</Alias>
-							<Alias isActive="yes" isFolder="no">
-								<name>Risk bad</name>
-								<script>Tem.setrisk("bad")</script>
-								<command></command>
-								<packageName></packageName>
-								<regex>^rbd$</regex>
-							</Alias>
-							<Alias isActive="yes" isFolder="no">
-								<name>Risk critical</name>
-								<script>Tem.setrisk("critical")</script>
-								<command></command>
-								<packageName></packageName>
-								<regex>^rcr$</regex>
-							</Alias>
-							<Alias isActive="yes" isFolder="no">
-								<name>Smart melee</name>
-								<script>Tem.melee("auto", matches[2])</script>
-								<command></command>
-								<packageName></packageName>
-								<regex>^mma(?: (\w+))?$</regex>
 							</Alias>
 						</AliasGroup>
 						<AliasGroup isActive="yes" isFolder="yes">
@@ -1294,10 +1301,10 @@ Tem.pray("restoration", tgt, matches[2])</script>
 							</Alias>
 							<Alias isActive="yes" isFolder="no">
 								<name>Bestow Refulgent Flame</name>
-								<script>Tem.pray("bestowrefulgentflame", "self", matches[2])</script>
+								<script>Tem.praybuff("bestowrefulgentflame", matches[2], matches[3])</script>
 								<command></command>
 								<packageName></packageName>
-								<regex>^brf(?: (\w+))?$</regex>
+								<regex>^brf(?: (\w+))?(?: (\w+))?$</regex>
 							</Alias>
 							<Alias isActive="yes" isFolder="no">
 								<name>Curative Efflux</name>
@@ -2838,7 +2845,8 @@ end
 --- Buff-style alias: target is tt (or self if unset). If the first optional word is a
 --- favors token (min/max/digits), it applies to that target. Otherwise the first word is
 --- a manual denizen name for this cast only (tt unchanged). Optional second word = favors.
---- Not used for celestial grasp (self-only).
+--- Not used for celestial grasp (self-only). Example documented chain: Tem.SBUFF_STEPS /
+--- Tem.sbuff (no allowlist here—table is routing docs only).
 function Tem.praybuff(gift, opt_first, opt_second)
   local target_name
   local favors
@@ -2893,6 +2901,70 @@ function Tem.prayoff(gift, opt_first, opt_second)
   end
 
   Tem.pray(gift, target_name, favors)
+end
+
+--- Ordered self-buff chain (Tem.sbuff) after Plead. Tem.praybuff stays generic; this table
+--- documents gift keys and praybuff vs prayoff vs send routing only.
+Tem.SBUFF_STEPS = {
+  { send = "use plead", how = "send" },
+  { gift = "sacredprotection", how = "praybuff" },
+  { gift = "intercession", how = "praybuff" },
+  { gift = "righteousaura", how = "praybuff" },
+  { gift = "rejuvenation", how = "praybuff" },
+  { gift = "blazingsoulfire", how = "praybuff" },
+  { gift = "empathicfire", how = "praybuff" },
+  { gift = "bestowrefulgentflame", how = "praybuff" },
+  { gift = "curativeefflux", how = "prayoff" },
+  { gift = "beaconofgreenflames", how = "prayoff" },
+  { gift = "exaltedspirit", how = "prayoff" },
+  { gift = "obcursion", how = "praybuff" },
+}
+
+Tem._sbufftimer = Tem._sbufftimer or nil
+
+local function _sbuff_cancel()
+  if Tem._sbufftimer and killTimer then
+    killTimer(Tem._sbufftimer)
+    Tem._sbufftimer = nil
+  end
+end
+
+function Tem.sbuff()
+  _sbuff_cancel()
+  local gap = tonumber(Tem.sbuff_gap)
+  if gap == nil then
+    gap = 0.35
+  elseif gap &lt; 0 then
+    gap = 0
+  end
+  local steps = Tem.SBUFF_STEPS
+
+  local function run_step(i)
+    if i &gt; #steps then
+      return
+    end
+    local step = steps[i]
+    if step.how == "send" and step.send then
+      send(step.send)
+    elseif step.how == "praybuff" and step.gift then
+      Tem.praybuff(step.gift, "self", "max")
+    elseif step.how == "prayoff" and step.gift then
+      Tem.prayoff(step.gift, "self", "max")
+    end
+    if i == #steps then
+      return
+    end
+    if not tempTimer then
+      run_step(i + 1)
+      return
+    end
+    Tem._sbufftimer = tempTimer(gap, function()
+      Tem._sbufftimer = nil
+      run_step(i + 1)
+    end)
+  end
+
+  run_step(1)
 end
 
 local function resolve_attack_target(explicit_target)
