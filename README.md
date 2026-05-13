@@ -51,6 +51,8 @@ On a fresh profile, **`Tem.risk` defaults to `good`**. Auto combat (`acon`) pick
 
 If **`Tem.is_dragon`** is **true**, `acon` skips posture/melee/ranged auto-attack logic and repeatedly sends **`use tear`** with your **`tt`** target (no `reqtgt` spam: it silently waits if `tt` is unset). Run **`score`** once after login so the package can detect dragon growth stages on the `You go by the name of …` line.
 
+Invalid-name rejections (e.g. **`There is no player with the name … present in the room.`**) turn **`acon`** off through the same **Invalid target stop auto** trigger as **`That target does not exist.`** — queue clear, `acoff`, and the usual `[Tempest Combat]` message.
+
 `[Tempest Combat]` status lines from the package print on their **own** line (leading newline) so they do not run onto the same line as incoming game text.
 
 ## Cleric gift aliases (reference)
